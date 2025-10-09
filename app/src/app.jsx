@@ -614,6 +614,30 @@ function ClubFinder(){
     return ()=> { clearTimeout(t); window.removeEventListener('keydown', onKey, true); };
   }, [isMobileFiltersOpen]);
 
+  // Helper: choose mobile filter control padding — slightly taller on iOS small screens,
+  // but a little less tall on non-iOS small screens to save vertical space.
+  const mobileFilterPaddingClass = () => {
+    try {
+      const isSmall = (typeof window !== 'undefined' && window.innerWidth < 768);
+      if (isSmall) {
+        if (isIOSRef.current) return 'py-3'; // iOS: slightly taller
+        return 'py-2.5'; // non-iOS small screens: a bit less tall
+      }
+    } catch(_){ }
+    return 'py-3';
+  };
+
+  // Helper: search input padding — slightly larger on iOS small screens, slightly smaller elsewhere
+  const mobileSearchPaddingClass = () => {
+    try {
+      const isSmall = (typeof window !== 'undefined' && window.innerWidth < 768);
+      if (isSmall) {
+        return isIOSRef.current ? 'py-3.5' : 'py-2.5';
+      }
+    } catch(_){ }
+    return 'py-2';
+  };
+
   // Mark first paint to allow one-time staggered animation of list cards
   useEffect(() => {
     // Run after first filtered set is ready
@@ -730,6 +754,12 @@ function ClubFinder(){
   }, [isMobileListVisible, filteredClubs, dynamicThresholds.hidePx, dynamicThresholds.showPx]);
 
   const mobileActiveFiltersCount = (countyFilter?1:0)+(surfaceFilter?1:0)+(indoorFilter?1:0)+((rawLocationSearch&&rawLocationSearch.trim())?1:0);
+
+  // Determine mobile input sizing: slightly taller on iOS because native inputs are compact there;
+  // otherwise keep them a bit less tall on other small screens.
+  const isIOS = isIOSRef.current;
+  const mobileSelectClass = `w-full px-4 ${isIOS ? 'py-4' : 'py-3'} border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-base`;
+  const globalSearchClass = `block w-full pl-10 pr-10 ${isIOS ? 'py-3.5' : 'py-3'} md:py-2 border border-slate-300 rounded-lg leading-6 bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-teal-500 focus:border-teal-500 text-base`;
 
   useEffect(()=>{
     if(mapRef.current) return;
@@ -1191,7 +1221,7 @@ if(newMarkers.length && !selectedClubId){
                   <div className="grid grid-cols-1 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-slate-600 mb-2">County</label>
-                      <select ref={firstMobileFilterRef} value={countyFilter} onChange={e=> setCountyFilter(e.target.value)} className="w-full px-4 py-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-base">
+                      <select ref={firstMobileFilterRef} value={countyFilter} onChange={e=> setCountyFilter(e.target.value)} className={`w-full px-4 ${mobileFilterPaddingClass()} border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-base`}>
                         <option value="">All counties</option>
                         {getCountiesSafe().map(c => {
                           const n = countyCounts[c] || 0;
@@ -1202,7 +1232,7 @@ if(newMarkers.length && !selectedClubId){
                     {activeSport === 'Tennis' && (
                       <div>
                         <label className="block text-sm font-medium text-slate-600 mb-2">Surface</label>
-                        <select value={surfaceFilter} onChange={e=> setSurfaceFilter(e.target.value)} className="w-full px-4 py-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-base">
+                        <select value={surfaceFilter} onChange={e=> setSurfaceFilter(e.target.value)} className={`w-full px-4 ${mobileFilterPaddingClass()} border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-base`}>
                           <option value="">All surfaces</option>
                           {(surfacesSorted||CANONICAL_SURFACES).map(s => <option key={s} value={s}>{s}{` (${surfaceCounts[s]||0})`}</option>)}
                         </select>
@@ -1210,7 +1240,7 @@ if(newMarkers.length && !selectedClubId){
                     )}
                     <div>
                       <label className="block text-sm font-medium text-slate-600 mb-2">Venue type</label>
-                      <select value={indoorFilter} onChange={e=> setIndoorFilter(e.target.value)} className="w-full px-4 py-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-base">
+                      <select value={indoorFilter} onChange={e=> setIndoorFilter(e.target.value)} className={`w-full px-4 ${mobileFilterPaddingClass()} border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-base`}>
                         <option value="">All venue types</option>
                         <option value="outdoor">Outdoor</option>
                         <option value="indoor">Indoor</option>
@@ -1218,8 +1248,8 @@ if(newMarkers.length && !selectedClubId){
                     </div>
                   </div>
                   <div className="flex items-center justify-between pt-2">
-                    <button onClick={()=> { setCountyFilter(''); setSurfaceFilter(''); setIndoorFilter(''); setRawLocationSearch(''); }} className="text-sm font-semibold px-3.5 py-2.5 rounded-md border border-slate-200 bg-slate-100 text-slate-600 hover:bg-slate-200">Reset</button>
-                    <button onClick={()=> { setMobileFiltersOpen(false); if (typeof window !== 'undefined' && window.innerWidth < 768 && isMobileListVisible) { setTopHeaderHidden(false); try { if(listScrollRef.current){ listScrollRef.current.scrollTop = 0; } } catch(_){} } }} className="text-sm font-semibold px-4 py-2.5 rounded-md bg-teal-500 text-white hover:bg-teal-600">Done</button>
+                    <button onClick={()=> { setCountyFilter(''); setSurfaceFilter(''); setIndoorFilter(''); setRawLocationSearch(''); }} className="text-sm font-semibold px-3.5 py-3 rounded-md border border-slate-200 bg-slate-100 text-slate-600 hover:bg-slate-200">Reset</button>
+                    <button onClick={()=> { setMobileFiltersOpen(false); if (typeof window !== 'undefined' && window.innerWidth < 768 && isMobileListVisible) { setTopHeaderHidden(false); try { if(listScrollRef.current){ listScrollRef.current.scrollTop = 0; } } catch(_){} } }} className="text-sm font-semibold px-4 py-3 rounded-md bg-teal-500 text-white hover:bg-teal-600">Done</button>
                   </div>
                   </div>
                 </div>
@@ -1227,7 +1257,7 @@ if(newMarkers.length && !selectedClubId){
                 <div className="w-full md:max-w-xs lg:max-w-sm xl:max-w-md mt-2 md:mt-0">
                 <div className="relative flex-grow">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><SearchIcon className="h-5 w-5 text-slate-400"/></div>
-                  <input id="global-search" type="text" placeholder="Search by city or name..." value={rawLocationSearch} onChange={e=> setRawLocationSearch(e.target.value)} className="block w-full pl-10 pr-10 py-3.5 md:py-2 border border-slate-300 rounded-lg leading-6 bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-teal-500 focus:border-teal-500 text-base" />
+                  <input id="global-search" type="text" placeholder="Search by city or name..." value={rawLocationSearch} onChange={e=> setRawLocationSearch(e.target.value)} className={`block w-full pl-10 pr-10 ${mobileSearchPaddingClass()} md:py-1.5 border border-slate-300 rounded-lg leading-6 bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-teal-500 focus:border-teal-500 text-base`} />
                   {rawLocationSearch && rawLocationSearch.trim() && (
                     <button type="button" aria-label="Clear search" onClick={()=> { setRawLocationSearch(''); setTimeout(()=>{ try { document.getElementById('global-search')?.focus(); } catch(e){} }, 0); }} className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600">
                       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
