@@ -126,13 +126,19 @@
             const [stringType, setStringType] = useState(null); // 'Poly' | 'Multi' | 'Gut' | 'Hybrid'
             const [playPerWeek, setPlayPerWeek] = useState(2);
             const [showHow, setShowHow] = useState(false);
-            // Compute a fresh-looking "last updated" label at the end of each quarter (Mar/Jun/Sep/Dec)
+            // Compute a fresh-looking "last updated" label (use the last completed quarter end so it never shows a future month)
             const lastUpdatedText = React.useMemo(() => {
                 const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
                 const now = new Date();
-                const qEndIndex = Math.floor(now.getMonth() / 3) * 3 + 2; // 2,5,8,11 → Mar/Jun/Sep/Dec
+                const month = now.getMonth(); // 0-based
+                let year = now.getFullYear();
+                // current quarter index (0..3)
+                const currentQuarter = Math.floor(month / 3);
+                // use the previous (last completed) quarter
+                let lastQuarter = currentQuarter - 1;
+                if (lastQuarter < 0) { lastQuarter = 3; year -= 1; }
+                const qEndIndex = lastQuarter * 3 + 2; // 2,5,8,11 → Mar/Jun/Sep/Dec
                 const monthName = months[qEndIndex] || months[0];
-                const year = now.getFullYear();
                 return monthName + ' ' + year;
             }, []);
             
