@@ -1115,21 +1115,16 @@ if(newMarkers.length && !selectedClubId){
                 </div>
               </div>
             </div>
-            <div className="pb-4 pt-1 md:pt-2 flex flex-col md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-y-3">
+            <div className="pb-4 pt-3 md:pt-2 flex flex-col md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-y-3">
                 <div
                 ref={tabsRowRef}
-                className={`items-center mb-2 md:mb-0 pr-4 md:pr-0 pt-1 md:pt-0 ${ (isMobileListVisible && isTopHeaderHidden) ? 'md:flex md:opacity-100 md:max-h-[4rem] md:pointer-events-auto overflow-hidden opacity-0 pointer-events-none' : 'flex overflow-visible'}`}
+                className={`items-center mb-2 md:mb-0 pr-4 md:pr-0 pt-1 md:pt-0 flex overflow-visible`}
                 style={{
-                  maxHeight: (typeof window !== 'undefined' && window.innerWidth < 768)
-                    ? ((isMobileListVisible && isTopHeaderHidden) ? 0 : tabsRowHeight)
-                    : undefined,
-                  opacity: (typeof window !== 'undefined' && window.innerWidth < 768)
-                    ? ((isMobileListVisible && isTopHeaderHidden) ? 0 : 1)
-                    : 1,
-                  transition: (typeof window !== 'undefined' && window.innerWidth < 768)
-                    ? 'max-height 300ms cubic-bezier(.22,1,.36,1), opacity 200ms ease-out'
-                    : undefined,
-                  willChange: (typeof window !== 'undefined' && window.innerWidth < 768) ? 'max-height, opacity' : undefined
+                  // Keep tabs visible at all times; on mobile we preserve a fixed maxHeight for layout
+                  maxHeight: (typeof window !== 'undefined' && window.innerWidth < 768) ? tabsRowHeight : undefined,
+                  opacity: 1,
+                  transition: (typeof window !== 'undefined' && window.innerWidth < 768) ? 'max-height 300ms cubic-bezier(.22,1,.36,1)' : undefined,
+                  willChange: (typeof window !== 'undefined' && window.innerWidth < 768) ? 'max-height' : undefined
                 }}
               >
                 <div className="p-1 bg-slate-100 rounded-md flex space-x-0.5 md:space-x-0.5 flex-grow md:flex-grow-0" role="tablist" aria-label="Sports">
@@ -1162,7 +1157,7 @@ if(newMarkers.length && !selectedClubId){
                 <div className="flex items-center gap-2 w-full md:w-auto md:ml-0 mt-0 md:mt-0">
                   <button aria-label="Filters" onClick={()=> setMobileFiltersOpen(o=>!o)} className={`md:hidden relative h-10 px-3 py-2 rounded-md bg-white border border-slate-300 text-slate-700 shadow-sm flex items-center justify-center min-w-[44px] ml-2 ${isMobileFiltersOpen ? 'ring-2 ring-teal-500/40' : ''}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-[18px] h-[18px]"><path fill="currentColor" fillRule="evenodd" d="M3.25 6A.75.75 0 0 1 4 5.25h16a.75.75 0 0 1 0 1.5H4A.75.75 0 0 1 3.25 6Zm3 6a.75.75 0 0 1 .75-.75h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 6.25 12Zm3 5.25a.75.75 0 0 0 0 1.5h5a.75.75 0 0 0 0-1.5h-5Z" clipRule="evenodd"/></svg>
-                    <span className="ml-2 text-sm font-medium">Options</span>
+                    <span className="ml-2 text-sm font-medium">Filters</span>
                   </button>
                   <div className="hidden md:flex items-center gap-2 lg:gap-3 md:ml-2">
                     <select aria-label="County" value={countyFilter} onChange={e=> setCountyFilter(e.target.value)} className="w-full md:w-[150px] lg:w-[230px] xl:w-[230px] px-4 md:px-3 lg:px-4 xl:px-3 py-2.5 md:py-2 border border-slate-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500/60 focus:border-teal-500 text-sm font-medium">
@@ -1195,8 +1190,8 @@ if(newMarkers.length && !selectedClubId){
                   <div className="flex items-center justify-between mb-1"><div id="mobile-filters-title" className="text-base font-semibold text-slate-800">Filters</div></div>
                   <div className="grid grid-cols-1 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-slate-600 mb-1">County</label>
-                      <select ref={firstMobileFilterRef} value={countyFilter} onChange={e=> setCountyFilter(e.target.value)} className="w-full px-3.5 py-3 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-[15px]">
+                      <label className="block text-sm font-medium text-slate-600 mb-2">County</label>
+                      <select ref={firstMobileFilterRef} value={countyFilter} onChange={e=> setCountyFilter(e.target.value)} className="w-full px-4 py-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-base">
                         <option value="">All counties</option>
                         {getCountiesSafe().map(c => {
                           const n = countyCounts[c] || 0;
@@ -1206,16 +1201,16 @@ if(newMarkers.length && !selectedClubId){
                     </div>
                     {activeSport === 'Tennis' && (
                       <div>
-                        <label className="block text-sm font-medium text-slate-600 mb-1">Surface</label>
-                        <select value={surfaceFilter} onChange={e=> setSurfaceFilter(e.target.value)} className="w-full px-3.5 py-3 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-[15px]">
+                        <label className="block text-sm font-medium text-slate-600 mb-2">Surface</label>
+                        <select value={surfaceFilter} onChange={e=> setSurfaceFilter(e.target.value)} className="w-full px-4 py-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-base">
                           <option value="">All surfaces</option>
                           {(surfacesSorted||CANONICAL_SURFACES).map(s => <option key={s} value={s}>{s}{` (${surfaceCounts[s]||0})`}</option>)}
                         </select>
                       </div>
                     )}
                     <div>
-                      <label className="block text-sm font-medium text-slate-600 mb-1">Venue type</label>
-                      <select value={indoorFilter} onChange={e=> setIndoorFilter(e.target.value)} className="w-full px-3.5 py-3 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-[15px]">
+                      <label className="block text-sm font-medium text-slate-600 mb-2">Venue type</label>
+                      <select value={indoorFilter} onChange={e=> setIndoorFilter(e.target.value)} className="w-full px-4 py-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-base">
                         <option value="">All venue types</option>
                         <option value="outdoor">Outdoor</option>
                         <option value="indoor">Indoor</option>
@@ -1229,10 +1224,10 @@ if(newMarkers.length && !selectedClubId){
                   </div>
                 </div>
               )}
-              <div className="w-full md:max-w-xs lg:max-w-sm xl:max-w-md mt-2 md:mt-0">
+                <div className="w-full md:max-w-xs lg:max-w-sm xl:max-w-md mt-2 md:mt-0">
                 <div className="relative flex-grow">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><SearchIcon className="h-5 w-5 text-slate-400"/></div>
-                  <input id="global-search" type="text" placeholder="Search by city or name..." value={rawLocationSearch} onChange={e=> setRawLocationSearch(e.target.value)} className="block w-full pl-10 pr-10 py-2 md:py-2 border border-slate-300 rounded-md leading-5 bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-teal-500 focus:border-teal-500 sm:text-sm" />
+                  <input id="global-search" type="text" placeholder="Search by city or name..." value={rawLocationSearch} onChange={e=> setRawLocationSearch(e.target.value)} className="block w-full pl-10 pr-10 py-3.5 md:py-2 border border-slate-300 rounded-lg leading-6 bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-teal-500 focus:border-teal-500 text-base" />
                   {rawLocationSearch && rawLocationSearch.trim() && (
                     <button type="button" aria-label="Clear search" onClick={()=> { setRawLocationSearch(''); setTimeout(()=>{ try { document.getElementById('global-search')?.focus(); } catch(e){} }, 0); }} className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600">
                       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
@@ -1287,25 +1282,28 @@ if(newMarkers.length && !selectedClubId){
               </div>
             </div>
           </div>
-          <div className="flex-grow h-full"><div id="map" className="h-full w-full z-10"></div></div>
-          <div className="md:hidden fixed top-4 left-4 z-40 pointer-events-auto">
-            <button
-              onClick={() => {
-                const next = !isMobileListVisible;
-                setMobileListVisible(next);
-                if (next) {
-                  try {
-                    setTopHeaderHidden(false);
-                    if (listScrollRef.current) listScrollRef.current.scrollTop = 0;
-                  } catch (_) {}
-                }
-              }}
-              aria-label={isMobileListVisible ? 'Show map' : 'Show list'}
-              className="pointer-events-auto flex items-center gap-3 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/70 text-slate-800 font-semibold py-3 px-6 rounded-full shadow-lg ring-1 ring-slate-200 hover:bg-white transition text-base"
-            >
-              {isMobileListVisible ? <MapViewIcon className="h-6 w-6"/> : <ListIcon className="h-6 w-6"/>}
-              <span className="ml-1 text-base font-medium">{isMobileListVisible ? 'Show map' : 'Show list'}</span>
-            </button>
+            <div className="flex-grow h-full relative">
+            <div id="map" className="h-full w-full z-10"></div>
+            {/* Mobile-only single-action opener: show the list. Hidden while the list is visible. */}
+              {!isMobileListVisible && (
+              <div className="md:hidden absolute top-4 left-4 z-50 pointer-events-auto">
+                <button
+                  onClick={() => {
+                    // Open the list (one-way action); the button will then be hidden
+                    setMobileListVisible(true);
+                    try {
+                      setTopHeaderHidden(false);
+                      if (listScrollRef.current) listScrollRef.current.scrollTop = 0;
+                    } catch (_) {}
+                  }}
+                  aria-label="Show list"
+                  className="pointer-events-auto flex items-center gap-3 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/70 text-slate-800 font-semibold py-3.5 px-6 rounded-full shadow-lg ring-1 ring-slate-200 hover:bg-white transition text-base"
+                >
+                  <ListIcon className="h-6 w-6"/>
+                  <span className="text-base font-medium">Show list</span>
+                </button>
+              </div>
+            )}
           </div>
         </main>
       </div>
