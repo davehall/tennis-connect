@@ -1115,7 +1115,7 @@ if(newMarkers.length && !selectedClubId){
                 </div>
               </div>
             </div>
-            <div className="pb-4 pt-1 md:pt-2 flex flex-col md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-y-3">
+            <div className="pb-4 pt-3 md:pt-2 flex flex-col md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-y-3">
                 <div
                 ref={tabsRowRef}
                 className={`items-center mb-2 md:mb-0 pr-4 md:pr-0 pt-1 md:pt-0 flex overflow-visible`}
