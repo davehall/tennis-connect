@@ -1287,27 +1287,28 @@ if(newMarkers.length && !selectedClubId){
               </div>
             </div>
           </div>
-          <div className="flex-grow h-full relative">
+            <div className="flex-grow h-full relative">
             <div id="map" className="h-full w-full z-10"></div>
-            <div className="md:hidden absolute top-4 left-4 z-50 pointer-events-auto">
-              <button
-                onClick={() => {
-                  const next = !isMobileListVisible;
-                  setMobileListVisible(next);
-                  if (next) {
+            {/* Mobile-only single-action opener: show the list. Hidden while the list is visible. */}
+            {!isMobileListVisible && (
+              <div className="md:hidden absolute top-4 left-4 z-50 pointer-events-auto">
+                <button
+                  onClick={() => {
+                    // Open the list (one-way action); the button will then be hidden
+                    setMobileListVisible(true);
                     try {
                       setTopHeaderHidden(false);
                       if (listScrollRef.current) listScrollRef.current.scrollTop = 0;
                     } catch (_) {}
-                  }
-                }}
-                aria-label={isMobileListVisible ? 'Show map' : 'Show list'}
-                className="pointer-events-auto flex items-center gap-3 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/70 text-slate-800 font-semibold py-3 px-6 rounded-full shadow-lg ring-1 ring-slate-200 hover:bg-white transition text-base"
-              >
-                {isMobileListVisible ? <MapViewIcon className="h-6 w-6"/> : <ListIcon className="h-6 w-6"/>}
-                <span className="ml-1 text-base font-medium">{isMobileListVisible ? 'Show map' : 'Show list'}</span>
-              </button>
-            </div>
+                  }}
+                  aria-label="Show list"
+                  className="pointer-events-auto flex items-center gap-3 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/70 text-slate-800 font-semibold py-3 px-6 rounded-full shadow-lg ring-1 ring-slate-200 hover:bg-white transition text-base"
+                >
+                  <ListIcon className="h-6 w-6"/>
+                  <span className="ml-1 text-base font-medium">Show list</span>
+                </button>
+              </div>
+            )}
           </div>
         </main>
       </div>
