@@ -1118,18 +1118,13 @@ if(newMarkers.length && !selectedClubId){
             <div className="pb-4 pt-1 md:pt-2 flex flex-col md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-y-3">
                 <div
                 ref={tabsRowRef}
-                className={`items-center mb-2 md:mb-0 pr-4 md:pr-0 pt-1 md:pt-0 ${ (isMobileListVisible && isTopHeaderHidden) ? 'md:flex md:opacity-100 md:max-h-[4rem] md:pointer-events-auto overflow-hidden opacity-0 pointer-events-none' : 'flex overflow-visible'}`}
+                className={`items-center mb-2 md:mb-0 pr-4 md:pr-0 pt-1 md:pt-0 flex overflow-visible`}
                 style={{
-                  maxHeight: (typeof window !== 'undefined' && window.innerWidth < 768)
-                    ? ((isMobileListVisible && isTopHeaderHidden) ? 0 : tabsRowHeight)
-                    : undefined,
-                  opacity: (typeof window !== 'undefined' && window.innerWidth < 768)
-                    ? ((isMobileListVisible && isTopHeaderHidden) ? 0 : 1)
-                    : 1,
-                  transition: (typeof window !== 'undefined' && window.innerWidth < 768)
-                    ? 'max-height 300ms cubic-bezier(.22,1,.36,1), opacity 200ms ease-out'
-                    : undefined,
-                  willChange: (typeof window !== 'undefined' && window.innerWidth < 768) ? 'max-height, opacity' : undefined
+                  // Keep tabs visible at all times; on mobile we preserve a fixed maxHeight for layout
+                  maxHeight: (typeof window !== 'undefined' && window.innerWidth < 768) ? tabsRowHeight : undefined,
+                  opacity: 1,
+                  transition: (typeof window !== 'undefined' && window.innerWidth < 768) ? 'max-height 300ms cubic-bezier(.22,1,.36,1)' : undefined,
+                  willChange: (typeof window !== 'undefined' && window.innerWidth < 768) ? 'max-height' : undefined
                 }}
               >
                 <div className="p-1 bg-slate-100 rounded-md flex space-x-0.5 md:space-x-0.5 flex-grow md:flex-grow-0" role="tablist" aria-label="Sports">
@@ -1162,7 +1157,7 @@ if(newMarkers.length && !selectedClubId){
                 <div className="flex items-center gap-2 w-full md:w-auto md:ml-0 mt-0 md:mt-0">
                   <button aria-label="Filters" onClick={()=> setMobileFiltersOpen(o=>!o)} className={`md:hidden relative h-10 px-3 py-2 rounded-md bg-white border border-slate-300 text-slate-700 shadow-sm flex items-center justify-center min-w-[44px] ml-2 ${isMobileFiltersOpen ? 'ring-2 ring-teal-500/40' : ''}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-[18px] h-[18px]"><path fill="currentColor" fillRule="evenodd" d="M3.25 6A.75.75 0 0 1 4 5.25h16a.75.75 0 0 1 0 1.5H4A.75.75 0 0 1 3.25 6Zm3 6a.75.75 0 0 1 .75-.75h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 6.25 12Zm3 5.25a.75.75 0 0 0 0 1.5h5a.75.75 0 0 0 0-1.5h-5Z" clipRule="evenodd"/></svg>
-                    <span className="ml-2 text-sm font-medium">Options</span>
+                    <span className="ml-2 text-sm font-medium">Filters</span>
                   </button>
                   <div className="hidden md:flex items-center gap-2 lg:gap-3 md:ml-2">
                     <select aria-label="County" value={countyFilter} onChange={e=> setCountyFilter(e.target.value)} className="w-full md:w-[150px] lg:w-[230px] xl:w-[230px] px-4 md:px-3 lg:px-4 xl:px-3 py-2.5 md:py-2 border border-slate-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500/60 focus:border-teal-500 text-sm font-medium">
@@ -1305,7 +1300,7 @@ if(newMarkers.length && !selectedClubId){
                   className="pointer-events-auto flex items-center gap-3 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/70 text-slate-800 font-semibold py-3 px-6 rounded-full shadow-lg ring-1 ring-slate-200 hover:bg-white transition text-base"
                 >
                   <ListIcon className="h-6 w-6"/>
-                  <span className="ml-1 text-base font-medium">Show list</span>
+                  <span className="text-base font-medium">Show list</span>
                 </button>
               </div>
             )}
