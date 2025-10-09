@@ -1,0 +1,42 @@
+<!doctype html>
+    <html>
+        <head>
+            <title>Error 404</title>
+            <meta charset="utf-8">
+            <style type="text/css">
+                body {
+                    background: #cccccc;
+                    text-align: justify;
+                    font-family: Arial, Verdana, sans-serif;
+                }
+
+                div {
+                    width: 400px;
+                    margin: 20px auto 50px auto; 
+                    border: 1px solid #cc0000;
+                    background: #ffffff;
+                    padding: 5px;
+                }
+
+                h2 {
+                    color: #cc0000;
+                    margin: 0 0 5px 0;
+                    width: 100%;
+                    border-bottom: 1px solid #cc0000;
+                    display: block;
+
+                }
+
+                p {
+                    margin: 0;
+
+                }
+            </style>
+        </head>
+        <body>
+            <div>
+                <h2>Error 404</h2>
+                <p>The content you requested could not be found.</p>
+            </div>
+        </body>
+        </html>

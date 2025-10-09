@@ -1,0 +1,449 @@
+2025-09-17 23:12:11,112:DEBUG:certbot._internal.main:certbot version: 5.0.0
+2025-09-17 23:12:11,112:DEBUG:certbot._internal.main:Location of certbot entry point: /opt/homebrew/bin/certbot
+2025-09-17 23:12:11,112:DEBUG:certbot._internal.main:Arguments: ['--manual', '--preferred-challenges', 'dns', '-d', 'tennisclubconnect.com', '-d', 'www.tennisclubconnect.com', '--config-dir', '/Users/davidhall/Desktop/Tennis Club Map/.letsencrypt/config', '--work-dir', '/Users/davidhall/Desktop/Tennis Club Map/.letsencrypt/work', '--logs-dir', '/Users/davidhall/Desktop/Tennis Club Map/.letsencrypt/logs', '--agree-tos', '--register-unsafely-without-email', '--no-eff-email']
+2025-09-17 23:12:11,112:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#apache,PluginEntryPoint#dns-cloudflare,PluginEntryPoint#manual,PluginEntryPoint#nginx,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2025-09-17 23:12:11,125:DEBUG:certbot._internal.log:Root logging level set at 30
+2025-09-17 23:12:11,125:DEBUG:certbot._internal.plugins.selection:Requested authenticator manual and installer None
+2025-09-17 23:12:11,125:DEBUG:certbot._internal.plugins.selection:Single candidate plugin: * manual
+Description: Manual configuration or run your own shell scripts
+Interfaces: Authenticator, Plugin
+Entry point: EntryPoint(name='manual', value='certbot._internal.plugins.manual:Authenticator', group='certbot.plugins')
+Initialized: <certbot._internal.plugins.manual.Authenticator object at 0x107930ec0>
+Prep: True
+2025-09-17 23:12:11,125:DEBUG:certbot._internal.plugins.selection:Selected authenticator <certbot._internal.plugins.manual.Authenticator object at 0x107930ec0> and installer None
+2025-09-17 23:12:11,125:INFO:certbot._internal.plugins.selection:Plugins selected: Authenticator manual, Installer None
+2025-09-17 23:12:11,151:DEBUG:certbot._internal.main:Picked account: <Account(RegistrationResource(body=Registration(key=None, contact=(), agreement=None, status=None, terms_of_service_agreed=None, only_return_existing=None, external_account_binding=None), uri='https://acme-v02.api.letsencrypt.org/acme/acct/2667385941', new_authzr_uri=None, terms_of_service=None), eec344d1c72c66d8e206296eef692324, Meta(creation_dt=datetime.datetime(2025, 9, 17, 17, 38, 27, tzinfo=datetime.timezone.utc), creation_host='MacBook-Pro-Max.local', register_to_eff=None))>
+2025-09-17 23:12:11,159:DEBUG:acme.client:Sending GET request to https://acme-v02.api.letsencrypt.org/directory.
+2025-09-17 23:12:11,163:DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org:443
+2025-09-17 23:12:12,062:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "GET /directory HTTP/1.1" 200 995
+2025-09-17 23:12:12,063:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 17 Sep 2025 22:12:11 GMT
+Content-Type: application/json
+Content-Length: 995
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "0c2wIq11T0I": "https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417",
+  "keyChange": "https://acme-v02.api.letsencrypt.org/acme/key-change",
+  "meta": {
+    "caaIdentities": [
+      "letsencrypt.org"
+    ],
+    "profiles": {
+      "classic": "https://letsencrypt.org/docs/profiles#classic",
+      "shortlived": "https://letsencrypt.org/docs/profiles#shortlived (not yet generally available)",
+      "tlsserver": "https://letsencrypt.org/docs/profiles#tlsserver"
+    },
+    "termsOfService": "https://letsencrypt.org/documents/LE-SA-v1.5-February-24-2025.pdf",
+    "website": "https://letsencrypt.org"
+  },
+  "newAccount": "https://acme-v02.api.letsencrypt.org/acme/new-acct",
+  "newNonce": "https://acme-v02.api.letsencrypt.org/acme/new-nonce",
+  "newOrder": "https://acme-v02.api.letsencrypt.org/acme/new-order",
+  "renewalInfo": "https://acme-v02.api.letsencrypt.org/acme/renewal-info",
+  "revokeCert": "https://acme-v02.api.letsencrypt.org/acme/revoke-cert"
+}
+2025-09-17 23:12:12,094:DEBUG:acme.client:Sending GET request to https://acme-v02.api.letsencrypt.org/directory.
+2025-09-17 23:12:12,095:DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org:443
+2025-09-17 23:12:12,529:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "GET /directory HTTP/1.1" 200 995
+2025-09-17 23:12:12,530:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 17 Sep 2025 22:12:12 GMT
+Content-Type: application/json
+Content-Length: 995
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "FCiySFtabbc": "https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417",
+  "keyChange": "https://acme-v02.api.letsencrypt.org/acme/key-change",
+  "meta": {
+    "caaIdentities": [
+      "letsencrypt.org"
+    ],
+    "profiles": {
+      "classic": "https://letsencrypt.org/docs/profiles#classic",
+      "shortlived": "https://letsencrypt.org/docs/profiles#shortlived (not yet generally available)",
+      "tlsserver": "https://letsencrypt.org/docs/profiles#tlsserver"
+    },
+    "termsOfService": "https://letsencrypt.org/documents/LE-SA-v1.5-February-24-2025.pdf",
+    "website": "https://letsencrypt.org"
+  },
+  "newAccount": "https://acme-v02.api.letsencrypt.org/acme/new-acct",
+  "newNonce": "https://acme-v02.api.letsencrypt.org/acme/new-nonce",
+  "newOrder": "https://acme-v02.api.letsencrypt.org/acme/new-order",
+  "renewalInfo": "https://acme-v02.api.letsencrypt.org/acme/renewal-info",
+  "revokeCert": "https://acme-v02.api.letsencrypt.org/acme/revoke-cert"
+}
+2025-09-17 23:12:12,531:DEBUG:acme.client:Sending GET request to https://acme-v02.api.letsencrypt.org/acme/renewal-info/jw0TovYuftFQbDMYOF1ZjiNykco.Bbx04PagdV4ntZSPKOWEpt8a.
+2025-09-17 23:12:12,938:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "GET /acme/renewal-info/jw0TovYuftFQbDMYOF1ZjiNykco.Bbx04PagdV4ntZSPKOWEpt8a HTTP/1.1" 200 101
+2025-09-17 23:12:12,939:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 17 Sep 2025 22:12:12 GMT
+Content-Type: application/json
+Content-Length: 101
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Retry-After: 21600
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "suggestedWindow": {
+    "start": "2025-11-15T23:57:03Z",
+    "end": "2025-11-17T19:07:52Z"
+  }
+}
+2025-09-17 23:12:12,945:INFO:certbot.ocsp:Cannot extract OCSP URI from /Users/davidhall/Desktop/Tennis Club Map/.letsencrypt/config/archive/tennisclubconnect.com/cert1.pem
+2025-09-17 23:12:12,945:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
+2025-09-17 23:12:31,617:DEBUG:certbot._internal.display.obj:Notifying user: Renewing an existing certificate for tennisclubconnect.com and www.tennisclubconnect.com
+2025-09-17 23:12:31,619:DEBUG:acme.client:Requesting fresh nonce
+2025-09-17 23:12:31,619:DEBUG:acme.client:Sending HEAD request to https://acme-v02.api.letsencrypt.org/acme/new-nonce.
+2025-09-17 23:12:31,762:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "HEAD /acme/new-nonce HTTP/1.1" 200 0
+2025-09-17 23:12:31,763:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 17 Sep 2025 22:12:31 GMT
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: z38KXhlROWr-FGVNS2F8szgXxYa92Q_1-YCYcagYqUm-pdPatVk
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+
+2025-09-17 23:12:31,763:DEBUG:acme.client:Storing nonce: z38KXhlROWr-FGVNS2F8szgXxYa92Q_1-YCYcagYqUm-pdPatVk
+2025-09-17 23:12:31,764:DEBUG:acme.client:JWS payload:
+b'{\n  "identifiers": [\n    {\n      "type": "dns",\n      "value": "tennisclubconnect.com"\n    },\n    {\n      "type": "dns",\n      "value": "www.tennisclubconnect.com"\n    }\n  ]\n}'
+2025-09-17 23:12:31,768:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/new-order:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMjY2NzM4NTk0MSIsICJub25jZSI6ICJ6MzhLWGhsUk9Xci1GR1ZOUzJGOHN6Z1h4WWE5MlFfMS1ZQ1ljYWdZcVVtLXBkUGF0VmsiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL25ldy1vcmRlciJ9",
+  "signature": "hDVZ53vc3fnoNNZTyQohMgH3tV-juxmvwgRO8ZaM4yQUBkAxwXDulATHYGt_P_adRqMSHGxIg78fcxPHdqommdF_DxnxgdEMWVfMn20gR7ZLN6HjWeONl3y3QOzRDTghG-Rj3jTx15-4UArsgbF8-_aZScMKdNfBVIQQsr4rgsjMDZE96846kLm7PRXp3yzv30UC3xMOsctr_QN3FZU6GPNpR08i00CnlvemNmPxs9K-IY8Vd5bo00xRsHVCdpWBz39KG5paFZ8ZHDcNnEMtqm2iJ-qKXll2e4w1EgBcDR9Rru9DScnR6_EXDgHesu0JafU9cPB4KKu6BnBeUQNvhg",
+  "payload": "ewogICJpZGVudGlmaWVycyI6IFsKICAgIHsKICAgICAgInR5cGUiOiAiZG5zIiwKICAgICAgInZhbHVlIjogInRlbm5pc2NsdWJjb25uZWN0LmNvbSIKICAgIH0sCiAgICB7CiAgICAgICJ0eXBlIjogImRucyIsCiAgICAgICJ2YWx1ZSI6ICJ3d3cudGVubmlzY2x1YmNvbm5lY3QuY29tIgogICAgfQogIF0KfQ"
+}
+2025-09-17 23:12:32,045:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/new-order HTTP/1.1" 201 509
+2025-09-17 23:12:32,046:DEBUG:acme.client:Received response:
+HTTP 201
+Server: nginx
+Date: Wed, 17 Sep 2025 22:12:31 GMT
+Content-Type: application/json
+Content-Length: 509
+Connection: keep-alive
+Boulder-Requester: 2667385941
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Location: https://acme-v02.api.letsencrypt.org/acme/order/2667385941/429131865261
+Replay-Nonce: z38KXhlRyebWXlKwBEW2-l9RXrP1PR7MfAUroLQSDFl6oLUEEgU
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "status": "ready",
+  "expires": "2025-09-24T22:12:31Z",
+  "identifiers": [
+    {
+      "type": "dns",
+      "value": "tennisclubconnect.com"
+    },
+    {
+      "type": "dns",
+      "value": "www.tennisclubconnect.com"
+    }
+  ],
+  "authorizations": [
+    "https://acme-v02.api.letsencrypt.org/acme/authz/2667385941/584998245651",
+    "https://acme-v02.api.letsencrypt.org/acme/authz/2667385941/584986223231"
+  ],
+  "finalize": "https://acme-v02.api.letsencrypt.org/acme/finalize/2667385941/429131865261"
+}
+2025-09-17 23:12:32,047:DEBUG:acme.client:Storing nonce: z38KXhlRyebWXlKwBEW2-l9RXrP1PR7MfAUroLQSDFl6oLUEEgU
+2025-09-17 23:12:32,047:DEBUG:acme.client:JWS payload:
+b''
+2025-09-17 23:12:32,051:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz/2667385941/584998245651:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMjY2NzM4NTk0MSIsICJub25jZSI6ICJ6MzhLWGhsUnllYldYbEt3QkVXMi1sOVJYclAxUFI3TWZBVXJvTFFTREZsNm9MVUVFZ1UiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2F1dGh6LzI2NjczODU5NDEvNTg0OTk4MjQ1NjUxIn0",
+  "signature": "cAWE02UpOIc4G4viEn1YAjYn-pGccKeoLptp2UYcjcNsiNFk1hrrUWC-7iz_A3j3tc0rtrKDdkmD0AwpHysCAYE75tiIvPRrYMLjREV_2BpvY7oy-MoAAVF5UGeQm0gRVjM70egZfC2m71BdxBU7v3gzrvPRJ-w_M9um2H4ShX0dJkIyEJWro6qkBC-SW51SvhGs_CCcGto2yiffLQrSSrmtF5n5-kAqe-LUiLU_XEoPVXU8bIwLb2DszPu-1VS7TsaH7AfRVhTPXqOyZWAf4skAikkIx9YHo9Sd_YNcuPiCyobvV42I93m3_uxBZuSZ0zHZ0vD_ODF6sA9nMmKHHQ",
+  "payload": ""
+}
+2025-09-17 23:12:32,195:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz/2667385941/584998245651 HTTP/1.1" 200 554
+2025-09-17 23:12:32,196:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 17 Sep 2025 22:12:32 GMT
+Content-Type: application/json
+Content-Length: 554
+Connection: keep-alive
+Boulder-Requester: 2667385941
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: 1ZGyytInB71HW_AiJGWOw6d14YfR1nz6gPTfr5osvHilvOFE24A
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "tennisclubconnect.com"
+  },
+  "status": "valid",
+  "expires": "2025-10-17T22:11:26Z",
+  "challenges": [
+    {
+      "type": "dns-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/2667385941/584998245651/oCgNFw",
+      "status": "valid",
+      "validated": "2025-09-17T22:11:24Z",
+      "token": "bUgZKH06o7NnDB5gLhQbxn6aSljYAsOl2qdrlNpyZZs",
+      "validationRecord": [
+        {
+          "hostname": "tennisclubconnect.com",
+          "addressUsed": ""
+        }
+      ]
+    }
+  ]
+}
+2025-09-17 23:12:32,196:DEBUG:acme.client:Storing nonce: 1ZGyytInB71HW_AiJGWOw6d14YfR1nz6gPTfr5osvHilvOFE24A
+2025-09-17 23:12:32,197:DEBUG:acme.client:JWS payload:
+b''
+2025-09-17 23:12:32,201:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz/2667385941/584986223231:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMjY2NzM4NTk0MSIsICJub25jZSI6ICIxWkd5eXRJbkI3MUhXX0FpSkdXT3c2ZDE0WWZSMW56NmdQVGZyNW9zdkhpbHZPRkUyNEEiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2F1dGh6LzI2NjczODU5NDEvNTg0OTg2MjIzMjMxIn0",
+  "signature": "QoH6cVTydmyIgOyYjzwEhKuRCrGcNUl-3wuxrHz9piYrH6GPnoWuPC5plkCjGgzwwrQoCtWnd1X1UVnQhyj5bs46BgjVh1Cv0sElzISIksWjvQkp1APLXsMiEvSDofb7BgUEsxbLQ8vTqgo38vKsvypHWtLp_zGcVq9-6vO4i9KN7SvItmC3omk5MogRJwytw3IWeqetiVv6fl5Rrb6zUX-9LNhyRtX1EWJJFA08RUesRWJLo-8n0_D75w1OjTfFKRCsxqwg_HNu2vwtUgnZCrMMzEF0KAFfSQwtMGjnT2ZaG89rRRvam3kgf9GMKON-HkLm4Jqma7DSp-FcKus8UQ",
+  "payload": ""
+}
+2025-09-17 23:12:32,455:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz/2667385941/584986223231 HTTP/1.1" 200 562
+2025-09-17 23:12:32,456:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 17 Sep 2025 22:12:32 GMT
+Content-Type: application/json
+Content-Length: 562
+Connection: keep-alive
+Boulder-Requester: 2667385941
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: z38KXhlRV9mb_esbkwbBRzMS2PoA7BoQjXsB3aMQEq1lAn3RAF0
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "www.tennisclubconnect.com"
+  },
+  "status": "valid",
+  "expires": "2025-10-17T21:37:45Z",
+  "challenges": [
+    {
+      "type": "dns-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/2667385941/584986223231/lMpzJA",
+      "status": "valid",
+      "validated": "2025-09-17T21:37:42Z",
+      "token": "x-PvLIBw1ed5JlGGiR6YlsAZbKJ4BW71xrEr3HnKWbk",
+      "validationRecord": [
+        {
+          "hostname": "www.tennisclubconnect.com",
+          "addressUsed": ""
+        }
+      ]
+    }
+  ]
+}
+2025-09-17 23:12:32,456:DEBUG:acme.client:Storing nonce: z38KXhlRV9mb_esbkwbBRzMS2PoA7BoQjXsB3aMQEq1lAn3RAF0
+2025-09-17 23:12:32,457:DEBUG:certbot._internal.client:CSR: CSR(file=None, data=b'-----BEGIN CERTIFICATE REQUEST-----\nMIIBCTCBsAIBADAAMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEgSOYfUH8fYYC\nrWbgwaPhWIUUmFcBV45WIDoWVAivUY4F26L4ng3MHJv+iUw9wtbtInvNTmkit9JA\nvHShungK5qBOMEwGCSqGSIb3DQEJDjE/MD0wOwYDVR0RBDQwMoIVdGVubmlzY2x1\nYmNvbm5lY3QuY29tghl3d3cudGVubmlzY2x1YmNvbm5lY3QuY29tMAoGCCqGSM49\nBAMCA0gAMEUCIQCQH3P+5lVJlWwJ3hXGqvYALlRIaDh/XH0I28GlU1BzJgIgQ2Sp\nrTEOHTsxkVVXYmpDoy1CcUMHK+LkU+xayaTN+Ow=\n-----END CERTIFICATE REQUEST-----\n', form='pem')
+2025-09-17 23:12:32,458:DEBUG:certbot._internal.client:Will poll for certificate issuance until 2025-09-17 23:14:02.458126
+2025-09-17 23:12:32,458:DEBUG:acme.client:JWS payload:
+b'{\n  "csr": "MIIBCTCBsAIBADAAMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEgSOYfUH8fYYCrWbgwaPhWIUUmFcBV45WIDoWVAivUY4F26L4ng3MHJv-iUw9wtbtInvNTmkit9JAvHShungK5qBOMEwGCSqGSIb3DQEJDjE_MD0wOwYDVR0RBDQwMoIVdGVubmlzY2x1YmNvbm5lY3QuY29tghl3d3cudGVubmlzY2x1YmNvbm5lY3QuY29tMAoGCCqGSM49BAMCA0gAMEUCIQCQH3P-5lVJlWwJ3hXGqvYALlRIaDh_XH0I28GlU1BzJgIgQ2SprTEOHTsxkVVXYmpDoy1CcUMHK-LkU-xayaTN-Ow"\n}'
+2025-09-17 23:12:32,461:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/finalize/2667385941/429131865261:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMjY2NzM4NTk0MSIsICJub25jZSI6ICJ6MzhLWGhsUlY5bWJfZXNia3diQlJ6TVMyUG9BN0JvUWpYc0IzYU1RRXExbEFuM1JBRjAiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2ZpbmFsaXplLzI2NjczODU5NDEvNDI5MTMxODY1MjYxIn0",
+  "signature": "kc_xREti5YCkxRVxmOQ5ACwxHzc3vPtmXaJDqHb8g0CRli9pJF-Sif2n6ZFTB-a4uc6JpCfvWrFNe0OyF2xPPfw8Dr0vxsctJNlBUyoVsAeRH1yK65K15Kj_d8xgjjtUHStguM_D5pA1UP5rnB0M95D8onu7s7iocSOyDg7xyytQjuGFr4Yzpke0hbGjPh4e3CKsMZNG3SDC7J2cTmK0DpR5gyZRqcfICeDCDPh1a8cPstv24oDhKCmHvKRADs-Cb_ORFySwUOU-H61L5c7dbZJS7rqVzO_48W8dxaSJV3pAPG3sO-8WDz1APVcQfG9pl4dH3P8ASrgyDJskAODQ-A",
+  "payload": "ewogICJjc3IiOiAiTUlJQkNUQ0JzQUlCQURBQU1Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRWdTT1lmVUg4ZllZQ3JXYmd3YVBoV0lVVW1GY0JWNDVXSURvV1ZBaXZVWTRGMjZMNG5nM01ISnYtaVV3OXd0YnRJbnZOVG1raXQ5SkF2SFNodW5nSzVxQk9NRXdHQ1NxR1NJYjNEUUVKRGpFX01EMHdPd1lEVlIwUkJEUXdNb0lWZEdWdWJtbHpZMngxWW1OdmJtNWxZM1F1WTI5dGdobDNkM2N1ZEdWdWJtbHpZMngxWW1OdmJtNWxZM1F1WTI5dE1Bb0dDQ3FHU000OUJBTUNBMGdBTUVVQ0lRQ1FIM1AtNWxWSmxXd0ozaFhHcXZZQUxsUklhRGhfWEgwSTI4R2xVMUJ6SmdJZ1EyU3ByVEVPSFRzeGtWVlhZbXBEb3kxQ2NVTUhLLUxrVS14YXlhVE4tT3ciCn0"
+}
+2025-09-17 23:12:32,865:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/finalize/2667385941/429131865261 HTTP/1.1" 200 613
+2025-09-17 23:12:32,866:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 17 Sep 2025 22:12:32 GMT
+Content-Type: application/json
+Content-Length: 613
+Connection: keep-alive
+Boulder-Requester: 2667385941
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Location: https://acme-v02.api.letsencrypt.org/acme/order/2667385941/429131865261
+Replay-Nonce: 1ZGyytInXJ42aU8me6BEJXKNy3Ph449jL2FN8wRtGxTcAjSZ3HQ
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "status": "valid",
+  "expires": "2025-09-24T22:12:31Z",
+  "identifiers": [
+    {
+      "type": "dns",
+      "value": "www.tennisclubconnect.com"
+    },
+    {
+      "type": "dns",
+      "value": "tennisclubconnect.com"
+    }
+  ],
+  "authorizations": [
+    "https://acme-v02.api.letsencrypt.org/acme/authz/2667385941/584998245651",
+    "https://acme-v02.api.letsencrypt.org/acme/authz/2667385941/584986223231"
+  ],
+  "finalize": "https://acme-v02.api.letsencrypt.org/acme/finalize/2667385941/429131865261",
+  "certificate": "https://acme-v02.api.letsencrypt.org/acme/cert/0667b0a89e19f35f9ee1710a893df17fc90c"
+}
+2025-09-17 23:12:32,866:DEBUG:acme.client:Storing nonce: 1ZGyytInXJ42aU8me6BEJXKNy3Ph449jL2FN8wRtGxTcAjSZ3HQ
+2025-09-17 23:12:33,872:DEBUG:acme.client:JWS payload:
+b''
+2025-09-17 23:12:33,876:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/order/2667385941/429131865261:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMjY2NzM4NTk0MSIsICJub25jZSI6ICIxWkd5eXRJblhKNDJhVThtZTZCRUpYS055M1BoNDQ5akwyRk44d1J0R3hUY0FqU1ozSFEiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL29yZGVyLzI2NjczODU5NDEvNDI5MTMxODY1MjYxIn0",
+  "signature": "Xjer7Rv_llbbP0LlkfTusj4Yv3m3faA4P04xJbiAkaf9CQBgFFN8NPViZV1OPJ6Wy6IyXaaxBdkkoRDDo1o7dhsEwIj3YQoiRfaxnI0j8dGPRlSDlHi7QvX9zO5wn6GmLgI8IEREVPp-pJUa9JUoN4HSoAJ_4M9MOsy4c9qSnBgPz29XSjsjulYhxuc_ooglhU-LurPTgqMq4lo5JNfVMAQtevn8PUCQUE4Ifqy9CfzM15KRd6Lxd5QO0IIBvqSz6vFgnQyI549NOXlpkHCBwAX_TXZ8nmuhqQkyMlf-RJmpLu3EP14gzv4nyYwOMmBqdkiqri9Aad-8yXeQt24Clw",
+  "payload": ""
+}
+2025-09-17 23:12:34,043:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/order/2667385941/429131865261 HTTP/1.1" 200 613
+2025-09-17 23:12:34,043:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 17 Sep 2025 22:12:33 GMT
+Content-Type: application/json
+Content-Length: 613
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Location: https://acme-v02.api.letsencrypt.org/acme/order/2667385941/429131865261
+Replay-Nonce: z38KXhlRjNI7Mc3JlLEOK-3L4KYoKYO55wRyUC36NkANGNzfPHk
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "status": "valid",
+  "expires": "2025-09-24T22:12:31Z",
+  "identifiers": [
+    {
+      "type": "dns",
+      "value": "www.tennisclubconnect.com"
+    },
+    {
+      "type": "dns",
+      "value": "tennisclubconnect.com"
+    }
+  ],
+  "authorizations": [
+    "https://acme-v02.api.letsencrypt.org/acme/authz/2667385941/584998245651",
+    "https://acme-v02.api.letsencrypt.org/acme/authz/2667385941/584986223231"
+  ],
+  "finalize": "https://acme-v02.api.letsencrypt.org/acme/finalize/2667385941/429131865261",
+  "certificate": "https://acme-v02.api.letsencrypt.org/acme/cert/0667b0a89e19f35f9ee1710a893df17fc90c"
+}
+2025-09-17 23:12:34,044:DEBUG:acme.client:Storing nonce: z38KXhlRjNI7Mc3JlLEOK-3L4KYoKYO55wRyUC36NkANGNzfPHk
+2025-09-17 23:12:34,044:DEBUG:acme.client:JWS payload:
+b''
+2025-09-17 23:12:34,047:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/cert/0667b0a89e19f35f9ee1710a893df17fc90c:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMjY2NzM4NTk0MSIsICJub25jZSI6ICJ6MzhLWGhsUmpOSTdNYzNKbExFT0stM0w0S1lvS1lPNTV3UnlVQzM2TmtBTkdOemZQSGsiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2NlcnQvMDY2N2IwYTg5ZTE5ZjM1ZjllZTE3MTBhODkzZGYxN2ZjOTBjIn0",
+  "signature": "gNXuUlrG2I2Rjtq5-jSRlOR45K9S2Yj7AZdtD7ABw2WlVLsOKXFWr7iiSWKu8AAGcJr2z4DrjFm9q-YtwvdbOTswwyG856e57iQaPwiL3yAvfH4f_7CkCZVl2GpfFK6_y0Z2m7lIQUpLW6BzpR4_wTlCEq499SeXvbH87-yHltb3BXv-ghJU8iBsGc3KrFXCnNYfZeBjeBw7vBiRBzD58CpAi5ZsZwMLjPlb626sh-NmLMiyNZltZ6U6Sz1-ljernO99jLtL3owv2JnZmVC9TK-wW1YyltvSC-Y4Q6CQoFPhpbW2vpMrv8ELCGk93rZRxGEAFr2uwaDHRZUHPgZueQ",
+  "payload": ""
+}
+2025-09-17 23:12:34,192:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/cert/0667b0a89e19f35f9ee1710a893df17fc90c HTTP/1.1" 200 2909
+2025-09-17 23:12:34,193:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 17 Sep 2025 22:12:34 GMT
+Content-Type: application/pem-certificate-chain
+Content-Length: 2909
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index", <https://acme-v02.api.letsencrypt.org/acme/cert/0667b0a89e19f35f9ee1710a893df17fc90c/1>;rel="alternate"
+Replay-Nonce: z38KXhlRnO3TVgPA8SnM_9ZLP3_jhj9IQVJ0wi-nmGR5QPUrrRI
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+-----BEGIN CERTIFICATE-----
+MIIDsTCCAzagAwIBAgISBmewqJ4Z81+e4XEKiT3xf8kMMAoGCCqGSM49BAMDMDIx
+CzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MQswCQYDVQQDEwJF
+ODAeFw0yNTA5MTcyMTE0MDJaFw0yNTEyMTYyMTE0MDFaMCAxHjAcBgNVBAMTFXRl
+bm5pc2NsdWJjb25uZWN0LmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABIEj
+mH1B/H2GAq1m4MGj4ViFFJhXAVeOViA6FlQIr1GOBdui+J4NzByb/olMPcLW7SJ7
+zU5pIrfSQLx0obp4CuajggI8MIICODAOBgNVHQ8BAf8EBAMCB4AwHQYDVR0lBBYw
+FAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFICo
+lPdgG3U4IgP13xnWcYML9F0TMB8GA1UdIwQYMBaAFI8NE6L2Ln7RUGwzGDhdWY4j
+cpHKMDIGCCsGAQUFBwEBBCYwJDAiBggrBgEFBQcwAoYWaHR0cDovL2U4LmkubGVu
+Y3Iub3JnLzA7BgNVHREENDAyghV0ZW5uaXNjbHViY29ubmVjdC5jb22CGXd3dy50
+ZW5uaXNjbHViY29ubmVjdC5jb20wEwYDVR0gBAwwCjAIBgZngQwBAgEwLQYDVR0f
+BCYwJDAioCCgHoYcaHR0cDovL2U4LmMubGVuY3Iub3JnLzEzLmNybDCCAQIGCisG
+AQQB1nkCBAIEgfMEgfAA7gB1AKRCxQZJYGFUjw/U6pz7ei0mRU2HqX8v30VZ9idP
+OoRUAAABmVm8itUAAAQDAEYwRAIgUtgeOg3RtZlaGIMLqnmHUr0pFqn0Z9ah39a2
+n/BFAo8CIG1TP5SIyvpt/JTfNfEeT98KxS4q8idUXfr4LKe2755XAHUAEvFONL1T
+ckyEBhnDjz96E/jntWKHiJxtMAWE6+WGJjoAAAGZWbyK4QAABAMARjBEAiABJywz
+DP3eZn+YfZLGoQZONc5c7+X89HLYRilMB76JYAIgN8Dgpiap0xnRnMdUdB1EKgTX
+f06dW6O52RG14pM2IOYwCgYIKoZIzj0EAwMDaQAwZgIxAP0OqMte87OMZNABGYtV
+mzQ3PNWpIo/oqibdcJJrJBjyqcjYouEUVSfBSZmI7UPkegIxAJDgkl0CJNpc+eDd
+PwVbkK90pUr/n6X/BGStwBFJlKq+DrZ7R7egBPdD00cInqIhOQ==
+-----END CERTIFICATE-----
+
+-----BEGIN CERTIFICATE-----
+MIIEVjCCAj6gAwIBAgIQY5WTY8JOcIJxWRi/w9ftVjANBgkqhkiG9w0BAQsFADBP
+MQswCQYDVQQGEwJVUzEpMCcGA1UEChMgSW50ZXJuZXQgU2VjdXJpdHkgUmVzZWFy
+Y2ggR3JvdXAxFTATBgNVBAMTDElTUkcgUm9vdCBYMTAeFw0yNDAzMTMwMDAwMDBa
+Fw0yNzAzMTIyMzU5NTlaMDIxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBF
+bmNyeXB0MQswCQYDVQQDEwJFODB2MBAGByqGSM49AgEGBSuBBAAiA2IABNFl8l7c
+S7QMApzSsvru6WyrOq44ofTUOTIzxULUzDMMNMchIJBwXOhiLxxxs0LXeb5GDcHb
+R6EToMffgSZjO9SNHfY9gjMy9vQr5/WWOrQTZxh7az6NSNnq3u2ubT6HTKOB+DCB
+9TAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMB
+MBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFI8NE6L2Ln7RUGwzGDhdWY4j
+cpHKMB8GA1UdIwQYMBaAFHm0WeZ7tuXkAXOACIjIGlj26ZtuMDIGCCsGAQUFBwEB
+BCYwJDAiBggrBgEFBQcwAoYWaHR0cDovL3gxLmkubGVuY3Iub3JnLzATBgNVHSAE
+DDAKMAgGBmeBDAECATAnBgNVHR8EIDAeMBygGqAYhhZodHRwOi8veDEuYy5sZW5j
+ci5vcmcvMA0GCSqGSIb3DQEBCwUAA4ICAQBnE0hGINKsCYWi0Xx1ygxD5qihEjZ0
+RI3tTZz1wuATH3ZwYPIp97kWEayanD1j0cDhIYzy4CkDo2jB8D5t0a6zZWzlr98d
+AQFNh8uKJkIHdLShy+nUyeZxc5bNeMp1Lu0gSzE4McqfmNMvIpeiwWSYO9w82Ob8
+otvXcO2JUYi3svHIWRm3+707DUbL51XMcY2iZdlCq4Wa9nbuk3WTU4gr6LY8MzVA
+aDQG2+4U3eJ6qUF10bBnR1uuVyDYs9RhrwucRVnfuDj29CMLTsplM5f5wSV5hUpm
+Uwp/vV7M4w4aGunt74koX71n4EdagCsL/Yk5+mAQU0+tue0JOfAV/R6t1k+Xk9s2
+HMQFeoxppfzAVC04FdG9M+AC2JWxmFSt6BCuh3CEey3fE52Qrj9YM75rtvIjsm/1
+Hl+u//Wqxnu1ZQ4jpa+VpuZiGOlWrqSP9eogdOhCGisnyewWJwRQOqK16wiGyZeR
+xs/Bekw65vwSIaVkBruPiTfMOo0Zh4gVa8/qJgMbJbyrwwG97z/PRgmLKCDl8z3d
+tA0Z7qq7fta0Gl24uyuB05dqI5J1LvAzKuWdIjT1tP8qCoxSE/xpix8hX2dt3h+/
+jujUgFPFZ0EVZ0xSyBNRF3MboGZnYXFUxpNjTWPKpagDHJQmqrAcDmWJnMsFY3jS
+u1igv3OefnWjSQ==
+-----END CERTIFICATE-----
+
+2025-09-17 23:12:34,193:DEBUG:acme.client:Storing nonce: z38KXhlRnO3TVgPA8SnM_9ZLP3_jhj9IQVJ0wi-nmGR5QPUrrRI
+2025-09-17 23:12:34,197:DEBUG:certbot._internal.storage:Writing new private key to /Users/davidhall/Desktop/Tennis Club Map/.letsencrypt/config/archive/tennisclubconnect.com/privkey2.pem.
+2025-09-17 23:12:34,198:DEBUG:certbot._internal.storage:Writing certificate to /Users/davidhall/Desktop/Tennis Club Map/.letsencrypt/config/archive/tennisclubconnect.com/cert2.pem.
+2025-09-17 23:12:34,198:DEBUG:certbot._internal.storage:Writing chain to /Users/davidhall/Desktop/Tennis Club Map/.letsencrypt/config/archive/tennisclubconnect.com/chain2.pem.
+2025-09-17 23:12:34,199:DEBUG:certbot._internal.storage:Writing full chain to /Users/davidhall/Desktop/Tennis Club Map/.letsencrypt/config/archive/tennisclubconnect.com/fullchain2.pem.
+2025-09-17 23:12:34,209:DEBUG:certbot.configuration:Var account=eec344d1c72c66d8e206296eef692324 (set by user).
+2025-09-17 23:12:34,209:DEBUG:certbot.configuration:Var pref_challs=['dns-01'] (set by user).
+2025-09-17 23:12:34,209:DEBUG:certbot.configuration:Var config_dir=/Users/davidhall/Desktop/Tennis Club Map/.letsencrypt/config (set by user).
+2025-09-17 23:12:34,209:DEBUG:certbot.configuration:Var work_dir=/Users/davidhall/Desktop/Tennis Club Map/.letsencrypt/work (set by user).
+2025-09-17 23:12:34,209:DEBUG:certbot.configuration:Var logs_dir=/Users/davidhall/Desktop/Tennis Club Map/.letsencrypt/logs (set by user).
+2025-09-17 23:12:34,209:DEBUG:certbot._internal.plugins.selection:Requested authenticator manual and installer None
+2025-09-17 23:12:34,209:DEBUG:certbot._internal.plugins.selection:Requested authenticator manual and installer None
+2025-09-17 23:12:34,218:DEBUG:certbot._internal.display.obj:Notifying user: 
+Successfully received certificate.
+Certificate is saved at: /Users/davidhall/Desktop/Tennis Club Map/.letsencrypt/config/live/tennisclubconnect.com/fullchain.pem
+Key is saved at:         /Users/davidhall/Desktop/Tennis Club Map/.letsencrypt/config/live/tennisclubconnect.com/privkey.pem
+This certificate expires on 2025-12-16.
+These files will be updated when the certificate renews.
+2025-09-17 23:12:34,218:DEBUG:certbot._internal.display.obj:Notifying user: NEXT STEPS:
+2025-09-17 23:12:34,218:DEBUG:certbot._internal.display.obj:Notifying user: - This certificate will not be renewed automatically. Autorenewal of --manual certificates requires the use of an authentication hook script (--manual-auth-hook) but one was not provided. To renew this certificate, repeat this same certbot command before the certificate's expiry date.
+2025-09-17 23:12:34,219:DEBUG:certbot._internal.display.obj:Notifying user: If you like Certbot, please consider supporting our work by:
+ * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+ * Donating to EFF:                    https://eff.org/donate-le

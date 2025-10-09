@@ -1,0 +1,57 @@
+# Apache .htaccess for tennisclubconnect.com
+# Purpose: Force HTTPS sitewide and provide optional security header
+
+RewriteEngine On
+
+# 1) Canonical host: force non-www (apex)
+#    Exclude ACME HTTP-01 challenge to avoid issues during initial issuance
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/ [NC]
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# 2) Force HTTPS on all requests
+#    Keep ACME path excluded so issuance/renewal is not blocked
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/ [NC]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2) Optional: HSTS (HTTP Strict Transport Security)
+#    Only enable after confirming the site loads fully over HTTPS.
+#    This tells browsers to only use HTTPS for 1 year and applies to subdomains.
+#    Remove 'includeSubDomains' if you don't want it for subdomains.
+#<IfModule mod_headers.c>
+#  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+#</IfModule>
+
+# Notes:
+# - Place this file in your domain's document root (often public_html/).
+# - If you prefer www or non-www, add a canonical redirect above the HTTPS rule.
+#   Example to force non-www (apex):
+#     RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+#     RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+#   Example to force www:
+#     RewriteCond %{HTTP_HOST} !^www\.
+#     RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Enable URL rewriting
+RewriteEngine On
+
+# Do not rewrite existing files or directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Clean URL for the search page
+# If /search (or /search/) is requested and /search/index.html exists, serve it
+RewriteCond %{REQUEST_URI} ^/search/?$ [NC]
+RewriteCond %{DOCUMENT_ROOT}/search/index.html -f
+RewriteRule ^search/?$ /search/index.html [L]
+
+# Otherwise, fall back to the legacy /search.html
+RewriteCond %{REQUEST_URI} ^/search/?$ [NC]
+RewriteCond %{DOCUMENT_ROOT}/search/index.html !-f
+RewriteRule ^search/?$ /search.html [L]
+
+# Optional: if you want to hide .html for index and search.html when users type it explicitly,
+# you can redirect them to the clean URLs (uncomment to enable):
+# RewriteRule ^index\.html$ / [R=301,L]
+# RewriteRule ^search\.html$ /search/ [R=301,L]

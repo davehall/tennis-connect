@@ -1,0 +1,29 @@
+{
+  "name": "tennis-club-map",
+  "version": "1.0.0",
+  "description": "Tools for Tennis Club Map project",
+  "main": "app.js",
+  "scripts": {
+    "build": "esbuild src/app.jsx --bundle --minify --format=iife --target=es2018 --outfile=app.js --define:process.env.NODE_ENV=\"'production'\"",
+    "start": "npm run build && npx serve -l 3000 .",
+  "serve:suggest": "node server/send-suggestion.js",
+  "audit:logos": "node scripts/audit-logos.js",
+  "audit:images": "node scripts/audit-images.js",
+  "data:export": "node scripts/export-data.js",
+  "data:import": "node scripts/import-data.js",
+  "club:update": "node scripts/update-club.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.4",
+    "nodemailer": "^6.9.3"
+  },
+  "devDependencies": {
+    "esbuild": "^0.23.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

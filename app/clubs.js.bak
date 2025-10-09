@@ -1,0 +1,947 @@
+// clubs.js
+const allClubs = [
+  { id: 1, name: "A Team Tennis", address: "2 Maine Rd, Shankbridge, Ballymena BT42 2LW, United Kingdom", county: "Antrim", lat: 54.8068889, lng: -6.2608202, sport: "Tennis", facility_type: "Other", courts: 2, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://ateamtennis.co.uk/" , favicon_url: "images/logos/a-team-tennis.png"},
+  { id: 2, name: "Abbeyleix Lawn Tennis Club", address: "Father Breen Park, Tullyroe, Abbeyleix, Co. Laois, Ireland", county: "Laois", lat: 52.9120004, lng: -7.3542814, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass (Savannah) / Artificial Grass", court_type: "Outdoor", website: "https://www.abbeyleixtennis.com/" , favicon_url: "images/logos/abbeyleix.png"},
+  { id: 3, name: "Ardee Tennis Club", address: "18 Rockfield Cl, Stonylane, Ardee, Co. Louth, A92 VX82, Ireland", county: "Louth", lat: 53.8485106, lng: -6.5457175, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/ardeetennisclub/", favicon_url: "images/logos/ardee.jpg"  },
+  { id: 4, name: "Ardfield Rathbarry Tennis Club", address: "Ardfield National School, Mountain Common, Clonakilty, Co. Cork, Ireland", county: "Cork", lat: 51.5727612, lng: -8.9088267, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.ardfieldrathbarrytennisclub.ie/" , favicon_url: "images/logos/ardfield-rathbarry-tennis-club.png"},
+  { id: 5, name: "Argideen Vale Lawn Tennis & Croquet Club", address: "Ummera, Timoleague, Co. Cork, Ireland", county: "Cork", lat: 51.6580417, lng: -8.764723, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Real Grass", court_type: "Outdoor", website: "https://argideen.info/",favicon_url: "images/logos/argideen.jpg" },
+  { id: 6, name: "Ashbrook Lawn Tennis Club", address: "Bushes Lane, Grosvenor Villas, Rathmines, Dublin 6, Ireland", county: "Dublin", lat: 53.31925, lng: -6.2736314, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.ashbrooktennisclub.ie/" , favicon_url: "images/logos/ashbrook-lawn-tennis-club-6.ico"},
+  { id: 7, name: "Athy Tennis Club", address: "Dublin Rd, Townparks, Athy, Co. Kildare, Ireland", county: "Kildare", lat: 52.9912135, lng: -6.9692763, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (TigerTurf)", court_type: "Outdoor", website: "https://www.athytennisclub.com/",favicon_url: "images/logos/athy.jpg" },
+  { id: 8, name: "Athlone Tennis Club", address: "Brawny Road, Cloghanboy (Homan), Athlone, Co. Westmeath, Ireland", county: "Westmeath", lat: 53.4292032, lng: -7.9280644, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass (Savannah)", court_type: "Indoor/Outdoor", website: "https://www.athlonetennisclub.com/" , favicon_url: "images/logos/athlone-tennis-club.png"},
+  { id: 9, name: "Ballaghaderreen Tennis Club", address: "Friarshill, Co. Roscommon, Ireland", county: "Roscommon", lat: 53.9003715, lng: -8.5866289, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.facebook.com/BallaghaderreenTennisClub/", favicon_url: "images/logos/ballaghaderreen.jpg"  },
+  { id: 10, name: "Ballina Tennis Club", address: "Cathedral Rd, Abbeyhalfquarter, Ballina, Co. Mayo, F26 T8N8, Ireland", county: "Mayo", lat: 54.1141016, lng: -9.1473463, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://clubspark.net/BallinaTennisClub/" , favicon_url: "images/logos/ballina-tennis-club.png"},
+  { id: 11, name: "Ballinasloe and District Tennis Club", address: "Brackernagh, Dunlo, Ballinasloe, Co. Galway, Ireland", county: "Galway", lat: 53.3243568, lng: -8.2338299, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.ballinasloetennis.net/" , favicon_url: "images/logos/ballinasloe-and-district-tennis-club-11.ico"},
+  { id: 12, name: "Ballinlough Tennis Club", address: "Ballinlough Rd, Ballintemple, Cork, T12 ET7E, Ireland", county: "Cork", lat: 51.8897925, lng: -8.4457846, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.ballinloughtennisclub.ie/", favicon_url: "images/logos/ballinlough.png"},
+  { id: 13, name: "Ballycannon Tennis Club", address: "Ballycannon, Cork, Ireland", county: "Cork", lat: 51.91098, lng: -8.5625878, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/Ballycannontennisclub/", favicon_url: "images/logos/ballycannon.jpg"  },
+  { id: 14, name: "Ballycastle Tennis Club", address: "Mary St, Co. Antrim, Ballycastle BT54 6QH, United Kingdom", county: "Antrim", lat: 55.204215, lng: -6.238179, sport: "Tennis", facility_type: "Tennis Club", courts: 1, court_surface: "Real Grass / Hard Court", court_type: "Outdoor", court_types: ["Real Grass", "Hard Court"], website: "https://www.ballycastletennisclub.com/" , favicon_url: "images/logos/ballycastle-tennis-club-14.png"},
+  { id: 15, name: "Ballyjamesduff Tennis Club", address: "Stradone St, Cornahilt, Ballyjamesduff, Co. Cavan, Ireland", county: "Cavan", lat: 53.8651453, lng: -7.2042543, sport: "Tennis", facility_type: "Sports Club", courts: 2, court_surface: "Hard Court / Artificial Grass", court_type: "Outdoor", website: "https://ballyjamesdufftennisclub.ie/" , favicon_url: "images/logos/ballyjamesduff-tennis-club.png"},
+  { id: 16, name: "Ballymena Lawn Tennis Club", address: "89 Galgorm Rd, Ballymena BT42 1AJ, United Kingdom", county: "Antrim", lat: 54.8653685, lng: -6.2945254, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.ballymenalawntennisclub.net/", favicon_url: "images/logos/ballymena.jpg" },
+  { id: 17, name: "Ballynafeigh Tennis Club", address: "35A Wynchurch Park, Belfast BT6 0JL, United Kingdom", county: "Down", lat: 54.5695406, lng: -5.9018683, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/p/Ballynafeigh-Tennis-Squash-Club-61557798910681/",  favicon_url: "images/logos/ballynafeigh.jpg" },
+  { id: 18, name: "Ballypatrick Tennis Club", address: "Ballypatrick, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.3915278, lng: -7.5413084, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/BallypatrickSportsCentre/", favicon_url: "images/logos/ballypatrick.jpg"   },
+  { id: 19, name: "Bandon Tennis Club", address: "Bandon Tennis Club, Castlebernard, Bandon, Co. Cork, P72 F822, Ireland", county: "Cork", lat: 51.7394503, lng: -8.7761409, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://bandonltc.com/" , favicon_url: "images/logos/bandon-tennis-club.png"},
+  { id: 20, name: "Bangor Lawn Tennis Club", address: "Farnham Park, Bangor BT20 3SR, United Kingdom", county: "Down", lat: 54.6617898, lng: -6.56824661, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://bangorlawntennisclub.co.uk/", favicon_url: "images/logos/bangor.png"   },
+  { id: 21, name: "Bective Tennis & Padel", address: "Main Street, Donnybrook, Dublin, D04 A0P1, Ireland", county: "Dublin", lat: 53.3212078, lng: -6.2346986, sport: "Tennis", facility_type: "Sports Club", courts: 5, court_surface: "Artificial Clay", court_type: "Outdoor", website: "https://bectiverangers.com/tennis/" , favicon_url: "images/logos/bective.png"},
+  { id: 22, name: "Belfast Boat Club", address: "12 Lockview Rd, Stranmillis, Belfast BT9 5FJ, United Kingdom", county: "Antrim", lat: 54.56936, lng: -5.9274486, sport: "Tennis", facility_type: "Sports Club", courts: 11, court_surface: "Artificial Clay / Artificial Grass (TigerTurf)", court_type: "Outdoor", website: "https://belfastboatclub.com/" , favicon_url: "images/logos/belfast-boat-club-22.ico"},
+  { id: 23, name: "Bishopstown Lawn Tennis Club", address: "Uam Var Dr, Murphy's Farm, Cork, Ireland", county: "Cork", lat: 51.8791935, lng: -8.5358668, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.bltc.ie/", favicon_url: "images/logos/bishopstown-lawn-tennis-club.ico"  },
+  { id: 24, name: "Blackrock Bowling and Tennis Club", address: "Green Rd, Blackrock, Dublin, Ireland", county: "Dublin", lat: 53.2986429, lng: -6.1869223, sport: "Tennis", facility_type: "Sports Club", courts: 4, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.blackrockbtc.ie/", favicon_url: "images/logos/blackrock.png"  },
+  { id: 25, name: "Boyle Community Tennis Courts", address: "Military Rd, Knocknashee, Boyle, Co. Roscommon, F52 PD23, Ireland", county: "Roscommon", lat: 53.9736204, lng: -8.2996946, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://clubspark.net/BoyleCommunityTennisClub" , favicon_url: "images/logos/boyle-community-tennis-courts.png"},
+  { id: 26, name: "Brookfield Tennis Club", address: "Rathmines, Dublin Southside, Co. Dublin, Ireland", county: "Dublin", lat: 53.31354, lng: -6.260986, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://brookfieldtennis.com/" , favicon_url: "images/logos/brookfield-tennis-club-26.ico"},
+  { id: 27, name: "Bushy Park Tennis And Padel Club", address: "Rathdown Ave, Terenure, Dublin 6W, Co. Dublin, D6W TX24, Ireland", county: "Dublin", lat: 53.3026614, lng: -6.289463, sport: "Tennis", facility_type: "Sports Club", courts: 9, court_surface: "Artifical Clay / Artificial Grass", court_type: "Outdoor", website: "https://www.bushytennispadel.ie/" , favicon_url: "images/logos/bushy.png"},
+  { id: 28, name: "Butt Hall Tennis Club", address: "Unnamed Road,, Co. Donegal, Ireland", county: "Donegal", lat: 54.7891725, lng: -7.7646626, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.butthalltennis.com/" , favicon_url: "images/logos/butt-hall-tennis-club-28.ico"},
+  { id: 29, name: "CIYMS Tennis Club", address: "91 Circular Rd, Belfast BT4 2GD, United Kingdom", county: "Down", lat: 54.6050677, lng: -5.8596983, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://ciymstennisclub.org/" , favicon_url: "images/logos/ciyms-tennis-club-29.png"},
+  { id: 30, name: "Caherconlish Tennis Club", address: "Ballyneety Road, Caherconlish, Co. Limerick, V94 E45AK, Ireland", county: "Limerick", lat: 52.5922572, lng: -8.481792, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.caherconlish.net/tennis-club", favicon_url: "images/logos/caherconlish.jpg"  },
+  { id: 31, name: "Carlow Lawn Tennis Club", address: "Oak Park Rd, Rathnapish, Carlow, Ireland", county: "Carlow", lat: 52.8460995, lng: -6.917047, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass / Hard Court", court_type: "Outdoor", website: "http://carlowltc.com/" , favicon_url: "images/logos/carlow-lawn-tennis-club-31.ico"},
+  { id: 32, name: "Carrick on Shannon Tennis Club", address: "St George's Terrace, Townparks, Carrick-On-Shannon, Co. Leitrim, Ireland", county: "Leitrim", lat: 53.9446952, lng: -8.0967071, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://carrickonshannontennisclub.ie/", favicon_url: "images/logos/carrickonshannon.png" },
+  { id: 33, name: "Carrickmacross Tennis Club", address: "Donaghmoyne, Co. Monaghan, A81 EV60, Ireland", county: "Monaghan", lat: 54.0026135, lng: -6.6996607, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.carrickmacrosstennis.com/", favicon_url: "images/logos/carrickmacross.png"  },
+  { id: 34, name: "Carrigaline Tennis Club", address: "Kilnaglery, Carrigaline, Co. Cork, P43 AK84, Ireland", county: "Cork", lat: 51.8082487, lng: -8.3791105, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (TigerTurf)", court_type: "Outdoor", website: "https://www.carrigalinetennisclub.com/", favicon_url: "images/logos/carrigaline.png"  },
+  { id: 35, name: "Carraig Lawn Tennis Club", address: "Rockfield Park, Blackrock, Co. Dublin, Ireland", county: "Dublin", lat: 53.2964744, lng: -6.1774831, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "http://carraigtc.ie/" , favicon_url: "images/logos/carraig-lawn-tennis-club.png"},
+  { id: 36, name: "Castlebar Tennis Club", address: "Knockacroughy, Lannagh Rd, Knockacroghery, Castlebar, Co. Mayo, Ireland", county: "Mayo", lat: 53.851083, lng: -9.310634, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (TigerTurf) / Artificial Clay", court_type: "Outdoor", website: "https://www.castlebartennis.ie/",  favicon_url: "images/logos/castlebar.png"  },
+  { id: 37, name: "Castleknock Lawn Tennis Club", address: "Old Navan Rd, Castleknock, Dublin 15, D15 NY10, Ireland", county: "Dublin", lat: 53.3808284, lng: -6.3619042, sport: "Tennis", facility_type: "Tennis Club", courts: 15, court_surface: "Artificial Grass (TigerTurf) / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.cltc.ie/" , favicon_url: "images/logos/castleknock-lawn-tennis-club.png"},
+  { id: 38, name: "Castleview Lawn Tennis Club", address: "New St, Townparks, Carrick-on-Suir, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.3464012, lng: -7.4080791, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.castleviewltc.ie/" , favicon_url: "images/logos/castleview-lawn-tennis-club-38.ico"},
+  { id: 39, name: "Catholic Institute Athletic Club", address: "229-227 Ballinacurra Gardens, Ballinacurra (Weston), Limerick, V94 D2PP, Ireland", county: "Limerick", lat: 52.6444938, lng: -8.6320306, sport: "Tennis", facility_type: "Sports Club", courts: 8, court_surface: "Artificial Grass / Hard Court", court_type: "Outdoor", website: "https://ciac.ie/", favicon_url: "images/logos/catholicinstitute.png"  },
+  { id: 40, name: "Causeway Community Tennis Club", address: "96 Priestland Rd, Bushmills BT57 8UJ, United Kingdom", county: "Derry", lat: 55.1723833, lng: -6.5722793, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.causewaytennisclub.ie/" , favicon_url: "images/logos/causeway-community-tennis-club-40.png"},
+  { id: 41, name: "Cavan Lawn Tennis Club", address: "Farnham St, Keadew, Cavan, Ireland", county: "Cavan", lat: 53.9928609, lng: -7.3620136, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass (Savannah) / Artificial Clay", court_type: "Outdoor", website: "https://www.cavanlawntennisclub.ie/" , favicon_url: "images/logos/cavan-lawn-tennis-club-41.jpg"},
+  { id: 42, name: "Cavehill Tennis Club", address: "20 N Circular Rd, Belfast BT15 5HB, United Kingdom", county: "Antrim", lat: 54.6334037, lng: -5.9423441, sport: "Tennis", facility_type: "Tennis Club", courts: 9, court_surface: "Artificial Clay / Artificial Grass", court_type: "Outdoor", website: "https://cavehilltennis.com/", favicon_url: "images/logos/cavehill.png"   },
+  { id: 43, name: "Celbridge & District Tennis Club", address: "Hazelhatch Rd, Commons, Celbridge, Co. Kildare, Ireland", county: "Kildare", lat: 53.3283225, lng: -6.5284998, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (TigerTurf)", court_type: "Outdoor", website: "https://www.celbridgetennis.ie/" , favicon_url: "images/logos/celbridge-and-district-tennis-club-43.png"},
+  { id: 44, name: "Charleville Lawn Tennis Club", address: "Whitworth Rd, Botanic, Dublin, Ireland", county: "Dublin", lat: 53.3643737, lng: -6.2696815, sport: "Tennis", facility_type: "Tennis Club", courts: 7, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://charlevilleltc.com/" , favicon_url: "images/logos/charleville-lawn-tennis-club-44.png"},
+  { id: 45, name: "Clane Tennis Club", address: "Dublin Road, Capdoo Commons, Clane, Co. Kildare, W91 W660, Ireland", county: "Kildare", lat: 53.2930349, lng: -6.6836898, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.clanetennisclub.com/" , favicon_url: "images/logos/clane-tennis-club-45.ico"},
+  { id: 46, name: "Claremont Railway Lawn Tennis Club", address: "Park Ave, Dublin 4, D04 K462, Ireland", county: "Dublin", lat: 53.3256343, lng: -6.2093956, sport: "Tennis", facility_type: "Tennis Club", courts: 10, court_surface: "Artificial Grass (Savannah) / Real Grass", court_type: "Indoor/Outdoor", website: "https://www.claremontrailwayltc.com/" , favicon_url: "images/logos/claremont-railway-lawn-tennis-club-46.svg"},
+  { id: 47, name: "Claremorris Tennis Club", address: "Dalton St, Clare, Claremorris, Co. Mayo, Ireland", county: "Mayo", lat: 53.7222061, lng: -8.9957752, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.claremorristennis.com/" , favicon_url: "images/logos/claremorris-tennis-club-47.ico"},
+  { id: 48, name: "Clonakilty Tennis Club", address: "Clonakilty Tennis Club, Clonakilty Sports Complex, Scartagh, Clonakilty, Co. Cork, P85 Y009, Ireland", county: "Cork", lat: 51.6257189, lng: -8.8809401, sport: "Tennis", facility_type: "Sports Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.clonakiltytennisclub.com/" , favicon_url: "images/logos/clonakilty-tennis-club-48.ico"},
+  { id: 49, name: "Clontarf Lawn Tennis Club", address: "Oulton Rd, Clontarf East, Dublin, D03 YY86, Ireland", county: "Dublin", lat: 53.3611613, lng: -6.2044124, sport: "Tennis", facility_type: "Tennis Club", courts: 11, court_surface: "Artificial Grass / Hard Court", court_type: "Indoor/Outdoor", website: "https://clontarfltc.com/", favicon_url: "images/logos/clontarf-parish-tennis-club.png"   },
+  { id: 50, name: "Clontarf Parish Tennis Club", address: "Off, 3 Seafield Rd W, Clontarf East, Dublin, Ireland", county: "Dublin", lat: 53.363745, lng: -6.2025736, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://clontarftennis.mycourts.co.uk/", favicon_url: "images/logos/clontarf-parish-tennis-club.png"},
+  { id: 51, name: "Cloughey & District Tennis Club", address: "250 Main Rd, Cloughey, Newtownards BT22 1JN, United Kingdom", county: "Down", lat: 54.4378825, lng: -5.4680744, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Hard Court", court_type: "Outdoor", website: "https://clubspark.net/ClougheyAndDistrictTennisClub" , favicon_url: "images/logos/cloughey.png"},
+  { id: 52, name: "Coleraine Tennis Club", address: "Riversdale Rd, Coleraine BT52 1QX, United Kingdom", county: "Derry", lat: 55.1351368, lng: -6.6712228, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.instagram.com/colerainetennisclub/" , favicon_url: "images/logos/coleraine.png"},
+  { id: 54, name: "Cork Parks Tennis Togher", address: "Togher Tennis Courts, Clashduv Rd, Togher, Cork, Ireland", county: "Cork", lat: 51.8801852, lng: -8.4957084, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.corkparkstennis.ie/" , favicon_url: "images/logos/padel-54.png"},
+  { id: 55, name: "County Tipperary Lawn Tennis Club", address: "St Michael's St, Carrownreddy, Tipperary, Ireland", county: "Tipperary", lat: 52.4781567, lng: -8.1604989, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Real Clay", court_type: "Outdoor", website: "https://www.tltc.ie/" , favicon_url: "images/logos/county-tipperary-lawn-tennis-club.png"},
+  { id: 56, name: "County Wicklow Lawn Tennis Club", address: "Vevay Rd, Oldcourt, Bray, Co. Wicklow, Ireland", county: "Wicklow", lat: 53.1908309, lng: -6.1044064, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.cowicklowltc.com/" , favicon_url: "images/logos/county-wicklow-lawn-tennis-club-56.jpg"},
+  { id: 57, name: "Crosshaven Tennis Club", address: "88-98 Brightwater, Crosshaven, Co. Cork, Ireland", county: "Cork", lat: 51.799609, lng: -8.2950117, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.crosshaventennis.ie/" , favicon_url: "images/logos/crosshaven-tennis-club.png"},
+  { id: 58, name: "CYM Tennis Club", address: "54 Terenure Rd N, Terenure, Dublin 6W, Co. Dublin, D6W XY13, Ireland", county: "Dublin", lat: 53.3129821, lng: -6.2833202, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.terenuresportsclub.ie/" , favicon_url: "images/logos/cym-tennis-club-58.png"},
+  { id: 59, name: "Deerpark Tennis Club", address: "Deer Park, Mount Merrion, Dublin, Ireland", county: "Dublin", lat: 53.2947275, lng: -6.21544, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Hard Court", court_type: "Outdoor", website: "https://clubspark.net/deerparkTennisClub" , favicon_url: "images/logos/deerpark-tennis-club.png"},
+  { id: 60, name: "Donabate Portrane Tennis Club", address: "Ballalease, Co. Dublin, Donabate, Co. Dublin, K36 PK70, Ireland", county: "Dublin", lat: 53.481054, lng: -6.130136, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (TigerTurf)", court_type: "Outdoor", website: "https://www.donabatetennis.com/" , favicon_url: "images/logos/donabate-portrane-tennis-club.png"},
+  { id: 61, name: "Donaghadee Lawn Tennis Club", address: "The Cmns, Donaghadee BT21 0JB, United Kingdom", county: "Down", lat: 54.634762, lng: -5.5324148, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.dltc.org.uk/" , favicon_url: "images/logos/donaghadee-lawn-tennis-club-61.png"},
+  { id: 62, name: "Donnybrook Lawn Tennis Club", address: "4 Brookvale Rd, Dublin 4, D04 YH10, Ireland", county: "Dublin", lat: 53.3199488, lng: -6.2343071, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.donnybrookltc.ie/" , favicon_url: "images/logos/donnybrook-lawn-tennis-club.png"},
+  { id: 63, name: "Douglas Lawn Tennis Club", address: "Douglas Hall Lawn, Well Road, Cork, Ireland", county: "Cork", lat: 51.8805266, lng: -8.4354566, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://douglastennis.ie/", favicon_url: "images/logos/douglas.png"  },
+  { id: 64, name: "Downshire Tennis Club", address: "18 Park St, Hillsborough BT26 6AL, United Kingdom", county: "Down", lat: 54.459741, lng: -6.0838849, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.downshiretennis.co.uk/" , favicon_url: "images/logos/downshire.png"},
+  { id: 65, name: "Dromahane Tennis Club", address: "Drommahane, Dromahane, Co. Cork, P51 NT38, Ireland", county: "Cork", lat: 52.1043848, lng: -8.6929299, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.facebook.com/DromahaneTennisClub/", favicon_url: "images/logos/dromahane.png"  },
+  { id: 66, name: "Dunboyne Tennis Club", address: "Old Kilbride Road, Clonee, Co. Meath, Ireland", county: "Meath", lat: 53.4125095, lng: -6.4444345, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass (TigerTurf)", court_type: "Outdoor", website: "https://www.dunboynetennis.com/" , favicon_url: "images/logos/dunboyne-tennis-club-66.ico"},
+  { id: 67, name: "Dundalk Lawn Tennis, Squash & Badminton Club", address: "Rampart Ln, Marshes Lower, Dundalk, Co. Louth, Ireland", county: "Louth", lat: 54.0038025, lng: -6.3918354, sport: "Tennis", facility_type: "Sports Club", courts: 9, court_surface: "Artificial Grass / Hard Court", court_type: "Outdoor", website: "https://dundalkltc.com/" , favicon_url: "images/logos/dundalk-lawn-tennis-squash-and-badminton-club-67.ico"},
+  { id: 68, name: "Dungannon Tennis Club", address: "Ranfurly Rd, Dungannon BT71 6EG, United Kingdom", county: "Tyrone", lat: 54.5013113, lng: -6.7627216, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://dungannontennisclub.com/", favicon_url: "images/logos/dungannon.png"   },
+  { id: 69, name: "Emly Tennis Club", address: "Emly, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.4652768, lng: -8.3476009, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.emlytc.ie/",  favicon_url: "images/logos/emly.jpg"  },
+  { id: 70, name: "Ennis Tennis & Badminton Club", address: "Mill Rd, Cloghleagh, Ennis, Co. Clare, V95 PN81, Ireland", county: "Clare", lat: 52.8462097, lng: -8.9890091, sport: "Tennis", facility_type: "Sports Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.ennistennis.com/" , favicon_url: "images/logos/ennis-tennis-and-badminton-club-70.ico"},
+  { id: 71, name: "Enniskerry Tennis Club", address: "The Bog Meadow, Monastery, Enniskerry, Co. Wicklow, Ireland", county: "Wicklow", lat: 53.1944034, lng: -6.1714827, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://enniskerrytennisclub.com/" , favicon_url: "images/logos/enniskerry-tennis-club.ico"},
+  { id: 72, name: "Enniskillen Lawn Tennis Club", address: "1 Cooper Cres, Enniskillen BT74 6DQ, United Kingdom", county: "Fermanagh", lat: 54.3471012, lng: -7.6272827, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Clay / Hard Court", court_type: "Indoor/Outdoor", website: "http://tenniskillen.com/" , favicon_url: "images/logos/enniskillen-lawn-tennis-club-72.ico"},
+  { id: 73, name: "Fitzwilliam Lawn Tennis Club", address: "Winton Rd, Ranelagh, Dublin, D06 X6X2, Ireland", county: "Dublin", lat: 53.3278581, lng: -6.249333, sport: "Tennis", facility_type: "Tennis Club", courts: 10, court_surface: "Artificial Grass (Savannah) / Artifical Clay (Red Plus) / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.fltc.ie/" , favicon_url: "images/logos/fitzwilliam-lawn-tennis-club.png"},
+  { id: 74, name: "Fountainstown Community Sports Club", address: "Community Sports Club, Fountainstown, Cork, P43 E283, Ireland", county: "Cork", lat: 51.7741754, lng: -8.314786, sport: "Tennis", facility_type: "Sports Club", courts: 3, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.fcsc.ie/", favicon_url: "images/logos/fountainstown.png"  },
+  { id: 75, name: "Galway Lawn Tennis Club", address: "Threadneedle Rd, Salthill, Galway, H91 E622, Ireland", county: "Galway", lat: 53.2628803, lng: -9.0900278, sport: "Tennis", facility_type: "Tennis Club", courts: 9, court_surface: "Artificial Grass / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.gltc.ie/", favicon_url: "images/logos/galway.jpg"   },
+  { id: 76, name: "Garryduff Sports Centre", address: "Garryduff, Cork, T12 ER22, Ireland", county: "Cork", lat: 51.868778, lng: -8.398375, sport: "Tennis", facility_type: "Sport Club", courts: 3, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://www.garryduff.ie/" , favicon_url: "images/logos/garryduff-sports-centre-76.ico"},
+  { id: 77, name: "Garvagh Tennis Club", address: "14 Station Rd, Garvagh, Coleraine BT51 5DY, United Kingdom", county: "Derry", lat: 54.9841643, lng: -6.6833088, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.instagram.com/garvaghtennisclub/" , favicon_url: "images/logos/garvagh.png"},
+  { id: 78, name: "Glasnevin Lawn Tennis Club", address: "Ballymun Rd, Glasnevin, Dublin, D09 DR76, Ireland", county: "Dublin", lat: 53.3814814, lng: -6.2660502, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass (Savannah)", court_type: "Indoor/Outdoor", website: "https://www.glasnevintennis.com/" , favicon_url: "images/logos/glasnevin-lawn-tennis-club-78.png"},
+  { id: 79, name: "Glenageary Lawn Tennis Club", address: "Silchester Rd, Dún Laoghaire, Dublin, Ireland", county: "Dublin", lat: 53.2817621, lng: -6.1291101, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass (Savannah)", court_type: "Indoor/Outdoor", website: "https://www.glenagearyltc.ie/" , favicon_url: "images/logos/glenageary-lawn-tennis-club-79.png"},
+  { id: 80, name: "Gorey Tennis Club", address: "MPH6+2M, Gorey corporation lands, Gorey, Co. Wexford, Ireland", county: "Wexford", lat: 52.6775369, lng: -6.2883543, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://clubspark.net/goreytennisclub/" , favicon_url: "images/logos/gorey-tennis-club.png"},
+  { id: 81, name: "Greystones Lawn Tennis Club", address: "Greystones Tennis Club, Mill Rd, Greystones, Co. Wicklow, Ireland", county: "Wicklow", lat: 53.132704, lng: -6.070135, sport: "Tennis", facility_type: "Tennis Club", courts: 11, court_surface: "Artificial Grass / Artificial Clay", court_type: "Outdoor", website: "https://www.greystonesltc.ie/" , favicon_url: "images/logos/greystones-lawn-tennis-club-81.png"},
+  { id: 82, name: "Hawarden Lawn Tennis Club", address: "3 Clonlee Dr, Belfast BT4 3DA, United Kingdom", county: "Down", lat: 54.5967096, lng: -5.8766642, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://clubspark.net/hawardentennisclub" , favicon_url: "images/logos/hawarden-lawn-tennis-club.png"},
+  { id: 83, name: "Hazelwood Tennis Club", address: "Twopothouse, Co. Cork, Ireland", county: "Cork", lat: 52.19265, lng: -8.644, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.hazelwoodtennis.club/", favicon_url: "images/logos/hazelwood.png  "  },
+  { id: 84, name: "Helen’s Bay Tennis Club", address: "15a Fort Rd, Helen's Bay, Bangor BT19 1LA, United Kingdom", county: "Down", lat: 54.6730427, lng: -5.7453645, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.helensbaytennisclub.co.uk/" , favicon_url: "images/logos/helens-bay-tennis-club.png"},
+  { id: 85, name: "Hillbrook Lawn Tennis Club", address: "Munster Hill, Enniscorthy, Co. Wexford, Ireland", county: "Wexford", lat: 52.4951655, lng: -6.5701924, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "http://hltc.ie/" , favicon_url: "images/logos/hillbrook-lawn-tennis-club-85.ico"},
+  { id: 86, name: "Hillview Sports Club", address: "Mountain Rd, Raheen, Clonmel, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.3497012, lng: -7.6968016, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "http://hillviewsportsclub.net/" , favicon_url: "images/logos/hillview-sports-club.ico"},
+  { id: 87, name: "Hospital Tennis Club", address: "R513, Kilfrush, Co. Limerick, Ireland", county: "Limerick", lat: 52.4620438, lng: -8.4291899, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.hospitaltennisclub.com/" , favicon_url: "images/logos/hospital-tennis-club.png"},
+  { id: 88, name: "Indoor Tennis Arena", address: "Ormeau Embankment, Belfast BT6 8LT, United Kingdom", county: "Antrim", lat: 54.5896789, lng: -5.9151837, sport: "Tennis", facility_type: "Sports Club", courts: 4, court_surface: "Hard Court", court_type: "Indoor", website: "https://www.better.org.uk/leisure-centre/belfast/ozone-complex" , favicon_url: "images/logos/indoor-tennis-arena-88.ico"},
+  { id: 89, name: "Johnstown Tennis Club", address: "46 Glasanaon Rd, Finglas East, Dublin 11, Ireland", county: "Dublin", lat: 53.3855086, lng: -6.2805515, sport: "Tennis", facility_type: "Tennis Club", courts: 10, court_surface: "Artificial Grass (Savannah) / Hard Court", court_type: "Outdoor", website: "https://www.dublincity.ie/parks-and-nature/dublin-city-parks/visit-park/johnstown-park" , favicon_url: "images/logos/johnstown-tennis-club-89.ico"},
+  { id: 90, name: "Kilcullen Tennis Club", address: "Logstown, Kilcullen, Co. Kildare, R56 PK10, Ireland", county: "Kildare", lat: 53.1349159, lng: -6.7386592, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://kilcullentennis.clubforce.com/" , favicon_url: "images/logos/kilcullen.png"},
+  { id: 91, name: "Kilfeacle Community Tennis Club", address: "Kilfeacle Community Center, Kilfeakle, Kilfeacle, Co. Tipperary, E34 YP98, Ireland", county: "Tipperary", lat: 52.487476, lng: -8.0634399, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.kilfeacletennis.ie/", favicon_url: "images/logos/kilfeacle.jpg"  },
+  { id: 92, name: "Kilkenny County & City Lawn Tennis Club", address: "Archers Field, Bennettsbridge Rd, Archerstreet Lot, Kilkenny, Ireland", county: "Kilkenny", lat: 52.6453437, lng: -7.242227, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass (TigerTurf) / Real Clay", court_type: "Indoor/Outdoor", website: "https://www.kilkennytennisclub.com/" , favicon_url: "images/logos/kilkenny-county-and-city-lawn-tennis-club-92.ico"},
+  { id: 93, name: "Killaloe Ballina Tennis Club", address: "New St, Knockyclovaun, Killaloe, Co. Clare, V94 C627, Ireland", county: "Clare", lat: 52.8078241, lng: -8.4488033, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass / Hard Court", court_type: "Outdoor", website: "https://kbtc.ie/" , favicon_url: "images/logos/killaloe-ballina-tennis-club-93.ico"},
+  { id: 94, name: "Kilworth Tennis Club", address: "Chapel Rd, Moorepark, Kilworth, Co. Cork, Ireland", county: "Cork", lat: 52.1715086, lng: -8.2375329, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.kilworthcommunitycouncil.com/kilworth-tennis", favicon_url: "images/logos/kilworth.png"  },
+  { id: 95, name: "Kinsale Tennis Club", address: "Garraha, Snugmore, Co. Cork, P17 T677, Ireland", county: "Cork", lat: 51.7081361, lng: -8.4926919, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (TigerTurf) / Hardcourt", court_type: "Outdoor", website: "https://www.kinsaletennisclub.com/" , favicon_url: "images/logos/kinsale-tennis-club-95.ico"},
+  { id: 96, name: "LC Tennis Academy and Club Rosemont", address: "LC Tennis Sandyford, Rosemont School, Enniskerry Rd, Sandyford, Dublin 18, D18 A8N2, Ireland", county: "Dublin", lat: 53.261136, lng: -6.2287526, sport: "Tennis", facility_type: "Other", courts: 4, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://lctennis.ie/" , favicon_url: "images/logos/lc-tennis-academy-and-club-rosemont-96.png"},
+  { id: 97, name: "Lakewood Tennis Club", address: "Barnagore, Co. Cork, Ireland", county: "Cork", lat: 51.8813453, lng: -8.6438892, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://www.lakewoodtennisclub.ie/" , favicon_url: "images/logos/lakewood-tennis-club-97.png"},
+  { id: 98, name: "Lanesborough / Ballyleague Tennis Court", address: "Ballyleague, Co. Roscommon, Ireland", county: "Roscommon", lat: 53.6735649, lng: -7.9962725, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "http://loughree.ie/activities/" , favicon_url: "images/logos/lanesborough-ballyleague-tennis-court-98.ico"},
+  { id: 99, name: "Lansdowne Tennis Club", address: "Londonbridge Road, Dublin 4, D04 X0E8, Ireland", county: "Dublin", lat: 53.3375764, lng: -6.2261494, sport: "Tennis", facility_type: "Tennis Club", courts: 10, court_surface: "Artificial Grass (Savannah) / Artificial Clay", court_type: "Outdoor", website: "https://www.lansdowneltc.com/" , favicon_url: "images/logos/lansdowne-tennis-club.png"},
+  { id: 100, name: "Larne Bowling & Lawn Tennis Club", address: "112-120 Glenarm Rd, Larne BT40 1DZ, United Kingdom", county: "Antrim", lat: 54.8583833, lng: -5.8098255, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/lbltc/", favicon_url: "images/logos/larne.jpg"   },
+  { id: 101, name: "Lattin Lawn Tennis Club", address: "Ballynadruckilly, Lattin, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.4677175, lng: -8.2669698, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass / Hard Court", court_type: "Outdoor", website: "https://www.lattinltc.ie/", favicon_url: "images/logos/lattin.jpg"  },
+  { id: 102, name: "Leixlip Tennis Club", address: "R148, Collinstown, Leixlip, Co. Kildare, W23 R942, Ireland", county: "Kildare", lat: 53.3703662, lng: -6.5129641, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://www.leixliptennisclub.com/" , favicon_url: "images/logos/leixlip-tennis-club.png"},
+  { id: 103, name: "Leopardstown Tennis Club", address: "59 Leopardstown Grove, Stillorgan, Dublin, A94 X958, Ireland", county: "Dublin", lat: 53.2790738, lng: -6.1938109, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.leopardstowntennisclub.ie/" , favicon_url: "images/logos/leopardstown-tennis-club.ico"},
+  { id: 104, name: "Letterkenny Tennis Club", address: "Murric-a-boo, Letterkenny, Co. Donegal, Ireland", county: "Donegal", lat: 54.9528621, lng: -7.7326476, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Hard Court / Artificial Grass", court_type: "Outdoor", website: "https://letterkennytennisclub.com/", favicon_url: "images/logos/letterkenny.png"   },
+  { id: 105, name: "Limavady Recreation Club", address: "54 Killane Rd, Limavady BT49 0TR, United Kingdom", county: "Derry", lat: 55.0566486, lng: -6.9387829, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.limavadyrecclub.com/" , favicon_url: "images/logos/limavady-recreation-club.ico"},
+  { id: 106, name: "Limerick Lawn Tennis Club", address: "Ennis Rd, Farranshone More, Limerick, Ireland", county: "Limerick", lat: 52.6677722, lng: -8.6438011, sport: "Tennis", facility_type: "Tennis Club", courts: 12, court_surface: "Artificial Grass / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.lltc.ie/" , favicon_url: "images/logos/limerick-lawn-tennis-club.png"},
+  { id: 107, name: "Lisburn Racquets Club", address: "36 Belfast Rd, Lisburn BT27 4AS, United Kingdom", county: "Antrim", lat: 54.5173416, lng: -6.0340528, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://www.lisburnracquets.co.uk/" , favicon_url: "images/logos/lisburn-racquets-club.png"},
+  { id: 108, name: "Lombardstown Tennis Club", address: "Glenview, Co. Cork, Ireland", county: "Cork", lat: 52.1157698, lng: -8.7785647, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.lombardstowntennis.com/", favicon_url: "images/logos/lombard.png"  },
+  { id: 109, name: "Longford Tennis Club", address: "Demesne Ln, Demesne, Longford, N39 D303, Ireland", county: "Longford", lat: 53.7351686, lng: -7.80475, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "http://www.longfordtennis.ie/" , favicon_url: "images/logos/longford-tennis-club.png"},
+  { id: 110, name: "Loughrea Tennis Club", address: "Gort Rd, Cuscarrick, Loughrea, Co. Galway, Ireland", county: "Galway", lat: 53.1977209, lng: -8.5799579, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://loughreatennisclub.weebly.com/" , favicon_url: "images/logos/loughrea.png"},
+  { id: 111, name: "Lower Aghada Tennis & Sailing Club", address: "Aghada, Midleton, Co. Cork, Ireland", county: "Cork", lat: 51.8433537, lng: -8.2155601, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/loweraghadatennis/", favicon_url: "images/logos/lowera.jpg"   },
+  { id: 112, name: "Lurgan Tennis Club", address: "Lurgan Park, Windsor Ave, Lurgan, Craigavon BT67 9BG, United Kingdom", county: "Armagh", lat: 54.462576, lng: -6.3255008, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/lurgantennisclub/", favicon_url: "images/logos/lurgan.jpg" },
+  { id: 113, name: "Malahide Lawn Tennis and Croquet Club", address: "The Square, Malahide, Co. Dublin, Ireland", county: "Dublin", lat: 53.4514166, lng: -6.1499616, sport: "Tennis", facility_type: "Sports Club", courts: 9, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://mltcc.com/",  favicon_url: "images/logos/malahide.png" },
+  { id: 114, name: "Meadowvale Tennis Club", address: "Meadow Vale, Deansgrange, Dublin, Ireland", county: "Dublin", lat: 53.2725529, lng: -6.1572692, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.meadowvaleltc.com/" , favicon_url: "images/logos/meadowvale-tennis.png"},
+  { id: 115, name: "Mitchelstown Tennis Club", address: "Georges St, Brigown, Mitchelstown, Co. Cork, Ireland", county: "Cork", lat: 52.2680091, lng: -8.2739439, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://mitchelstowntennisclub.com/", favicon_url: "images/logos/mitchel.png"   },
+  { id: 116, name: "Moate Tennis club", address: "Lake Rd, Aghanargit, Moate, Co. Westmeath, Ireland", county: "Westmeath", lat: 53.3984155, lng: -7.7279783, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.facebook.com/p/Moate-Tennis-Club-100057123774221/",favicon_url: "images/logos/moate.png" },
+  { id: 117, name: "Monkstown Lawn Tennis & Croquet Club", address: "Castle Rd, Monkstown (Castle Farm), Co. Cork, T12 NV38, Ireland", county: "Cork", lat: 51.8469412, lng: -8.3356367, sport: "Tennis", facility_type: "Sports Club", courts: 3, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.monkstowntennisclub.com/",  favicon_url: "images/logos/monkstown.png"  },
+  { id: 118, name: "Monkstown Lawn Tennis Club", address: "Mounttown Road Upper, Monkstown, Dublin, A96 TY49, Ireland", county: "Dublin", lat: 53.2892412, lng: -6.1481854, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "http://www.monkstownltc.com/" , favicon_url: "images/logos/monkstown-lawn-tennis-club.png"},
+  { id: 119, name: "Mount Pleasant L.T.C.", address: "Mount Pleasant Square, Ranelagh Rd, Dublin, Ireland", county: "Dublin", lat: 53.3269989, lng: -6.2595114, sport: "Tennis", facility_type: "Tennis Club", courts: 11, court_surface: "Artificial Grass / Real Clay", court_type: "Indoor/Outdoor", website: "https://www.mountpleasantltc.ie/" , favicon_url: "images/logos/mount-pleasant.png"},
+  { id: 120, name: "Mullingar Tennis & Badminton Club", address: "Austin Friars St, Mullingar, Co. Westmeath, N91 X663, Ireland", county: "Westmeath", lat: 53.5254706, lng: -7.3368884, sport: "Tennis", facility_type: "Sports Club", courts: 8, court_surface: "Artificial Grass / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.mullingartennisandbadminton.ie/" , favicon_url: "images/logos/mullingar-tennis-and-badminton-club.png"},
+  { id: 121, name: "Naas Lawn Tennis Club", address: "Naas East, Naas, Co. Kildare, W91 HV02, Ireland", county: "Kildare", lat: 53.2263425, lng: -6.6548843, sport: "Tennis", facility_type: "Tennis Club", courts: 11, court_surface: "Artificial Grass / Hard Court / Artifical Clay (Red Plus)", court_type: "Indoor/Outdoor", website: "https://naasltc.net/" , favicon_url: "images/logos/naas-lawn-tennis-club.png"},
+  { id: 122, name: "Navan Tennis Club", address: "Swan Ln, Balreask Old, Navan, Co. Meath, C15 YK82, Ireland", county: "Meath", lat: 53.6387813, lng: -6.6701233, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.navantennisclub.com/" , favicon_url: "images/logos/navan-tennis-club.png"},
+  { id: 123, name: "Nenagh Lawn Tennis Club", address: "Nenagh North, Nenagh, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.862186, lng: -8.2151076, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.nenaghltc.ie/" , favicon_url: "images/logos/navan-tennis-club.png"},
+  { id: 124, name: "New Inn Tennis Club", address: "Loughkent East, Newinn, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.4401586, lng: -7.8797799, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.munstertennis.ie/new-inn.html" , favicon_url: "images/logos/new-inn-tennis-club.png"},
+  { id: 125, name: "Newcastle Tennis Club", address: "54-56 Bryansford Rd, Newcastle BT33 0DP, United Kingdom", county: "Down", lat: 54.2106834, lng: -5.8961247, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://newcastletennisclubni.com/" , favicon_url: "images/logos/newcastle-tennis-club.png"},
+  { id: 126, name: "Newry Tennis Club", address: "Warrenpoint Rd, Newry BT34 2PF, United Kingdom", county: "Down", lat: 54.1655923, lng: -6.3326606, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "http://www.newrytennisclub.co.uk/" , favicon_url: "images/logos/newry-tennis-club.png"},
+  { id: 127, name: "Newtown Park Tennis Club", address: "Springhill Ave, Deansgrange, Blackrock, Co. Dublin, Ireland", county: "Dublin", lat: 53.285113, lng: -6.1745684, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.newtownparktennisclub.com/" , favicon_url: "images/logos/newtown-park-tennis-club.png"},
+  { id: 128, name: "North Kildare Tennis Club", address: "Maws, Kilcock, Co. Kildare, Ireland", county: "Kildare", lat: 53.391066, lng: -6.6416469, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.northkildaresportsclub.ie/tennis/" , favicon_url: "images/logos/north-kildare-tennis-club.png"},
+  { id: 129, name: "Omagh Lawn Tennis Club", address: "1 Crevenagh Rd, Omagh BT79 0EQ, United Kingdom", county: "Tyrone", lat: 54.600412, lng: -7.2895941, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://omaghltc.com/" , favicon_url: "images/logos/omagh-lawn-tennis-club.png"},
+  { id: 130, name: "Portadown Tennis Club", address: "10 Bachelors Walk, Portadown BT63 5BQ, United Kingdom", county: "Armagh", lat: 54.4291079, lng: -6.4272248, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://clubspark.net/PortadownTennisClub/" , favicon_url: "images/logos/portadown-tennis-club-130.ico"},
+  { id: 131, name: "Portarlington lawn tennis club", address: "Station Rd, Cooltederry, Portarlington, Co. Laois, Ireland", county: "Laois", lat: 53.1524746, lng: -7.1834858, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.portarlingtontennisclub.ie/",  favicon_url: "images/logos/portarlington.jpg"  },
+  { id: 132, name: "Portmarnock Tennis Club", address: "Blackwood Ln, Beechwood, Portmarnock, Co. Dublin, D13 X662, Ireland", county: "Dublin", lat: 53.4338697, lng: -6.1391582, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://portmarnocktennis.ie/" , favicon_url: "images/logos/portmarnock-tennis-club.png"},
+  { id: 133, name: "Portumna Tennis Club", address: "St Joseph's Rd, Portumna Demesne, Co. Galway, Ireland", county: "Galway", lat: 53.0906369, lng: -8.22673, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.portumnatennis.com/" , favicon_url: "images/logos/portumna-tennis-club.png"},
+  { id: 134, name: "Prosperous Lawn Tennis Club", address: "Curryhills, Naas, Co. Kildare, W91 CAV9, Ireland", county: "Kildare", lat: 53.2887892, lng: -6.7510933, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/prosperousltc/",favicon_url: "images/logos/propserous.jpg" },
+  { id: 135, name: "Puckane Tennis Club", address: "The Boreen, Ballycraggan, Puckaun, Co. Tipperary, E45 HX88, Ireland", county: "Tipperary", lat: 52.9327631, lng: -8.2415623, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://puckanetennis.ie/", favicon_url: "images/logos/puckane.png" },
+  { id: 136, name: "Rathangan Tennis Club", address: "Kilmoney, Rathangan, Co. Kildare, Ireland", county: "Kildare", lat: 53.2262311, lng: -6.9907179, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.rathangantennisclub.com/", favicon_url: "images/logos/rathangan.png"  },
+  { id: 137, name: "Rathgar Tennis Club", address: "Herzog Park, Orwell Rd, Rathgar, Co. Dublin, 6, Ireland", county: "Dublin", lat: 53.3102451, lng: -6.2759302, sport: "Tennis", facility_type: "Tennis Club", courts: 10, court_surface: "Artificial Grass / Real Clay", court_type: "Outdoor", website: "https://rathgartennis.ie/",favicon_url: "images/logos/rathgar.jpg" },
+  { id: 138, name: "Ratoath Tennis Club", address: "Jamestown Sports Campus, The Avenue, Ratoath, Co. Meath, Ireland", county: "Meath", lat: 53.5012611, lng: -6.4575196, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.ratoathtennisclub.ie/" , favicon_url: "images/logos/ratoath-tennis-club-138.ico"},
+  { id: 139, name: "Riversdale Tennis Club", address: "26a Glasnevin Ave, Glasnevin, Dublin 11, D11 N765, Ireland", county: "Dublin", lat: 53.3896466, lng: -6.266983, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://riversdalesc.com/" , favicon_url: "images/logos/riversdale-tennis-club.png"},
+  { id: 140, name: "Rockfield Tennis Club", address: "Rockfield Park, Artane, Dublin 5, Ireland", county: "Dublin", lat: 53.3812436, lng: -6.2194327, sport: "Tennis", facility_type: "Tennis Club", courts: 9, court_surface: "Hard Court", court_type: "Outdoor", website: "https://rockfieldtennisclub.ie/"  , favicon_url: "images/logos/rockfield.png"},
+  { id: 141, name: "Rosanna Lawn Tennis Club", address: "Murgasty Rd, Carrownreddy, Tipperary, E34 F220, Ireland", county: "Tipperary", lat: 52.4797179, lng: -8.1628899, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.rosannaltc.ie/" , favicon_url: "images/logos/rosanna-lawn-tennis-club-141.png"},
+  { id: 142, name: "Roscrea Tennis Club", address: "Demesne, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.9557304, lng: -7.7863079, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/roscreatennis/",favicon_url: "images/logos/roscrea.jpg" },
+  { id: 143, name: "Rushbrooke Lawn Tennis & Croquet Club", address: "Rushbrooke, Cobh, Co. Cork, P24 E803, Ireland", county: "Cork", lat: 51.8479977, lng: -8.3137142, sport: "Tennis", facility_type: "Sports Club", courts: 11, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.rushbrooketennis.com/", favicon_url: "images/logos/rushbrook.png"   },
+  { id: 144, name: "Sandycove Tennis and Squash Club", address: "Elton Park, Sandycove, Dublin, Ireland", county: "Dublin", lat: 53.2851447, lng: -6.1161517, sport: "Tennis", facility_type: "Sports Club", courts: 7, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://sandycovetsc.ie/",favicon_url: "images/logos/sandycove.png" },
+  { id: 145, name: "Shankill Tennis Club", address: "Quinn's Rd, Shankill, Dublin, D18 X8N2, Ireland", county: "Dublin", lat: 53.2321125, lng: -6.1136672, sport: "Tennis", facility_type: "Tennis Club", courts: 7, court_surface: "Artificial Grass / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.shankilltennisclub.com/" , favicon_url: "images/logos/shankill-tennis-club-145.png"},
+  { id: 146, name: "Sligo Tennis and Badminton Club", address: "Old Bundoran Rd, Shannon Eighter, Sligo, Ireland", county: "Sligo", lat: 54.2896709, lng: -8.470193, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Hard Court / Artificial Grass", court_type: "Indoor/Outdoor", website: "https://sligotennisclub.ie/" , favicon_url: "images/logos/sligo-tennis-and-badminton-club-146.ico"},
+  { id: 147, name: "St Anne's Park Tennis Club", address: "All Saints Rd, Raheny, Dublin, Ireland", county: "Dublin", lat: 53.3745128, lng: -6.1814297, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.stannesparktennis.com/" , favicon_url: "images/logos/st-anne-s-park-tennis-club-147.png"},
+  { id: 148, name: "St Anne's Tennis Club", address: "John's Hill, Grange Lower, Waterford, Ireland", county: "Waterford", lat: 52.2481875, lng: -7.1032285, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.stannestennis.com/", favicon_url: "images/logos/stannes.png"  },
+  { id: 149, name: "St Michael's Tennis Club", address: "Church Rd, Blackrock, Cork, Ireland", county: "Cork", lat: 51.895523, lng: -8.421401, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.stmichaelstennisclub.ie/" , favicon_url: "images/logos/st-michael-s-tennis-club-149.png"},
+  { id: 150, name: "St. Mary's Lawn Tennis Club", address: "Lawn Tennis Club, Saint Mary's, Belmont Villas, Dublin 4, D04 X7F2, Ireland", county: "Dublin", lat: 53.3200555, lng: -6.2406775, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "http://www.stmarystennisclub.com/" , favicon_url: "images/logos/st-marys-lawn-tennis-club.png"},
+  { id: 151, name: "St. Patrick's Racquets Club", address: "The Orchard, 70 Victoria Ave, Newtownards BT23 7ED, United Kingdom", county: "Down", lat: 54.5966418, lng: -5.6938633, sport: "Tennis", facility_type: "Sports Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.stpatricksracquetsclub.com/", favicon_url: "images/logos/patricks.jpg"  },
+  { id: 152, name: "Stratford Lawn Tennis Club", address: "Grosvenor Square, Rathmines, Dublin, D06 HP90, Ireland", county: "Dublin", lat: 53.3243945, lng: -6.2730805, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Real Grass / Artificial Grass (Savannah)", court_type: "Outdoor", website: "http://web.stratfordtennis.ie/", favicon_url: "images/logos/stratford.png"   },
+  { id: 153, name: "Sunday's Well Boating & Tennis Club", address: "Mardyke Walk, Mardyke, Cork, T12 VC42, Ireland", county: "Cork", lat: 51.8957745, lng: -8.4933286, sport: "Tennis", facility_type: "Sports Club", courts: 8, court_surface: "Artificial Grass (Savannah) / Artificial Clay", court_type: "Indoor/Outdoor", website: "https://sundayswell.ie/",  favicon_url: "images/logos/sundayswell.jpg"  },
+  { id: 154, name: "Sutton Lawn Tennis Club", address: "176 Howth Rd, Sutton, Dublin 13, D13 H004, Ireland", county: "Dublin", lat: 53.3891691, lng: -6.1065516, sport: "Tennis", facility_type: "Tennis Club", courts: 11, court_surface: "Hard Court / Artificial Clay (Red Plus)", court_type: "Indoor/Outdoor", website: "https://www.suttonltc.com/" , favicon_url: "images/logos/sutton-lawn-tennis-club-154.png"},
+  { id: 155, name: "Swords Lawn Tennis Club", address: "Swords Castle Grounds, Townparks, Swords, Co. Dublin, Ireland", county: "Dublin", lat: 53.4615631, lng: -6.219079, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.swordstennisclub.com/" , favicon_url: "images/logos/swords-lawn-tennis-club.ico"},
+  { id: 156, name: "Templeogue Tennis Club", address: "Templeogue, Dublin 6, Ireland", county: "Dublin", lat: 53.2, lng: null, sport: "Tennis", facility_type: "Tennis Club", courts: 12, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://www.templeoguetennis.ie/" , favicon_url: "images/logos/templeogue.png"},
+  { id: 158, name: "David Lloyd Dublin Riverview", address: "Clonskeagh, Dublin, Ireland", county: "Dublin", lat: 53.308293, lng: -6.23351, sport: "Tennis", facility_type: "Sports Club", courts: 12, court_surface: "Hard Court / Artificial Grass / Artificial Clay", court_type: "Indoor/Outdoor", website: "https://www.davidlloyd.ie/clubs/dublin-riverview" , favicon_url: "images/logos/david-lloyd-dublin-riverview-158.ico"},
+  { id: 159, name: "Elm Park Golf & Sports Club", address: "Nutley Ln, Dublin 4, Ireland", county: "Dublin", lat: 53.317544, lng: -6.21669, sport: "Tennis", facility_type: "Sports Club", courts: 14, court_surface: "Artificial Grass / Artificial Clay", court_type: "Indoor/Outdoor", website: "https://www.elmpark.ie/", favicon_url: "images/logos/elmpark.png"   },
+  { id: 160, name: "Tralee Tennis Club", address: "Dan Spring Rd, Tralee, Co. Kerry, Ireland", county: "Kerry", lat: 52.263428, lng: -9.706347, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://traleetc.wordpress.com/" , favicon_url: "images/logos/tralee-tennis-club-160.jpg"},
+  { id: 161, name: "National Tennis Centre", address: "DCU, Glasnevin, Dublin 9, Ireland", county: "Dublin", lat: 53.3871, lng: -6.2585, sport: "Tennis", facility_type: "National Training Centre", courts: 10, court_surface: "Artifical Clay (Red Plus) / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.tennisireland.ie/national-tennis-centre/" , favicon_url: "images/logos/national-tennis-centre.png"},
+    { id: 162, name: "Carrickmines Croquet & Lawn Tennis Club	", address: "Glenamuck Road,Carrickmines, Dublin 18, Ireland", county: "Dublin", lat: 53.255577, lng: -6.172252, sport: "Tennis", facility_type: "Tennis Club", courts: 18, court_surface: "Real Grass / Artificial Grass / Hardcourt / Artificial Clay", court_type: "Indoor/Outdoor", website: "https://www.carrickmines.com/" , favicon_url: "images/logos/carrickmines.png"},
+    { id: 163, name: "Grove Lawn Tennis Club", address: "Grove Rd, Malahide, Co. Dublin, K36 R583, Ireland", county: "Dublin", lat: 53.447402, lng: -6.147915, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Real Grass", court_type: "Indoor/Outdoor", website: "https://groveltc.com/" , favicon_url: "images/logos/grove-lawn-tennis-club-163.ico"},
+
+// === Major Padel Clubs ===
+{ id: 300, name: 'PadelZone Carrigtwohill', address: 'Fota Retail Park, Carrigtwohill, Co. Cork', county: 'Cork', sport: 'Padel', lat: 51.90556, lng: -8.29356, website: 'https://padeltennisireland.ie/' , favicon_url: "images/logos/padelzone.png"},
+  { id: 301, name: 'Westwood Club Padel Leopardstown', address: 'Leopardstown, Dublin 18', county: 'Dublin', sport: 'Padel', lat: 53.26953, lng: -6.20553, website: 'https://westwood.ie/' , favicon_url: "images/logos/westwood-club-padel-leopardstown-301.ico"},
+  { id: 302, name: 'Bushy Park Tennis & Padel Club', address: 'Terenure, Dublin', county: 'Dublin', sport: 'Padel', lat: 53.3035, lng: -6.2995, website: 'https://bushytennispadel.playbypoint.com/' , favicon_url: "images/logos/bushy.png"},
+  { id: 303, name: 'PadelZone Celbridge', address: 'O\'Hanlon Activity Park, Celbridge, Co. Kildare', county: 'Kildare', sport: 'Padel', lat: 53.34257, lng: -6.52957, website: 'https://www.ohanlonpark.ie//' , favicon_url: "images/logos/padelzone.png"},
+  { id: 304, name: 'House of Padel', address: 'Rosemount Park Drive, Ballycoolin, Dublin 11', county: 'Dublin', sport: 'Padel', lat: 53.40753, lng: -6.33153, website: 'https://www.houseofpadel.co/' , favicon_url: "images/logos/house-of-padel-304.ico"},
+  { id: 305, name: 'Padel LK', address: 'Limerick Lawn Tennis Club, Ennis Road, Limerick', county: 'Limerick', sport: 'Padel', lat: 52.67155, lng: -8.65255, website: 'https://www.lltc.ie/' , favicon_url: "images/logos/limerick-lawn-tennis-club.png"},
+  { id: 306, name: 'Waterford Padel Club', address: 'Dunmore Rd, Waterford', county: 'Waterford', sport: 'Padel', lat: 52.24552, lng: -7.09452, website: 'https://www.woodlandshotel.ie/' , favicon_url: "images/logos/waterford-padel-club-306.ico"},
+  { id: 308, name: 'Eddie Irvine Sports', address: 'Balloo Road, Bangor, Co. Down', county: 'Down', sport: 'Padel', lat: 54.64352, lng: -5.70452, website: 'https://www.eddieirvinesports.com/' , favicon_url: "images/logos/undefined.png"},
+  { id: 309, name: 'Portmarnock Padel Club', address: 'Blackwood Ln, Beechwood, Portmarnock, Co. Dublin', county: 'Dublin', sport: 'Padel', lat: 53.4338697, lng: -6.1391582, website: 'https://portmarnockpadel.ie/' , favicon_url: "images/logos/portmarnock-padel.png"},
+  { id: 310, name: 'Project Padel Galway', address: 'Corrib Business Park, Carrowbrowne, Galway, H91 XH56, Ireland', county: 'Galway', sport: 'Padel', lat: 53.3281985, lng: -9.0222478, website: 'https://projectpadel.ie/' , favicon_url: "images/logos/project-padel.png"},
+  { id: 311, name: 'Bective Tennis & Padel', address: 'Main Street, Donnybrook, Dublin, D04 A0P1, Ireland', county: 'Dublin', sport: 'Padel', lat: 53.3212078, lng: -6.2346986, website: 'https://bectivetennis.com/' , favicon_url: "images/logos/bective.png"},
+  { id: 312, name: 'Fitzwilliam Lawn Tennis Club', address: 'Winton Rd, Ranelagh, Dublin, D06 X6X2, Ireland', county: 'Dublin', sport: 'Padel', lat: 53.3278581, lng: -6.249333, website: 'https://www.fltc.ie/', favicon_url: "images/logos/fitzwilliam-lawn-tennis-club.png"  },
+  { id: 313, name: 'Padel Dome', address: 'Sportslink Complex, The Sports Dome, Santry, Dublin, D09 V8XT, Ireland', county: 'Dublin', sport: 'Padel', lat: 53.4083225, lng: -6.242021, website: 'https://padeldome.ie/' , favicon_url: "images/logos/padel-dome.png"},
+  { id: 314, name: 'Rockbrook Padel', address: 'Rockbrook House, Rathfarnham, Rockbrook, Co. Dublin, D16 P897, Ireland', county: 'Dublin', sport: 'Padel', lat: 53.2624196, lng: -6.3006718, website: 'https://trustpadel.com/padel-courts/rockbrook-padel-club/' , favicon_url: "images/logos/rockbrook-padel-314.ico"},
+  { id: 315, name: 'River Valley Padel Wicklow', address: 'River Valley, Redcross, Co. Wicklow, A67 H799, Ireland', county: 'Wicklow', sport: 'Padel', lat: 52.8886069, lng: -6.1430729, website: 'https://www.rivervalleypark.ie/' , favicon_url: "images/logos/river-valley-padel-wicklow-315.png"},
+  { id: 316, name: 'Active Tribe Courtown', address: 'Courtown Harbour, Ballinatray Lower, Gorey, Co. Wexford, Ireland', county: 'Wexford', sport: 'Padel', lat: 52.6486064, lng: -6.2288403, website: 'https://www.activetribe.ie/' , favicon_url: "images/logos/active-tribe-courtown-316.ico"},
+  { id: 317, name: 'Rosslare Community & Sports Centre', address: 'Strand Rd, Bearlough, Rosslare, Co. Wexford, Y35 CC9N, Ireland', county: 'Wexford', sport: 'Padel', lat: 52.2814351, lng: -6.3926711, website: 'https://www.rosslareholidayresort.ie/rosslare-communit-sports-centre' , favicon_url: "images/logos/rosslare.png"},
+  { id: 318, name: 'Kilkenny County & City Lawn Tennis Club', address: 'Archers Field, Bennettsbridge Rd, Archerstreet Lot, Kilkenny, Ireland', county: 'Kilkenny', sport: 'Padel', lat: 52.6453437, lng: -7.242227, website: 'https://www.kilkennytennisclub.com/' , favicon_url: "images/logos/kilkenny-county-and-city-lawn-tennis-club-318.ico"},
+  { id: 319, name: 'Let\'s Go Padel (Antrim)', address: '51 Green Rd, Ballyclare BT39 9PH, United Kingdom', county: 'Antrim', sport: 'Padel', lat: 54.7498599, lng: -5.9866255, website: 'https://www.letsgopadel.co.uk/' , favicon_url: "images/logos/letsgopadel.png"},
+  { id: 320, name: 'Padel 54', address: '20 Lisnabilla Rd, Moira, Craigavon BT67 0JW, United Kingdom', county: 'Armagh', sport: 'Padel', lat: 54.495783, lng: -6.2090867, website: 'https://www.padel54.com/' , favicon_url: "images/logos/padel54.png"},
+  { id: 321, name: 'Padel Society - Antrim', address: '5 Nursery Park, Belfast Rd, Antrim BT41 1QS, United Kingdom', county: 'Antrim', sport: 'Padel', lat: 54.7031898, lng: -6.2002792, website: 'https://padelsocietygroup.com/' , favicon_url: "images/logos/padel-society.png"},
+
+// === Major Pickleball Clubs ===
+ { id: 500, name: 'East Cork Pickleball Club', address: 'Cork Show Grounds, Cork', county: 'Cork', sport: 'Pickleball', lat: 51.88853, lng: -8.45953, website: 'https://www.globalpickleball.network/network/home/4151-east-cork-pickleball' , favicon_url: "images/logos/east-cork-pickleball-club-500.ico"},
+  { id: 501, name: 'Sandyford Pickleball (Naomh Olaf\'s GAA)', address: 'Naomh Olaf\'s GAA Club, Sandyford, Dublin', county: 'Dublin', sport: 'Pickleball', lat: 53.27857, lng: -6.24657, website: 'https://www.pickleheads.com/courts/ie/county-dublin/dublin/naomh-olaf-gaa' , favicon_url: "images/logos/sandyford-pickleball-naomh-olaf-s-gaa-501.ico"},
+  { id: 502, name: 'Terenure Pickleball Club', address: 'The Dome, Our Lady\'s School, Dublin 6W', county: 'Dublin', sport: 'Pickleball', lat: 53.30859, lng: -6.29159, website: 'https://www.terenurepickleballclub.ie/' , favicon_url: "images/logos/undefined.png"},
+  { id: 503, name: 'Dundalk Pickleball', address: 'Dundalk Sports Centre, Dundalk, Co. Louth', county: 'Louth', sport: 'Pickleball', lat: 54.00153, lng: -6.38153, website: 'https://www.pickleheads.com/courts/ie/county-louth/dundalk/dundalk-sports-centre' , favicon_url: "images/logos/dundalk-pickleball-503.ico"},
+  { id: 504, name: 'Rebel Pickleball', address: 'Shean Lower, Cork, Ireland', county: 'Cork', sport: 'Pickleball', lat: 51.932442, lng: -8.5600464, website: 'https://www.facebook.com/RebelPickleball/' , favicon_url: "images/logos/rebelpickleball.png"},
+  { id: 505, name: 'Dinking Hub Limited', address: 'St Tiernan\'s Community School, Parkvale, Sandyford, Dublin', county: 'Dublin', sport: 'Pickleball', lat: 53.2816791, lng: -6.2387565, website: 'https://www.dinkinghub.com/' , favicon_url: "images/logos/dinking-hub-limited-505.ico"},
+  { id: 506, name: 'Flemington Community Centre', address: 'Flemington Community Centre, Hamlet Ln, Balbriggan, Ireland', county: 'Dublin', sport: 'Pickleball', lat: 53.6120456, lng: -6.2061381, website: 'https://www.flemingtoncc.ie/' , favicon_url: "images/logos/flemington-community-centre-506.ico"},
+  { id: 507, name: 'Galway Pickleball Club', address: 'Seamus Quirke Rd, Westside, Galway, Ireland', county: 'Galway', sport: 'Pickleball', lat: 53.2776409, lng: -9.0729833, website: 'https://galwaypickleball.ie/' , favicon_url: "images/logos/galway-pickleball-club-507.ico"},
+  { id: 508, name: 'Loreto Abbey Dalkey Sports Hall', address: 'Loreto Ave, Harbour Rd, Dalkey Commons, Dalkey, Co. Dublin', county: 'Dublin', sport: 'Pickleball', lat: 53.2790397, lng: -6.1002882, website: 'https://bookwhen.com/dalkeypickleball' , favicon_url: "images/logos/loreto-abbey-dalkey-sports-hall-508.ico"},
+  { id: 509, name: 'Luttrellstown Community Centre', address: 'Porterstown Rd, Annfield, Co. Dublin', county: 'Dublin', sport: 'Pickleball', lat: 53.3744765, lng: -6.4090069, website: 'https://fingalcommunityfacilitiesnetwork.ie/centres/luttrellstown-community-centre/' , favicon_url: "images/logos/luttrellstown-community-centre-509.png"},
+  { id: 510, name: 'Southside Pickleball Club Dublin', address: 'Kilmacud Rd Upper, Stillorgan, Dublin', county: 'Dublin', sport: 'Pickleball', lat: 53.2858852, lng: -6.2085494, website: 'https://www.facebook.com/profile.php?id=61565652607784' , favicon_url: "images/logos/southside-pickleball-club-dublin-510.png"},
+  { id: 511, name: 'Andersonstown Leisure Centre', address: '132 Andersonstown Rd, Belfast BT11 9BY, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5733828, lng: -5.9873267, website: 'https://www.better.org.uk/leisure-centre/belfast/andersonstown-leisure-centre' , favicon_url: "images/logos/andersonstown-leisure-centre-511.ico"},
+  { id: 512, name: 'Ards Blair Mayne Wellbeing and Leisure Complex', address: '1 Dairy Hall Ln, Newtownards BT23 4DB, United Kingdom', county: 'Down', sport: 'Pickleball', lat: 54.5907821, lng: -5.7005352, website: 'https://www.leisureardsandnorthdown.com/leisure-centres/ards-blair-mayne' , favicon_url: "images/logos/ards-blair-mayne-wellbeing-and-leisure-complex-512.ico"},
+  { id: 513, name: 'Belvoir Activity Centre', address: 'Belvoir Dr, Belfast BT8 7DT, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5524328, lng: -5.9321948, website: 'https://www.better.org.uk/leisure-centre/belfast/belvoir-activity-centre' , favicon_url: "images/logos/belvoir-activity-centre-513.ico"},
+  { id: 514, name: 'Brook Leisure Centre', address: '32 Summerhill Rd, Dunmurry, Belfast BT17 0RP, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5544108, lng: -6.0207747, website: 'https://www.better.org.uk/leisure-centre/belfast/brook-leisure-centre' , favicon_url: "images/logos/brook-leisure-centre-514.ico"},
+  { id: 515, name: 'Comber Leisure Centre', address: '15 Castle St Ct, Comber, Newtownards BT23 5DY, United Kingdom', county: 'Down', sport: 'Pickleball', lat: 54.5521143, lng: -5.7460015, website: 'https://www.leisureardsandnorthdown.com/leisure-centres/comber' , favicon_url: "images/logos/comber-leisure-centre-515.ico"},
+  { id: 516, name: 'Falls Leisure Centre', address: '15-17 Falls Rd, Belfast BT12 4PB, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5990478, lng: -5.9495466, website: 'https://www.better.org.uk/leisure-centre/belfast/falls-leisure-centre' , favicon_url: "images/logos/falls-leisure-centre-516.ico"},
+  { id: 517, name: 'Girdwood Community Hub', address: '10 Girdwood Avenue, Belfast, Antrim BT14 6EG, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.6115965, lng: -5.9409562, website: 'https://www.better.org.uk/leisure-centre/belfast/girdwood-community-hub' , favicon_url: "images/logos/girdwood-community-hub-517.ico"},
+  { id: 518, name: 'Glenmore Activity Centre', address: '43 Glenmore Park, Lisburn BT27 4RT, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5237245, lng: -6.0257085, website: 'https://www.lisburncastlereagh.gov.uk/things-to-do/leisure-centres-and-facilities/glenmore-activity-centre' , favicon_url: "images/logos/glenmore-activity-centre-518.png"},
+  { id: 519, name: 'Indoor Tennis Arena and Ozone Complex', address: 'Ormeau Embankment, Belfast BT6 8LT, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5896789, lng: -5.9151837, website: 'https://www.better.org.uk/leisure-centre/belfast/ozone-complex' , favicon_url: "images/logos/indoor-tennis-arena-and-ozone-complex-519.ico"},
+  { id: 520, name: 'Let\'s Go Padel (Belfast)', address: '1 Mealough Rd, Carryduff, Belfast BT8 8GB, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5256979, lng: -5.8937104, website: 'https://www.letsgopadel.co.uk/' , favicon_url: "images/logos/letsgopadel.png"},
+  { id: 521, name: 'Lisburn Pickleball Club', address: 'Lisburn Leisure Centre, Lisburn Leisure Park, Lisburn BT28 1LP, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5063241, lng: -6.0521167, website: 'https://www.facebook.com/groups/436737568393509/' , favicon_url: "images/logos/lisburn-pickleball-club.png"},
+  { id: 522, name: 'Lisburn Racquets Club', address: '36 Belfast Rd, Lisburn BT27 4AS, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5173416, lng: -6.0340528, website: 'https://www.lisburnracquets.co.uk/' , favicon_url: "images/logos/lisburn-racquets-club.png"},
+  { id: 523, name: 'Lisnasharragh Leisure Centre', address: 'Montgomery Rd, Castlereagh, Belfast BT6 9HS, United Kingdom', county: 'Down', sport: 'Pickleball', lat: 54.5774223, lng: -5.8818956, website: 'https://www.better.org.uk/leisure-centre/belfast/lisnasharragh-leisure-centre' , favicon_url: "images/logos/lisnasharragh-leisure-centre-523.ico"},
+  { id: 524, name: 'Olympia Leisure Centre and Spa', address: 'Boucher Rd, Belfast BT12 6HR, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5831893, lng: -5.9568013, website: 'https://www.better.org.uk/leisure-centre/belfast/olympia-leisure-centre' , favicon_url: "images/logos/olympia-leisure-centre-and-spa-524.ico"},
+  { id: 525, name: 'Shankill Leisure Centre', address: '100 Shankill Rd, Belfast BT13 2BD, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.6033695, lng: -5.9451254, website: 'https://www.better.org.uk/leisure-centre/belfast/shankill-leisure-centre' , favicon_url: "images/logos/shankill-leisure-centre-525.ico"},
+  { id: 526, name: 'Ulster University Belfast Sports Centre', address: '8 Nelson St, Nelson Place, Belfast BT15 1BH, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.6054927, lng: -5.9255479, website: 'https://www.ulster.ac.uk/sport/facilities/belfast' , favicon_url: "images/logos/ulster-university-belfast-sports-centre-526.ico"},
+  { id: 527, name: 'Whiterock Leisure Centre', address: 'Whiterock Close, Whiterock Road, Belfast, Antrim BT12 7RJ, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5910869, lng: -5.9856048, website: 'https://www.better.org.uk/leisure-centre/belfast/whiterock-leisure-centre' , favicon_url: "images/logos/whiterock-leisure-centre-527.ico"},
+  { id: 528, name: 'Knocknarea Arena (Sligo Pickleball)', address: 'Ash Ln, Ballytivnan, Sligo, F91 YW50, Ireland', county: 'Sligo', sport: 'Pickleball', lat: 54.2792078, lng: -8.4654942, website: 'https://www.sligosportandrecreation.ie/club_directory/24219/' , favicon_url: "images/logos/knocknarea-arena-sligo-pickleball-528.ico"},
+  { id: 529, name: 'Galway County Pickleball', address: 'Loughnane & Quinn Memorial Hall, Ballylara, Ardrahan, Co. Galway, H91 W9E4, Ireland', county: 'Galway', sport: 'Pickleball', lat: 53.1412116, lng: -8.8061976, website: 'https://galwaypickleball.ie/' , favicon_url: "images/logos/galway-county-pickleball-529.ico"},
+  { id: 530, name: 'Belfast Pickleball Club', address: 'Strathearn School, 188 Belmont Rd, Belfast, BT4 2AT, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5953, lng: -5.8647, website: 'https://www.facebook.com/BelfastPickleball/' , favicon_url: "images/logos/belfast-pickleball-club-530.png"},
+];
+
+// Normalize boolean-like fields (indoor, floodlit) to real booleans where possible.
+// This prevents string values like 'False' from being treated as truthy later in the UI.
+allClubs.forEach(c => {
+    ['indoor', 'floodlit'].forEach(key => {
+        if (!Object.prototype.hasOwnProperty.call(c, key)) return;
+        const v = c[key];
+        if (typeof v === 'string') {
+            const lv = v.trim().toLowerCase();
+            if (['true', 'yes', '1', 'y'].includes(lv)) c[key] = true;
+            else if (['false', 'no', '0', 'n'].includes(lv)) c[key] = false;
+            else c[key] = undefined; // unknown
+        } else if (typeof v === 'number') {
+            c[key] = v !== 0;
+        } else {
+            c[key] = !!v;
+        }
+    });
+});
+
+// Expose early so depending scripts (React bundle) can safely poll/use them.
+window.allClubs = window.allClubs || allClubs;
+
+// If a club doesn't explicitly include an `indoor` field but does have a
+// canonical `court_type`, infer `indoor` for simple cases so filters behave
+// deterministically in the UI. We only set it when missing to avoid
+// overwriting authorititive data.
+allClubs.forEach(c => {
+  if (Object.prototype.hasOwnProperty.call(c, 'indoor')) return; // already present
+  if (!c.court_type) return;
+  const ct = String(c.court_type).trim().toLowerCase();
+  if (ct === 'outdoor') c.indoor = false;
+  else if (ct === 'indoor') c.indoor = true;
+  else c.indoor = undefined; // e.g. 'Indoor/Outdoor' -> unknown
+});
+
+// Re-calculate counties based on the current curated list
+const counties = [...new Set(allClubs.map(club => club.county).filter(Boolean))].sort();
+window.counties = window.counties || counties;
+
+// Tennis surface categories & classification
+// Now prefer `court_type` values when present; options are restricted to the canonical
+// list you provided. Falling back to parsing `court_surface` only when `court_type` is missing.
+(function () {
+    try {
+        const CANONICAL = [
+            'Artificial Clay',
+            'Artificial Clay (Red Plus)',
+            'Real Clay',
+            'Artificial Grass',
+            'Artificial Grass (Savannah)',
+            'Artificial Grass (TigerTurf)',
+            'Real Grass',
+            'Hard Court'
+        ];
+
+    // Gather explicit court_type / court_types values present in the data (trimmed).
+    // We support both a single `court_type` string (possibly multi-valued) and a `court_types` array.
+    const normalizeSplit = s => (s || '').toString().split(/[,&/\\|]+/).map(p => p.trim()).filter(Boolean);
+    const rawPresent = [];
+    allClubs.forEach(c => {
+      if (Array.isArray(c.court_types)) {
+        c.court_types.forEach(t => { if (t && t.toString().trim()) rawPresent.push(t.toString().trim()); });
+      }
+      if (c.court_type && c.court_type.toString().trim()) {
+        normalizeSplit(c.court_type).forEach(p => rawPresent.push(p));
+      }
+    });
+    const presentTypes = [...new Set(rawPresent)];
+
+    // Keep only canonical values (case-insensitive compare)
+    const tennisSurfaceOptions = presentTypes.length
+      ? CANONICAL.filter(can => presentTypes.some(p => p.toLowerCase() === can.toLowerCase()))
+      : CANONICAL.slice();
+
+    // Fallback classifier (for records without explicit court types)
+        const classifySegment = seg => {
+            if (!seg || !seg.trim()) return null;
+            const s = seg.toLowerCase();
+            if (s.includes('savannah')) return 'Artificial Grass (Savannah)';
+            if (s.includes('tigerturf') || s.includes('tiger')) return 'Artificial Grass (TigerTurf)';
+            if (s.includes('artificial grass') || s.includes('synthetic grass') || s.includes('astroturf') || s.includes('astro')) return 'Artificial Grass';
+            if (s.includes('natural') && s.includes('grass')) return 'Real Grass';
+            if (s === 'grass' || (s.includes('grass') && !s.includes('artificial') && !s.includes('synthetic'))) return 'Real Grass';
+            if (s.includes('hardcourt') || s.includes('hard court') || s.includes('acrylic') || s.includes('poraflex') || s.includes('polymeric')) return 'Hard Court';
+            if (s.includes('redplus') || s.includes('red plus') || s.includes('red+')) return 'Artificial Clay (Red Plus)';
+            if (s.includes('advantage red') || s.includes('advantage red court')) return 'Artificial Clay (Red Plus)';
+            if (s.includes('artificial clay') || s.includes('synthetic clay') || s.includes('matchclay') || s.includes('clayrite') || s.includes('claytech') || s.includes('topclay') || s.includes('smashcourt') || s.includes('lano')) return 'Artificial Clay';
+            if (s.includes('real clay') || s.includes('natural clay') || (s.includes('clay') && !s.includes('artificial') && !s.includes('synthetic') && !s.includes('red'))) return 'Real Clay';
+            return null;
+        };
+
+        const classification = {};
+    allClubs.forEach(c => {
+      if (c.sport !== 'Tennis') return;
+      // Prefer explicit `court_types` array when present (allows multiple canonical values)
+      const explicitSet = new Set();
+      if (Array.isArray(c.court_types)) {
+        c.court_types.forEach(t => {
+          if (!t) return;
+          const trimmed = t.toString().trim();
+          const match = CANONICAL.find(can => can.toLowerCase() === trimmed.toLowerCase());
+          if (match) explicitSet.add(match);
+        });
+      }
+      // Also treat `court_type` string as possibly multi-valued (split by common separators)
+      if (c.court_type && c.court_type.toString().trim()) {
+        normalizeSplit(c.court_type).forEach(part => {
+          const match = CANONICAL.find(can => can.toLowerCase() === part.toLowerCase());
+          if (match) explicitSet.add(match);
+        });
+      }
+
+      if (explicitSet.size) {
+        classification[c.id] = explicitSet;
+        return;
+      }
+
+      // Otherwise parse free-text court_surface
+      if (!c.court_surface) return;
+      const parts = c.court_surface.split(/[,&/\\|]/).map(p => p.trim()).filter(Boolean);
+      parts.forEach(p => {
+        const cleaned = p.replace(/court/i, '').replace(/\//g, '').trim();
+        const cat = classifySegment(cleaned);
+        if (cat) {
+          if (!classification[c.id]) classification[c.id] = new Set();
+          classification[c.id].add(cat);
+        }
+      });
+    });
+
+        window.tennisSurfaceOptions = tennisSurfaceOptions.length ? tennisSurfaceOptions : CANONICAL.slice();
+        window.tennisSurfaceClassification = Object.fromEntries(
+            Object.entries(classification).map(([id, set]) => [id, [...set]])
+        );
+  } catch (e) {
+    window.tennisSurfaceOptions = ['Artificial Grass', 'Artificial Grass (Savannah)', 'Artificial Grass (TigerTurf)', 'Real Grass', 'Hard Court', 'Artificial Clay', 'Artificial Clay (Red Plus)', 'Real Clay'];
+    window.tennisSurfaceClassification = {};
+  }
+})();
+
+// Normalize capitalized `Website` keys to lowercase `website` for UI compatibility.
+// This is non-destructive: if `website` already exists we leave it alone; otherwise
+// we copy from `Website` and delete the original key to avoid confusion elsewhere.
+allClubs.forEach(c => {
+  if (!c) return;
+  if (!Object.prototype.hasOwnProperty.call(c, 'website') && Object.prototype.hasOwnProperty.call(c, 'Website')) {
+    c.website = c.Website || undefined;
+    try { delete c.Website; } catch (e) { /* ignore */ }
+  }
+});
+
+// Quick diagnostics exported to window for developer inspection:
+// - window._clubsDuplicateIds : array of {id, count} where count > 1
+// - window._allClubsCount : total number of club entries
+(function(){
+  try {
+    const counts = {};
+    allClubs.forEach(c => { if (c && typeof c.id !== 'undefined') counts[c.id] = (counts[c.id]||0)+1; });
+    window._clubsDuplicateIds = Object.entries(counts).filter(([id,n])=>n>1).map(([id,n])=>({id:Number(id),count:n}));
+    window._allClubsCount = allClubs.length;
+  } catch(e) {
+    /* noop */
+  }
+})();
+
+// clubs.js
+// NOTE: Dataset is kept in insertion (roughly alphabetical by club name within each
+// sport segment). We apply a single stable alphabetical sort (case-insensitive) at
+// load for predictable UI ordering & slightly cheaper subsequent client filtering.
+let allClubs = [
+  { id: 1, name: "A Team Tennis", address: "2 Maine Rd, Shankbridge, Ballymena BT42 2LW, United Kingdom", county: "Antrim", lat: 54.8068889, lng: -6.2608202, sport: "Tennis", facility_type: "Other", courts: 2, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://ateamtennis.co.uk/" , favicon_url: "images/logos/a-team-tennis.png"},
+
+  { id: 2, name: "Abbeyleix Lawn Tennis Club", address: "Father Breen Park, Tullyroe, Abbeyleix, Co. Laois, Ireland", county: "Laois", lat: 52.9120004, lng: -7.3542814, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass (Savannah) / Artificial Grass", court_type: "Outdoor", website: "https://www.abbeyleixtennis.com/" , favicon_url: "images/logos/abbeyleix.png"},
+
+  { id: 3, name: "Ardee Tennis Club", address: "18 Rockfield Cl, Stonylane, Ardee, Co. Louth, A92 VX82, Ireland", county: "Louth", lat: 53.8485106, lng: -6.5457175, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/ardeetennisclub/", favicon_url: "images/logos/ardee.jpg"  },
+
+  { id: 4, name: "Ardfield Rathbarry Tennis Club", address: "Ardfield National School, Mountain Common, Clonakilty, Co. Cork, Ireland", county: "Cork", lat: 51.5727612, lng: -8.9088267, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.ardfieldrathbarrytennisclub.ie/" , favicon_url: "images/logos/ardfield-rathbarry-tennis-club.png"},
+
+  { id: 5, name: "Argideen Vale Lawn Tennis & Croquet Club", address: "Ummera, Timoleague, Co. Cork, Ireland", county: "Cork", lat: 51.6580417, lng: -8.764723, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Natural Grass", court_type: "Outdoor", website: "https://argideen.info/",favicon_url: "images/logos/argideen.jpg" },
+
+  { id: 6, name: "Ashbrook Lawn Tennis Club", address: "Bushes Lane, Grosvenor Villas, Rathmines, Dublin 6, Ireland", county: "Dublin", lat: 53.31925, lng: -6.2736314, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.ashbrooktennisclub.ie/" , favicon_url: "images/logos/ashbrook-lawn-tennis-club-6.ico"},
+
+  { id: 7, name: "Athy Tennis Club", address: "Dublin Rd, Townparks, Athy, Co. Kildare, Ireland", county: "Kildare", lat: 52.9912135, lng: -6.9692763, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (TigerTurf)", court_type: "Outdoor", website: "https://www.athytennisclub.com/",favicon_url: "images/logos/athy.jpg" },
+
+  { id: 8, name: "Athlone Tennis Club", address: "Brawny Road, Cloghanboy (Homan), Athlone, Co. Westmeath, Ireland", county: "Westmeath", lat: 53.4292032, lng: -7.9280644, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass (Savannah)", court_type: "Indoor/Outdoor", website: "https://www.athlonetennisclub.com/" , favicon_url: "images/logos/athlone-tennis-club.png"},
+
+  { id: 9, name: "Ballaghaderreen Tennis Club", address: "Friarshill, Co. Roscommon, Ireland", county: "Roscommon", lat: 53.9003715, lng: -8.5866289, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.facebook.com/BallaghaderreenTennisClub/", favicon_url: "images/logos/ballaghaderreen.jpg"  },
+
+  { id: 10, name: "Ballina Tennis Club", address: "Cathedral Rd, Abbeyhalfquarter, Ballina, Co. Mayo, F26 T8N8, Ireland", county: "Mayo", lat: 54.1141016, lng: -9.1473463, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://clubspark.net/BallinaTennisClub/" , favicon_url: "images/logos/ballina-tennis-club.png"},
+
+  { id: 11, name: "Ballinasloe and District Tennis Club", address: "Brackernagh, Dunlo, Ballinasloe, Co. Galway, Ireland", county: "Galway", lat: 53.3243568, lng: -8.2338299, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.ballinasloetennis.net/" , favicon_url: "images/logos/ballinasloe-and-district-tennis-club-11.ico"},
+
+  { id: 12, name: "Ballinlough Tennis Club", address: "Ballinlough Rd, Ballintemple, Cork, T12 ET7E, Ireland", county: "Cork", lat: 51.8897925, lng: -8.4457846, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.ballinloughtennisclub.ie/", favicon_url: "images/logos/ballinlough.png"},
+
+  { id: 13, name: "Ballycannon Tennis Club", address: "Ballycannon, Cork, Ireland", county: "Cork", lat: 51.91098, lng: -8.5625878, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/Ballycannontennisclub/", favicon_url: "images/logos/ballycannon.jpg"  },
+
+  { id: 14, name: "Ballycastle Tennis Club", address: "Mary St, Co. Antrim, Ballycastle BT54 6QH, United Kingdom", county: "Antrim", lat: 55.204215, lng: -6.238179, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Natural Grass / Hard Court", court_type: "Outdoor", court_types: ["Natural Grass", "Hard Court"], website: "https://www.ballycastletennisclub.com/" , favicon_url: "images/logos/ballycastle-tennis-club.png"},
+
+  { id: 15, name: "Ballyjamesduff Tennis Club", address: "Stradone St, Cornahilt, Ballyjamesduff, Co. Cavan, Ireland", county: "Cavan", lat: 53.8651453, lng: -7.2042543, sport: "Tennis", facility_type: "Sports Club", courts: 2, court_surface: "Hard Court / Artificial Grass", court_type: "Outdoor", website: "https://ballyjamesdufftennisclub.ie/" , favicon_url: "images/logos/ballyjamesduff-tennis-club.png"},
+
+  { id: 16, name: "Ballymena Lawn Tennis Club", address: "89 Galgorm Rd, Ballymena BT42 1AJ, United Kingdom", county: "Antrim", lat: 54.8653685, lng: -6.2945254, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.ballymenalawntennisclub.net/", favicon_url: "images/logos/ballymena.jpg" },
+
+  { id: 17, name: "Ballynafeigh Tennis Club", address: "35A Wynchurch Park, Belfast BT6 0JL, United Kingdom", county: "Down", lat: 54.5695406, lng: -5.9018683, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/p/Ballynafeigh-Tennis-Squash-Club-61557798910681/",  favicon_url: "images/logos/ballynafeigh.jpg" },
+
+  { id: 18, name: "Ballypatrick Tennis Club", address: "Ballypatrick, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.3915278, lng: -7.5413084, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/BallypatrickSportsCentre/", favicon_url: "images/logos/ballypatrick.jpg"   },
+
+  { id: 19, name: "Bandon Tennis Club", address: "Bandon Tennis Club, Castlebernard, Bandon, Co. Cork, P72 F822, Ireland", county: "Cork", lat: 51.7394503, lng: -8.7761409, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://bandonltc.com/" , favicon_url: "images/logos/bandon-tennis-club.png"},
+
+  { id: 20, name: "Bangor Lawn Tennis Club", address: "Farnham Park, Bangor BT20 3SR, United Kingdom", county: "Down", lat: 54.6617898, lng: -6.56824661, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://bangorlawntennisclub.co.uk/", favicon_url: "images/logos/bangor.png"   },
+
+  { id: 21, name: "Bective Tennis & Padel", address: "Main Street, Donnybrook, Dublin, D04 A0P1, Ireland", county: "Dublin", lat: 53.321469, lng: -6.232721,  sport: "Tennis", facility_type: "Sports Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://bectivetennis.com/" , favicon_url: "images/logos/bective.png"},
+
+  { id: 22, name: "Belfast Boat Club", address: "12 Lockview Rd, Stranmillis, Belfast BT9 5FJ, United Kingdom", county: "Antrim", lat: 54.56936, lng: -5.9274486, sport: "Tennis", facility_type: "Sports Club", courts: 11, court_surface: "Artificial Clay / Artificial Grass (TigerTurf)", court_type: "Indoor/Outdoor", website: "https://belfastboatclub.com/" , favicon_url: "images/logos/belfast-boat-club-22.ico"},
+
+  { id: 23, name: "Bishopstown Lawn Tennis Club", address: "Uam Var Dr, Murphy's Farm, Cork, Ireland", county: "Cork", lat: 51.8791935, lng: -8.5358668, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.bltc.ie/", favicon_url: "images/logos/bishopstown-lawn-tennis-club.ico"  },
+
+  { id: 24, name: "Blackrock Bowling and Tennis Club", address: "Green Rd, Blackrock, Dublin, Ireland", county: "Dublin", lat: 53.2986429, lng: -6.1869223, sport: "Tennis", facility_type: "Sports Club", courts: 4, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.blackrockbtc.ie/", favicon_url: "images/logos/blackrock.png"  },
+
+  { id: 25, name: "Boyle Community Tennis Courts", address: "Military Rd, Knocknashee, Boyle, Co. Roscommon, F52 PD23, Ireland", county: "Roscommon", lat: 53.9736204, lng: -8.2996946, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://clubspark.net/BoyleCommunityTennisClub" , favicon_url: "images/logos/boyle-community-tennis-courts.png"},
+
+  { id: 26, name: "Brookfield Tennis Club", address: "Rathmines, Dublin Southside, Co. Dublin, Ireland", county: "Dublin", lat: 53.31354, lng: -6.260986, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://brookfieldtennis.com/" , favicon_url: "images/logos/brookfield.png"},
+
+  { id: 27, name: "Bushy Park Tennis & Padel Club", address: "Rathdown Ave, Terenure, Dublin 6W, Co. Dublin, D6W TX24, Ireland", county: "Dublin", lat: 53.3026614, lng: -6.289463, sport: "Tennis", facility_type: "Sports Club", courts: 9, court_surface: "Artificial Clay / Artificial Grass", court_type: "Outdoor", website: "http://www.bushytennispadel.ie/" , favicon_url: "images/logos/bushy.png"},
+
+  { id: 28, name: "Butt Hall Tennis Club", address: "Unnamed Road,, Co. Donegal, Ireland", county: "Donegal", lat: 54.7891725, lng: -7.7646626, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.butthalltennis.com/" , favicon_url: "images/logos/butthall.png"},
+
+  { id: 29, name: "CIYMS Tennis Club", address: "91 Circular Rd, Belfast BT4 2GD, United Kingdom", county: "Down", lat: 54.6050677, lng: -5.8596983, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://ciymstennisclub.org/" , favicon_url: "images/logos/ciyms-tennis-club-29.png"},
+
+  { id: 30, name: "Caherconlish Tennis Club", address: "Ballyneety Road, Caherconlish, Co. Limerick, V94 E45AK, Ireland", county: "Limerick", lat: 52.5922572, lng: -8.481792, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.caherconlish.net/tennis-club", favicon_url: "images/logos/caherconlish.jpg"  },
+
+  { id: 31, name: "Carlow Lawn Tennis Club", address: "Oak Park Rd, Rathnapish, Carlow, Ireland", county: "Carlow", lat: 52.8460995, lng: -6.917047, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass / Hard Court", court_type: "Outdoor", website: "http://carlowltc.com/" , favicon_url: "images/logos/carlow-lawn-tennis-club-31.ico"},
+
+  { id: 32, name: "Carrick on Shannon Tennis Club", address: "St George's Terrace, Townparks, Carrick-On-Shannon, Co. Leitrim, Ireland", county: "Leitrim", lat: 53.9446952, lng: -8.0967071, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://carrickonshannontennisclub.ie/", favicon_url: "images/logos/carrickonshannon.png" },
+
+  { id: 33, name: "Carrickmacross Tennis Club", address: "Donaghmoyne, Co. Monaghan, A81 EV60, Ireland", county: "Monaghan", lat: 54.0026135, lng: -6.6996607, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.carrickmacrosstennis.com/", favicon_url: "images/logos/carrickmacross.png"  },
+
+  { id: 34, name: "Carrigaline Tennis Club", address: "Kilnaglery, Carrigaline, Co. Cork, P43 AK84, Ireland", county: "Cork", lat: 51.8082487, lng: -8.3791105, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (TigerTurf)", court_type: "Outdoor", website: "https://www.carrigalinetennisclub.com/", favicon_url: "images/logos/carrigaline.png"  },
+
+  { id: 35, name: "Carraig Lawn Tennis Club", address: "Rockfield Park, Blackrock, Co. Dublin, Ireland", county: "Dublin", lat: 53.2964744, lng: -6.1774831, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "http://carraigtc.ie/" , favicon_url: "images/logos/carraig-lawn-tennis-club.png"},
+  { id: 36, name: "Castlebar Tennis Club", address: "Knockacroughy, Lannagh Rd, Knockacroghery, Castlebar, Co. Mayo, Ireland", county: "Mayo", lat: 53.851083, lng: -9.310634, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (TigerTurf) / Artificial Clay", court_type: "Outdoor", website: "https://www.castlebartennis.ie/",  favicon_url: "images/logos/castlebar.png"  },
+  { id: 37, name: "Castleknock Lawn Tennis Club", address: "Old Navan Rd, Castleknock, Dublin 15, D15 NY10, Ireland", county: "Dublin", lat: 53.3808284, lng: -6.3619042, sport: "Tennis", facility_type: "Tennis Club", courts: 15, court_surface: "Artificial Grass (TigerTurf) / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.cltc.ie/" , favicon_url: "images/logos/castleknock-lawn-tennis-club.png"},
+  { id: 38, name: "Castleview Lawn Tennis Club", address: "New St, Townparks, Carrick-on-Suir, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.3464012, lng: -7.4080791, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.castleviewltc.ie/" , favicon_url: "images/logos/castleview-lawn-tennis-club-38.ico"},
+  { id: 39, name: "Catholic Institute Athletic Club", address: "229-227 Ballinacurra Gardens, Ballinacurra (Weston), Limerick, V94 D2PP, Ireland", county: "Limerick", lat: 52.6444938, lng: -8.6320306, sport: "Tennis", facility_type: "Sports Club", courts: 8, court_surface: "Artificial Grass / Hard Court", court_type: "Outdoor", website: "https://ciac.ie/", favicon_url: "images/logos/catholicinstitute.png"  },
+  { id: 40, name: "Causeway Community Tennis Club", address: "96 Priestland Rd, Bushmills BT57 8UJ, United Kingdom", county: "Derry", lat: 55.1723833, lng: -6.5722793, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.causewaytennisclub.ie/" , favicon_url: "images/logos/causeway-community-tennis-club-40.png"},
+  { id: 41, name: "Cavan Lawn Tennis Club", address: "Farnham St, Keadew, Cavan, Ireland", county: "Cavan", lat: 53.9928609, lng: -7.3620136, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass (Savannah) / Artificial Clay", court_type: "Outdoor", website: "https://www.cavanlawntennisclub.ie/" , favicon_url: "images/logos/cavan-lawn-tennis-club-41.jpg"},
+  { id: 42, name: "Cavehill Tennis Club", address: "20 N Circular Rd, Belfast BT15 5HB, United Kingdom", county: "Antrim", lat: 54.6334037, lng: -5.9423441, sport: "Tennis", facility_type: "Tennis Club", courts: 9, court_surface: "Artificial Clay / Artificial Grass", court_type: "Outdoor", website: "https://cavehilltennis.com/", favicon_url: "images/logos/cavehill.png"   },
+
+  { id: 43, name: "Celbridge & District Tennis Club", address: "Hazelhatch Rd, Commons, Celbridge, Co. Kildare, Ireland", county: "Kildare", lat: 53.3283225, lng: -6.5284998, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (TigerTurf)", court_type: "Outdoor", website: "https://www.celbridgetennis.ie/" , favicon_url: "images/logos/celbridge-and-district-tennis-club-43.png"},
+
+  { id: 44, name: "Charleville Lawn Tennis Club", address: "Whitworth Rd, Botanic, Dublin, Ireland", county: "Dublin", lat: 53.3643737, lng: -6.2696815, sport: "Tennis", facility_type: "Tennis Club", courts: 7, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://charlevilleltc.com/" , favicon_url: "images/logos/charleville-lawn-tennis-club-44.png"},
+  { id: 45, name: "Clane Tennis Club", address: "Dublin Road, Capdoo Commons, Clane, Co. Kildare, W91 W660, Ireland", county: "Kildare", lat: 53.2930349, lng: -6.6836898, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://clubspark.net/ClaneLawnTennisClub" , favicon_url: "images/logos/clane-tennis-club-45.ico"},
+  { id: 46, name: "Claremont Railway Lawn Tennis Club", address: "Park Ave, Dublin 4, D04 K462, Ireland", county: "Dublin", lat: 53.3256343, lng: -6.2093956, sport: "Tennis", facility_type: "Tennis Club", courts: 10, court_surface: "Artificial Grass (Savannah) / Natural Grass", court_type: "Indoor/Outdoor", website: "https://www.claremontrailwayltc.com/" , favicon_url: "images/logos/claremont-railway-lawn-tennis-club-46.svg"},
+
+  { id: 47, name: "Claremorris Tennis Club", address: "Dalton St, Clare, Claremorris, Co. Mayo, Ireland", county: "Mayo", lat: 53.7222061, lng: -8.9957752, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Indoor / Outdoor", website: "https://www.claremorristennis.com/" , favicon_url: "images/logos/claremorris.png"},
+  { id: 48, name: "Clonakilty Tennis Club", address: "Clonakilty Tennis Club, Clonakilty Sports Complex, Scartagh, Clonakilty, Co. Cork, P85 Y009, Ireland", county: "Cork", lat: 51.6257189, lng: -8.8809401, sport: "Tennis", facility_type: "Sports Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.clonakiltytennisclub.com/" , favicon_url: "images/logos/clonakilty-tennis-club-48.ico"},
+
+  { id: 49, name: "Clontarf Lawn Tennis Club", address: "Oulton Rd, Clontarf East, Dublin, D03 YY86, Ireland", county: "Dublin", lat: 53.3611613, lng: -6.2044124, sport: "Tennis", facility_type: "Tennis Club", courts: 13, court_surface: "Artificial Grass / Hard Court", court_type: "Indoor/Outdoor", website: "https://clontarfltc.com/", favicon_url: "images/logos/clontarf-lawn.png"   },
+
+  { id: 50, name: "Clontarf Parish Tennis Club", address: "Off, 3 Seafield Rd W, Clontarf East, Dublin, Ireland", county: "Dublin", lat: 53.363745, lng: -6.2025736, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://clontarftennis.mycourts.co.uk/", favicon_url: "images/logos/clontarf-parish-tennis-club.png"},
+
+  { id: 51, name: "Cloughey & District Tennis Club", address: "250 Main Rd, Cloughey, Newtownards BT22 1JN, United Kingdom", county: "Down", lat: 54.4378825, lng: -5.4680744, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Hard Court", court_type: "Outdoor", website: "https://clubspark.net/ClougheyAndDistrictTennisClub" , favicon_url: "images/logos/cloughey.png"},
+
+  { id: 52, name: "Coleraine Tennis Club", address: "Riversdale Rd, Coleraine BT52 1QX, United Kingdom", county: "Derry", lat: 55.1351368, lng: -6.6712228, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/tennisclubcoleraine/" , favicon_url: "images/logos/coleraine.png"},
+
+  { id: 54, name: "Cork Parks Tennis Togher", address: "Togher Tennis Courts, Clashduv Rd, Togher, Cork, Ireland", county: "Cork", lat: 51.8801852, lng: -8.4957084, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Hard Court", court_type: "Outdoor", website: "https://corkparkstennis.com//" , favicon_url: "images/logos/padel-54.png"},
+
+  { id: 55, name: "County Tipperary Lawn Tennis Club", address: "St Michael's St, Carrownreddy, Tipperary, Ireland", county: "Tipperary", lat: 52.4781567, lng: -8.1604989, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Natural Clay", court_type: "Outdoor", website: "https://www.tltc.ie/" , favicon_url: "images/logos/county-tipperary-lawn-tennis-club.png"},
+
+  { id: 56, name: "County Wicklow Lawn Tennis Club", address: "Vevay Rd, Oldcourt, Bray, Co. Wicklow, Ireland", county: "Wicklow", lat: 53.1908309, lng: -6.1044064, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.cowicklowltc.com/" , favicon_url: "images/logos/county-wicklow-lawn-tennis-club-56.jpg"},
+
+  { id: 57, name: "Crosshaven Tennis Club", address: "88-98 Brightwater, Crosshaven, Co. Cork, Ireland", county: "Cork", lat: 51.799609, lng: -8.2950117, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.crosshaventennis.ie/" , favicon_url: "images/logos/crosshaven-tennis-club.png"},
+
+  { id: 58, name: "CYM Tennis Club", address: "54 Terenure Rd N, Terenure, Dublin 6W, Co. Dublin, D6W XY13, Ireland", county: "Dublin", lat: 53.3129821, lng: -6.2833202, sport: "Tennis", facility_type: "Sports Club", courts: 7, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.terenuresportsclub.ie/" , favicon_url: "images/logos/cym-tennis-club-58.png"},
+
+  { id: 59, name: "Deerpark Tennis Club", address: "Deer Park, Mount Merrion, Dublin, Ireland", county: "Dublin", lat: 53.2947275, lng: -6.21544, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://clubspark.net/deerparkTennisClub" , favicon_url: "images/logos/deerpark.png"},
+  { id: 60, name: "Donabate Portrane Tennis Club", address: "Ballalease, Co. Dublin, Donabate, Co. Dublin, K36 PK70, Ireland", county: "Dublin", lat: 53.481054, lng: -6.130136, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (TigerTurf)", court_type: "Outdoor", website: "https://www.donabatetennis.com/" , favicon_url: "images/logos/donabate-portrane-tennis-club.png"},
+  { id: 61, name: "Donaghadee Lawn Tennis Club", address: "The Cmns, Donaghadee BT21 0JB, United Kingdom", county: "Down", lat: 54.634762, lng: -5.5324148, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.dltc.org.uk/" , favicon_url: "images/logos/donaghadee-lawn-tennis-club-61.png"},
+  { id: 62, name: "Donnybrook Lawn Tennis Club", address: "4 Brookvale Rd, Dublin 4, D04 YH10, Ireland", county: "Dublin", lat: 53.3199488, lng: -6.2343071, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://www.donnybrookltc.ie/" , favicon_url: "images/logos/donnybrook-lawn-tennis-club.png"},
+  { id: 63, name: "Douglas Lawn Tennis Club", address: "Douglas Hall Lawn, Well Road, Cork, Ireland", county: "Cork", lat: 51.8805266, lng: -8.4354566, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://douglastennis.ie/", favicon_url: "images/logos/douglas.png"  },
+  
+  { id: 64, name: "Downshire Tennis Club", address: "18 Park St, Hillsborough BT26 6AL, United Kingdom", county: "Down", lat: 54.459741, lng: -6.0838849, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://www.downshiretennis.co.uk/" , favicon_url: "images/logos/downshire.png"},
+
+  { id: 65, name: "Dromahane Tennis Club", address: "Drommahane, Dromahane, Co. Cork, P51 NT38, Ireland", county: "Cork", lat: 52.1043848, lng: -8.6929299, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/DromahaneTennisClub/", favicon_url: "images/logos/dromahane.png"  },
+
+  { id: 66, name: "Dunboyne Tennis Club", address: "Old Kilbride Road, Clonee, Co. Meath, Ireland", county: "Meath", lat: 53.4125095, lng: -6.4444345, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.dunboynetennis.com/" , favicon_url: "images/logos/dunboyne-tennis-club-66.ico"},
+
+  { id: 67, name: "Dundalk Tennis Club", address: "Rampart Ln, Marshes Lower, Dundalk, Co. Louth, Ireland", county: "Louth", lat: 54.0038025, lng: -6.3918354, sport: "Tennis", facility_type: "Sports Club", courts: 8, court_surface: "Artificial Grass / Artificial Clay", court_type: "Outdoor", website: "https://www.dundalkltc.com/" , favicon_url: "images/logos/dundalk-lawn-tennis-squash-and-badminton-club-67.ico"},
+
+  { id: 68, name: "Dungannon Tennis Club", address: "Ranfurly Rd, Dungannon BT71 6EG, United Kingdom", county: "Tyrone", lat: 54.5013113, lng: -6.7627216, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://dungannontennisclub.com/", favicon_url: "images/logos/dungannon.png"   },
+
+  { id: 69, name: "Emly Tennis Club", address: "Emly, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.4652768, lng: -8.3476009, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.emlytc.ie/",  favicon_url: "images/logos/emly.jpg"  },
+
+  { id: 70, name: "Ennis Tennis & Badminton Club", address: "Mill Rd, Cloghleagh, Ennis, Co. Clare, V95 PN81, Ireland", county: "Clare", lat: 52.8462097, lng: -8.9890091, sport: "Tennis", facility_type: "Sports Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.ennistennis.com/" , favicon_url: "images/logos/ennis.png"},
+
+  { id: 71, name: "Enniskerry Tennis Club", address: "The Bog Meadow, Monastery, Enniskerry, Co. Wicklow, Ireland", county: "Wicklow", lat: 53.1944034, lng: -6.1714827, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://enniskerrytennisclub.com/" , favicon_url: "images/logos/enniskerry-tennis-club.ico"},
+
+  { id: 72, name: "Enniskillen Lawn Tennis Club", address: "1 Cooper Cres, Enniskillen BT74 6DQ, United Kingdom", county: "Fermanagh", lat: 54.3471012, lng: -7.6272827, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Clay / Hard Court", court_type: "Indoor/Outdoor", website: "http://tenniskillen.com/" , favicon_url: "images/logos/enniskillen.png"},
+
+  { id: 73, name: "Fitzwilliam Lawn Tennis Club", address: "Winton Rd, Ranelagh, Dublin, D06 X6X2, Ireland", county: "Dublin", lat: 53.3278581, lng: -6.249333, sport: "Tennis", facility_type: "Tennis Club", courts: 10, court_surface: "Artificial Grass (Savannah) / Artificial Clay (Red Plus) / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.fltc.ie/" , favicon_url: "images/logos/fitzwilliam-lawn-tennis-club.png"},
+
+  { id: 74, name: "Fountainstown Community Sports Club", address: "Community Sports Club, Fountainstown, Cork, P43 E283, Ireland", county: "Cork", lat: 51.7741754, lng: -8.314786, sport: "Tennis", facility_type: "Sports Club", courts: 3, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.fcsc.ie/", favicon_url: "images/logos/fountainstown.png"  },
+
+  { id: 75, name: "Galway Lawn Tennis Club", address: "Threadneedle Rd, Salthill, Galway, H91 E622, Ireland", county: "Galway", lat: 53.2628803, lng: -9.0900278, sport: "Tennis", facility_type: "Tennis Club", courts: 9, court_surface: "Artificial Grass / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.gltc.ie/", favicon_url: "images/logos/galway.jpg"   },
+
+  { id: 76, name: "Garryduff Sports Centre", address: "Garryduff, Cork, T12 ER22, Ireland", county: "Cork", lat: 51.868778, lng: -8.398375, sport: "Tennis", facility_type: "Sport Club", courts: 3, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://www.garryduff.ie/" , favicon_url: "images/logos/garryduff.png"},
+  { id: 77, name: "Garvagh Tennis Club", address: "14 Station Rd, Garvagh, Coleraine BT51 5DY, United Kingdom", county: "Derry", lat: 54.9841643, lng: -6.6833088, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.instagram.com/garvaghtennisclub/" , favicon_url: "images/logos/garvagh.png"},
+
+  { id: 78, name: "Glasnevin Lawn Tennis Club", address: "Ballymun Rd, Glasnevin, Dublin, D09 DR76, Ireland", county: "Dublin", lat: 53.3814814, lng: -6.2660502, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass (Savannah)", court_type: "Indoor/Outdoor", website: "https://www.glasnevintennis.com/" , favicon_url: "images/logos/glasnevin-lawn-tennis-club-78.png"},
+
+  { id: 79, name: "Glenageary Lawn Tennis Club", address: "Silchester Rd, Dún Laoghaire, Dublin, Ireland", county: "Dublin", lat: 53.2817621, lng: -6.1291101, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass (Savannah)", court_type: "Indoor/Outdoor", website: "https://www.glenagearyltc.ie/" , favicon_url: "images/logos/glenageary-lawn-tennis-club-79.png"},
+
+  { id: 80, name: "Gorey Tennis Club", address: "MPH6+2M, Gorey corporation lands, Gorey, Co. Wexford, Ireland", county: "Wexford", lat: 52.6775369, lng: -6.2883543, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://clubspark.net/goreytennisclub/" , favicon_url: "images/logos/gorey-tennis-club.png"},
+
+  { id: 81, name: "Greystones Lawn Tennis Club", address: "Greystones Tennis Club, Mill Rd, Greystones, Co. Wicklow, Ireland", county: "Wicklow", lat: 53.132704, lng: -6.070135, sport: "Tennis", facility_type: "Tennis Club", courts: 11, court_surface: "Artificial Grass / Artificial Clay", court_type: "Outdoor", website: "https://www.greystonesltc.ie/" , favicon_url: "images/logos/greystones-lawn-tennis-club-81.png"},
+  { id: 82, name: "Hawarden Lawn Tennis Club", address: "3 Clonlee Dr, Belfast BT4 3DA, United Kingdom", county: "Down", lat: 54.5967096, lng: -5.8766642, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://clubspark.net/hawardentennisclub" , favicon_url: "images/logos/hawarden-lawn-tennis-club.png"},
+  { id: 83, name: "Hazelwood Tennis Club", address: "Twopothouse, Co. Cork, Ireland", county: "Cork", lat: 52.19265, lng: -8.644, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.hazelwoodtennis.club/", favicon_url: "images/logos/hazelwood.png  "  },
+  { id: 84, name: "Helen’s Bay Tennis Club", address: "15a Fort Rd, Helen's Bay, Bangor BT19 1LA, United Kingdom", county: "Down", lat: 54.6730427, lng: -5.7453645, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.helensbaytennisclub.co.uk/" , favicon_url: "images/logos/helens-bay-tennis-club.png"},
+  { id: 85, name: "Hillbrook Lawn Tennis Club", address: "Munster Hill, Enniscorthy, Co. Wexford, Ireland", county: "Wexford", lat: 52.4951655, lng: -6.5701924, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "http://hltc.ie/" , favicon_url: "images/logos/hillbrook-lawn-tennis-club-85.ico"},
+  { id: 86, name: "Hillview Sports Club", address: "Mountain Rd, Raheen, Clonmel, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.3497012, lng: -7.6968016, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "http://hillviewsportsclub.net/" , favicon_url: "images/logos/hillview-sports-club.ico"},
+  { id: 87, name: "Hospital Tennis Club", address: "R513, Kilfrush, Co. Limerick, Ireland", county: "Limerick", lat: 52.4620438, lng: -8.4291899, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.hospitaltennisclub.com/" , favicon_url: "images/logos/hospital-tennis-club.png"},
+  { id: 88, name: "Indoor Tennis Arena", address: "Ormeau Embankment, Belfast BT6 8LT, United Kingdom", county: "Antrim", lat: 54.5896789, lng: -5.9151837, sport: "Tennis", facility_type: "Sports Club", courts: 4, court_surface: "Hard Court", court_type: "Indoor", website: "https://www.better.org.uk/leisure-centre/belfast/ozone-complex" , favicon_url: "images/logos/indoor-tennis-arena-88.ico"},
+  { id: 89, name: "Johnstown Tennis Club", address: "46 Glasanaon Rd, Finglas East, Dublin 11, Ireland", county: "Dublin", lat: 53.3855086, lng: -6.2805515, sport: "Tennis", facility_type: "Tennis Club", courts: 10, court_surface: "Artificial Grass (Savannah) / Hard Court", court_type: "Outdoor", website: "https://www.dublincity.ie/parks-and-nature/dublin-city-parks/visit-park/johnstown-park" , favicon_url: "images/logos/johnstown-tennis-club-89.ico"},
+  { id: 90, name: "Kilcullen Tennis Club", address: "Logstown, Kilcullen, Co. Kildare, R56 PK10, Ireland", county: "Kildare", lat: 53.1349159, lng: -6.7386592, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://kilcullentennis.clubforce.com/" , favicon_url: "images/logos/kilcullen.png"},
+  { id: 91, name: "Kilfeacle Community Tennis Club", address: "Kilfeacle Community Center, Kilfeakle, Kilfeacle, Co. Tipperary, E34 YP98, Ireland", county: "Tipperary", lat: 52.487476, lng: -8.0634399, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.kilfeacletennis.ie/", favicon_url: "images/logos/kilfeacle.jpg"  },
+
+  { id: 92, name: "Kilkenny County & City Lawn Tennis Club", address: "Archers Field, Bennettsbridge Rd, Archerstreet Lot, Kilkenny, Ireland", county: "Kilkenny", lat: 52.6453437, lng: -7.242227, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass (TigerTurf) / Artificial Clay (Red Plus)", court_type: "Indoor/Outdoor", website: "https://www.kilkennytennisclub.com/" , favicon_url: "images/logos/kilkenny.png"},
+  
+  { id: 93, name: "Killaloe Ballina Tennis Club", address: "New St, Knockyclovaun, Killaloe, Co. Clare, V94 C627, Ireland", county: "Clare", lat: 52.8078241, lng: -8.4488033, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass / Hard Court", court_type: "Outdoor", website: "https://kbtc.ie/" , favicon_url: "images/logos/killaloe-ballina-tennis-club-93.ico"},
+  { id: 94, name: "Kilworth Tennis Club", address: "Chapel Rd, Moorepark, Kilworth, Co. Cork, Ireland", county: "Cork", lat: 52.1715086, lng: -8.2375329, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.kilworthcommunitycouncil.com/kilworth-tennis", favicon_url: "images/logos/kilworth.png"  },
+  { id: 95, name: "Kinsale Tennis Club", address: "Garraha, Snugmore, Co. Cork, P17 T677, Ireland", county: "Cork", lat: 51.7081361, lng: -8.4926919, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass (TigerTurf) / Hardcourt", court_type: "Outdoor", website: "https://www.kinsaletennisclub.com/" , favicon_url: "images/logos/kinsale-tennis-club-95.ico"},
+  { id: 96, name: "LC Tennis Academy and Club Rosemont", address: "LC Tennis Sandyford, Rosemont School, Enniskerry Rd, Sandyford, Dublin 18, D18 A8N2, Ireland", county: "Dublin", lat: 53.261136, lng: -6.2287526, sport: "Tennis", facility_type: "Other", courts: 4, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://lctennis.ie/" , favicon_url: "images/logos/lc-tennis-academy-and-club-rosemont-96.png"},
+  { id: 97, name: "Lakewood Tennis Club", address: "Barnagore, Co. Cork, Ireland", county: "Cork", lat: 51.8813453, lng: -8.6438892, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://www.lakewoodtennisclub.ie/" , favicon_url: "images/logos/lakewood-tennis-club-97.png"},
+  { id: 98, name: "Lanesborough / Ballyleague Tennis Court", address: "Ballyleague, Co. Roscommon, Ireland", county: "Roscommon", lat: 53.6735649, lng: -7.9962725, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "http://loughree.ie/activities/" , favicon_url: "images/logos/lanesborough.png"},
+  { id: 99, name: "Lansdowne Tennis Club", address: "Londonbridge Road, Dublin 4, D04 X0E8, Ireland", county: "Dublin", lat: 53.3375764, lng: -6.2261494, sport: "Tennis", facility_type: "Tennis Club", courts: 10, court_surface: "Artificial Grass (Savannah) / Artificial Clay", court_type: "Outdoor", website: "https://www.lansdowneltc.com/" , favicon_url: "images/logos/lansdowne-tennis-club.png"},
+  { id: 100, name: "Larne Bowling & Lawn Tennis Club", address: "112-120 Glenarm Rd, Larne BT40 1DZ, United Kingdom", county: "Antrim", lat: 54.8583833, lng: -5.8098255, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/lbltc/", favicon_url: "images/logos/larne.jpg"   },
+  { id: 101, name: "Lattin Lawn Tennis Club", address: "Ballynadruckilly, Lattin, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.4677175, lng: -8.2669698, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass / Hard Court", court_type: "Outdoor", website: "https://www.lattinltc.ie/", favicon_url: "images/logos/lattin.jpg"  },
+  { id: 102, name: "Leixlip Tennis Club", address: "R148, Collinstown, Leixlip, Co. Kildare, W23 R942, Ireland", county: "Kildare", lat: 53.3703662, lng: -6.5129641, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://www.leixliptennisclub.com/" , favicon_url: "images/logos/leixlip-tennis-club.png"},
+  { id: 103, name: "Leopardstown Tennis Club", address: "59 Leopardstown Grove, Stillorgan, Dublin, A94 X958, Ireland", county: "Dublin", lat: 53.2790738, lng: -6.1938109, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.leopardstowntennisclub.ie/" , favicon_url: "images/logos/leopardstown-tennis-club.ico"},
+  { id: 104, name: "Letterkenny Tennis Club", address: "Murric-a-boo, Letterkenny, Co. Donegal, Ireland", county: "Donegal", lat: 54.9528621, lng: -7.7326476, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Hard Court / Artificial Grass", court_type: "Outdoor", website: "https://letterkennytennisclub.com/", favicon_url: "images/logos/letterkenny.png"   },
+  { id: 105, name: "Limavady Recreation Club", address: "54 Killane Rd, Limavady BT49 0TR, United Kingdom", county: "Derry", lat: 55.0566486, lng: -6.9387829, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.limavadyrecclub.com/" , favicon_url: "images/logos/limavady.png"},
+  { id: 106, name: "Limerick Lawn Tennis Club", address: "Ennis Rd, Farranshone More, Limerick, Ireland", county: "Limerick", lat: 52.6677722, lng: -8.6438011, sport: "Tennis", facility_type: "Tennis Club", courts: 12, court_surface: "Artificial Grass / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.lltc.ie/" , favicon_url: "images/logos/limerick-lawn-tennis-club.png"},
+  { id: 107, name: "Lisburn Racquets Club", address: "36 Belfast Rd, Lisburn BT27 4AS, United Kingdom", county: "Antrim", lat: 54.5173416, lng: -6.0340528, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://www.lisburnracquets.co.uk/" , favicon_url: "images/logos/lisburn-racquets-club.png"},
+  { id: 108, name: "Lombardstown Tennis Club", address: "Glenview, Co. Cork, Ireland", county: "Cork", lat: 52.1157698, lng: -8.7785647, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.lombardstowntennis.com/", favicon_url: "images/logos/lombard.png"  },
+
+  { id: 109, name: "Longford Tennis Club", address: "Demesne Ln, Demesne, Longford, N39 D303, Ireland", county: "Longford", lat: 53.7351686, lng: -7.80475, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "http://www.longfordtennis.ie/" , favicon_url: "images/logos/longford-tennis-club.png"},
+
+  { id: 110, name: "Loughrea Tennis Club", address: "Gort Rd, Cuscarrick, Loughrea, Co. Galway, Ireland", county: "Galway", lat: 53.1977209, lng: -8.5799579, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://loughreatennisclub.weebly.com/" , favicon_url: "images/logos/loughrea.png"},
+
+  { id: 111, name: "Lower Aghada Tennis & Sailing Club", address: "Aghada, Midleton, Co. Cork, Ireland", county: "Cork", lat: 51.8433537, lng: -8.2155601, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/loweraghadatennis/", favicon_url: "images/logos/lowera.jpg"   },
+
+  { id: 112, name: "Lurgan Tennis Club", address: "Lurgan Park, Windsor Ave, Lurgan, Craigavon BT67 9BG, United Kingdom", county: "Armagh", lat: 54.462576, lng: -6.3255008, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/lurgantennisclub/", favicon_url: "images/logos/lurgan.jpg" },
+
+  { id: 113, name: "Malahide Lawn Tennis and Croquet Club", address: "The Square, Malahide, Co. Dublin, Ireland", county: "Dublin", lat: 53.4514166, lng: -6.1499616, sport: "Tennis", facility_type: "Sports Club", courts: 9, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://mltcc.com/",  favicon_url: "images/logos/malahide.png" },
+
+  { id: 114, name: "Meadowvale Tennis Club", address: "Meadow Vale, Deansgrange, Dublin, Ireland", county: "Dublin", lat: 53.2725529, lng: -6.1572692, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.meadowvaleltc.com/" , favicon_url: "images/logos/meadowvale-tennis.png"},
+
+  { id: 115, name: "Mitchelstown Tennis Club", address: "Georges St, Brigown, Mitchelstown, Co. Cork, Ireland", county: "Cork", lat: 52.2680091, lng: -8.2739439, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://mitchelstowntennisclub.com/", favicon_url: "images/logos/mitchel.png"   },
+
+  { id: 116, name: "Moate Tennis club", address: "Lake Rd, Aghanargit, Moate, Co. Westmeath, Ireland", county: "Westmeath", lat: 53.3984155, lng: -7.7279783, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.facebook.com/p/Moate-Tennis-Club-100057123774221/",favicon_url: "images/logos/moate.png" },
+
+  { id: 117, name: "Monkstown Lawn Tennis & Croquet Club", address: "Castle Rd, Monkstown (Castle Farm), Co. Cork, T12 NV38, Ireland", county: "Cork", lat: 51.8469412, lng: -8.3356367, sport: "Tennis", facility_type: "Sports Club", courts: 3, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.monkstowntennisclub.com/",  favicon_url: "images/logos/monkstown.png"  },
+
+  { id: 118, name: "Monkstown Lawn Tennis Club", address: "Mounttown Road Upper, Monkstown, Dublin, A96 TY49, Ireland", county: "Dublin", lat: 53.2892412, lng: -6.1481854, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "http://www.monkstownltc.com/" , favicon_url: "images/logos/monkstown-lawn-tennis-club.png"},
+
+  { id: 119, name: "Mount Pleasant L.T.C.", address: "Mount Pleasant Square, Ranelagh Rd, Dublin, Ireland", county: "Dublin", lat: 53.3269989, lng: -6.2595114, sport: "Tennis", facility_type: "Tennis Club", courts: 11, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://www.mountpleasantltc.ie/" , favicon_url: "images/logos/mount-pleasant.png"},
+
+  { id: 120, name: "Mullingar Tennis & Badminton Club", address: "Austin Friars St, Mullingar, Co. Westmeath, N91 X663, Ireland", county: "Westmeath", lat: 53.5254706, lng: -7.3368884, sport: "Tennis", facility_type: "Sports Club", courts: 8, court_surface: "Artificial Grass / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.mullingartennisandbadminton.ie/" , favicon_url: "images/logos/mullingar-tennis-and-badminton-club.png"},
+  { id: 121, name: "Naas Lawn Tennis Club", address: "Naas East, Naas, Co. Kildare, W91 HV02, Ireland", county: "Kildare", lat: 53.2263425, lng: -6.6548843, sport: "Tennis", facility_type: "Tennis Club", courts: 11, court_surface: "Artificial Grass / Hard Court / Artificial Clay (Red Plus)", court_type: "Indoor/Outdoor", website: "https://naasltc.net/" , favicon_url: "images/logos/naas-lawn-tennis-club.png"},
+  { id: 122, name: "Navan Tennis Club", address: "Swan Ln, Balreask Old, Navan, Co. Meath, C15 YK82, Ireland", county: "Meath", lat: 53.6387813, lng: -6.6701233, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.navantennisclub.com/" , favicon_url: "images/logos/navan-tennis-club.png"},
+  { id: 123, name: "Nenagh Lawn Tennis Club", address: "Nenagh North, Nenagh, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.862186, lng: -8.2151076, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.nenaghltc.ie/" , favicon_url: "images/logos/nenagh.png"},
+  { id: 124, name: "New Inn Tennis Club", address: "Loughkent East, Newinn, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.4401586, lng: -7.8797799, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.munstertennis.ie/new-inn.html" , favicon_url: "images/logos/new-inn-tennis-club.png"},
+  { id: 125, name: "Newcastle Tennis Club", address: "54-56 Bryansford Rd, Newcastle BT33 0DP, United Kingdom", county: "Down", lat: 54.2106834, lng: -5.8961247, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://newcastletennisclubni.com/" , favicon_url: "images/logos/newcastle-tennis-club.png"},
+  { id: 126, name: "Newry Tennis Club", address: "Warrenpoint Rd, Newry BT34 2PF, United Kingdom", county: "Down", lat: 54.1655923, lng: -6.3326606, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "http://www.newrytennisclub.co.uk/" , favicon_url: "images/logos/newry.png"},
+  { id: 127, name: "Newtown Park Tennis Club", address: "Springhill Ave, Deansgrange, Blackrock, Co. Dublin, Ireland", county: "Dublin", lat: 53.285113, lng: -6.1745684, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.newtownparktennisclub.com/" , favicon_url: "images/logos/newtown-park-tennis-club.png"},
+  { id: 128, name: "North Kildare Tennis Club", address: "Maws, Kilcock, Co. Kildare, Ireland", county: "Kildare", lat: 53.391066, lng: -6.6416469, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.northkildaresportsclub.ie/tennis/" , favicon_url: "images/logos/north-kildare-tennis-club.png"},
+  { id: 129, name: "Omagh Lawn Tennis Club", address: "1 Crevenagh Rd, Omagh BT79 0EQ, United Kingdom", county: "Tyrone", lat: 54.600412, lng: -7.2895941, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://omaghltc.com/" , favicon_url: "images/logos/omagh-lawn-tennis-club.png"},
+  { id: 130, name: "Portadown Tennis Club", address: "10 Bachelors Walk, Portadown BT63 5BQ, United Kingdom", county: "Armagh", lat: 54.4291079, lng: -6.4272248, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://clubspark.net/PortadownTennisClub/" , favicon_url: "images/logos/portadown.png"},
+  { id:  131, name: "Portarlington lawn tennis club", address: "Station Rd, Cooltederry, Portarlington, Co. Laois, Ireland", county: "Laois", lat: 53.1524746, lng: -7.1834858, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.portarlingtontennisclub.ie/",  favicon_url: "images/logos/portarlington.jpg"  },
+  { id: 132, name: "Portmarnock Tennis Club", address: "Blackwood Ln, Beechwood, Portmarnock, Co. Dublin, D13 X662, Ireland", county: "Dublin", lat: 53.4338697, lng: -6.1391582, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://portmarnocktennis.ie/" , favicon_url: "images/logos/portmarnock-tennis-club.png"},
+  { id: 133, name: "Portumna Tennis Club", address: "St Joseph's Rd, Portumna Demesne, Co. Galway, Ireland", county: "Galway", lat: 53.0906369, lng: -8.22673, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.portumnatennis.com/" , favicon_url: "images/logos/portumna-tennis-club.png"},
+  { id: 134, name: "Prosperous Lawn Tennis Club", address: "Curryhills, Naas, Co. Kildare, W91 CAV9, Ireland", county: "Kildare", lat: 53.2887892, lng: -6.7510933, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/prosperousltc/",favicon_url: "images/logos/propserous.jpg" },
+  { id: 135, name: "Puckane Tennis Club", address: "The Boreen, Ballycraggan, Puckaun, Co. Tipperary, E45 HX88, Ireland", county: "Tipperary", lat: 52.9327631, lng: -8.2415623, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://puckanetennis.ie/", favicon_url: "images/logos/puckane.png" },
+  { id: 136, name: "Rathangan Tennis Club", address: "Kilmoney, Rathangan, Co. Kildare, Ireland", county: "Kildare", lat: 53.2262311, lng: -6.9907179, sport: "Tennis", facility_type: "Tennis Club", courts: 2, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.rathangantennisclub.com/", favicon_url: "images/logos/rathangan.png"  },
+
+  { id: 137, name: "Rathgar Tennis Club", address: "Herzog Park, Orwell Rd, Rathgar, Co. Dublin, 6, Ireland", county: "Dublin", lat: 53.3102451, lng: -6.2759302, sport: "Tennis", facility_type: "Tennis Club", courts: 10, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://rathgartennis.ie/",favicon_url: "images/logos/rathgar.jpg" },
+
+  { id: 138, name: "Ratoath Tennis Club", address: "Jamestown Sports Campus, The Avenue, Ratoath, Co. Meath, Ireland", county: "Meath", lat: 53.5012611, lng: -6.4575196, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.ratoathtennisclub.ie/" , favicon_url: "images/logos/ratoath-tennis-club-138.ico"},
+  { id: 139, name: "Riversdale Tennis Club", address: "26a Glasnevin Ave, Glasnevin, Dublin 11, D11 N765, Ireland", county: "Dublin", lat: 53.3896466, lng: -6.266983, sport: "Tennis", facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://riversdalesc.com/" , favicon_url: "images/logos/riversdale-tennis-club.png"},
+  { id: 140, name: "Rockfield Tennis Club", address: "Rockfield Park, Artane, Dublin 5, Ireland", county: "Dublin", lat: 53.3812436, lng: -6.2194327, sport: "Tennis", facility_type: "Tennis Club", courts: 9, court_surface: "Hard Court", court_type: "Outdoor", website: "https://rockfieldtennisclub.ie/"  , favicon_url: "images/logos/rockfield.png"},
+  { id: 141, name: "Rosanna Lawn Tennis Club", address: "Murgasty Rd, Carrownreddy, Tipperary, E34 F220, Ireland", county: "Tipperary", lat: 52.4797179, lng: -8.1628899, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.rosannaltc.ie/" , favicon_url: "images/logos/rosanna-lawn-tennis-club-141.png"},
+  { id: 142, name: "Roscrea Tennis Club", address: "Demesne, Co. Tipperary, Ireland", county: "Tipperary", lat: 52.9557304, lng: -7.7863079, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.facebook.com/roscreatennis/",favicon_url: "images/logos/roscrea.jpg" },
+  { id: 143, name: "Rushbrooke Lawn Tennis & Croquet Club", address: "Rushbrooke, Cobh, Co. Cork, P24 E803, Ireland", county: "Cork", lat: 51.8479977, lng: -8.3137142, sport: "Tennis", facility_type: "Sports Club", courts: 11, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.rushbrooketennis.com/", favicon_url: "images/logos/rushbrook.png"   },
+  { id: 144, name: "Sandycove Tennis and Squash Club", address: "Elton Park, Sandycove, Dublin, Ireland", county: "Dublin", lat: 53.2851447, lng: -6.1161517, sport: "Tennis", facility_type: "Sports Club", courts: 7, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://sandycovetsc.ie/",favicon_url: "images/logos/sandycove.png" },
+  { id: 145, name: "Shankill Tennis Club", address: "Quinn's Rd, Shankill, Dublin, D18 X8N2, Ireland", county: "Dublin", lat: 53.2321125, lng: -6.1136672, sport: "Tennis", facility_type: "Tennis Club", courts: 7, court_surface: "Artificial Grass / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.shankilltennisclub.com/" , favicon_url: "images/logos/shankill-tennis-club-145.png"},
+  { id: 146, name: "Sligo Tennis and Badminton Club", address: "Old Bundoran Rd, Shannon Eighter, Sligo, Ireland", county: "Sligo", lat: 54.2896709, lng: -8.470193, sport: "Tennis", facility_type: "Sports Club", courts: 6, court_surface: "Hard Court / Artificial Grass", court_type: "Indoor/Outdoor", website: "https://sligotennisclub.ie/" , favicon_url: "images/logos/sligo-tennis-and-badminton-club-146.ico"},
+  { id: 147, name: "St Anne's Park Tennis Club", address: "All Saints Rd, Raheny, Dublin, Ireland", county: "Dublin", lat: 53.3745128, lng: -6.1814297, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Hard Court", court_type: "Outdoor", website: "https://www.stannesparktennis.com/" , favicon_url: "images/logos/st-anne-s-park-tennis-club-147.png"},
+
+  { id: 148, name: "St Anne's Tennis Club", address: "John's Hill, Grange Lower, Waterford, Ireland", county: "Waterford", lat: 52.2481875, lng: -7.1032285, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.stannestennis.com/", favicon_url: "images/logos/stannes.png"  },
+
+  { id: 149, name: "St Michael's Tennis Club", address: "Church Rd, Blackrock, Cork, Ireland", county: "Cork", lat: 51.895523, lng: -8.421401, sport: "Tennis", facility_type: "Tennis Club", courts: 5, court_surface: "Artificial Grass (Savannah)", court_type: "Outdoor", website: "https://www.stmichaelstennisclub.ie/" , favicon_url: "images/logos/st-michael-s-tennis-club-149.png"},
+
+  { id: 150, name: "St. Mary's Lawn Tennis Club", address: "Lawn Tennis Club, Saint Mary's, Belmont Villas, Dublin 4, D04 X7F2, Ireland", county: "Dublin", lat: 53.3200555, lng: -6.2406775, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "http://www.stmarystennisclub.com/" , favicon_url: "images/logos/st-marys-lawn-tennis-club.png"},
+
+  { id: 151, name: "St. Patrick's Racquets Club", address: "The Orchard, 70 Victoria Ave, Newtownards BT23 7ED, United Kingdom", county: "Down", lat: 54.5966418, lng: -5.6938633, sport: "Tennis", facility_type: "Sports Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.stpatricksracquetsclub.com/", favicon_url: "images/logos/patricks.jpg"  },
+
+  { id: 152, name: "Stratford Lawn Tennis Club", address: "Grosvenor Square, Rathmines, Dublin, D06 HP90, Ireland", county: "Dublin", lat: 53.3243945, lng: -6.2730805, sport: "Tennis", facility_type: "Tennis Club", courts: 8, court_surface: "Natural Grass / Artificial Grass (Savannah)", court_type: "Outdoor", website: "http://web.stratfordtennis.ie/", favicon_url: "images/logos/stratford.png"   },
+
+  { id: 153, name: "Sunday's Well Boating & Tennis Club", address: "Mardyke Walk, Mardyke, Cork, T12 VC42, Ireland", county: "Cork", lat: 51.895774, lng: -8.493329, sport: "Tennis", facility_type: "Sports Club", courts: 8, court_surface: "Artificial Grass (Savannah) / Artificial Clay", court_type: "Indoor/Outdoor", website: "https://sundayswell.ie/",  favicon_url: "images/logos/sundayswell.jpg"  },
+
+  { id: 154, name: "Sutton Lawn Tennis Club", address: "176 Howth Rd, Sutton, Dublin 13, D13 H004, Ireland", county: "Dublin", lat: 53.3891691, lng: -6.1065516, sport: "Tennis", facility_type: "Tennis Club", courts: 11, court_surface: "Hard Court / Artificial Clay (Red Plus)", court_type: "Indoor/Outdoor", website: "https://www.suttonltc.com/" , favicon_url: "images/logos/sutton-lawn-tennis-club-154.png"},
+
+  { id: 155, name: "Swords Lawn Tennis Club", address: "Swords Castle Grounds, Townparks, Swords, Co. Dublin, Ireland", county: "Dublin", lat: 53.4615631, lng: -6.219079, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://www.swordstennisclub.com/" , favicon_url: "images/logos/swords-lawn-tennis-club.ico"},
+
+  { id: 156, name: "Templeogue Tennis Club", address: "Templeogue, Dublin 6, Ireland", county: "Dublin", lat: 53.298034, lng: -6.304009, sport: "Tennis", facility_type: "Tennis Club", courts: 12, court_surface: "Artificial Grass", court_type: "Indoor/Outdoor", website: "https://www.templeoguetennis.ie/" , favicon_url: "images/logos/templeogue.png"},
+
+
+  { id: 158, name: "David Lloyd Dublin Riverview", address: "Beech Hill Rd, Clonskeagh, Co. Dublin, D04 AF10, Ireland", county: "Dublin", lat: 53.314840, lng: -6.234886, sport: "Tennis", facility_type: "Sports Club", courts: 12, court_surface: "Hard Court / Artificial Grass / Artificial Clay", court_type: "Indoor/Outdoor", website: "https://www.davidlloyd.ie/clubs/dublin-riverview" , favicon_url: "images/logos/davidlloyd.png"},
+
+  { id: 159, name: "Elm Park Golf & Sports Club", address: "Nutley Ln, Dublin 4, Ireland", county: "Dublin", lat: 53.317544, lng: -6.21669, sport: "Tennis", facility_type: "Sports Club", courts: 14, court_surface: "Artificial Grass / Artificial Clay", court_type: "Indoor/Outdoor", website: "https://www.elmpark.ie/", favicon_url: "images/logos/elmpark.png"   },
+
+  { id: 160, name: "Tralee Tennis Club", address: "Dan Spring Rd, Tralee, Co. Kerry, Ireland", county: "Kerry", lat: 52.263428, lng: -9.706347, sport: "Tennis", facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor", website: "https://traleetc.wordpress.com/" , favicon_url: "images/logos/tralee.png"},
+
+  { id: 161, name: "National Tennis Centre", address: "DCU, Glasnevin, Dublin 9, Ireland", county: "Dublin", lat: 53.3871, lng: -6.2585, sport: "Tennis", facility_type: "National Training Centre", courts: 10, court_surface: "Artificial Clay (Red Plus) / Hard Court", court_type: "Indoor/Outdoor", website: "https://www.tennisireland.ie/national-tennis-centre/" , favicon_url: "images/logos/national-tennis-centre.png"},
+  
+  { id: 162, name: "Carrickmines Croquet & Lawn Tennis Club\t", address: "Glenamuck Road,Carrickmines, Dublin 18, Ireland", county: "Dublin", lat: 53.255577, lng: -6.172252, sport: "Tennis", facility_type: "Tennis Club", courts: 18, court_surface: "Natural Grass / Artificial Grass / Hardcourt / Artificial Clay", court_type: "Indoor/Outdoor", website: "https://www.carrickmines.com/" , favicon_url: "images/logos/carrickmines.png"},
+
+  { id: 163, name: "Grove Lawn Tennis Club", address: "Grove Rd, Malahide, Co. Dublin, K36 R583, Ireland", county: "Dublin", lat: 53.447402, lng: -6.147915, sport: "Tennis", facility_type: "Tennis Club", courts: 3, court_surface: "Natural Grass", court_type: "Indoor/Outdoor", website: "https://groveltc.com/" , favicon_url: "images/logos/grove.png"},
+
+  { id: 164, name: 'Rosslare Community & Sports Centre', address: 'Strand Rd, Bearlough, Rosslare, Co. Wexford, Y35 CC9N, Ireland', county: 'Wexford', sport: 'Tennis', lat: 52.281435, lng: -6.3926711,  facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor",  website: 'https://www.rosslareholidayresort.ie/rosslare-communit-sports-centre' , favicon_url: "images/logos/rosslare.png"},
+
+  { id: 165, name: 'Whitechurch Tennis Club', address: 'School Rd, Farranastig, Whitechurch, Co. Cork, T34 RR58, Ireland	', county: 'Cork', sport: 'Tennis', lat: 51.980971, lng: -8.533532,  facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor",  website: 'https://whitechurchtennisclub.com/' , favicon_url: "images/logos/whitechurch.png"},
+
+  { id: 166, name: 'Balrothery Tennis Club	', address: 'Glebe South, Balrothery, Co. Dublin, Ireland	', county: 'Dublin', sport: 'Tennis', lat: 53.584016, lng: -6.193975,  facility_type: "Tennis Club", courts: 4, court_surface: "Artificial Grass", court_type: "Outdoor",  website: 'https://www.balrotherytennis.ie/' , favicon_url: "images/logos/balrothery.png"},
+
+ { id: 167, name: 'Botany Bay Tennis Courts', address: 'Trinity College Dublin, Dublin 2, D02 DP29, Ireland	', county: 'Dublin', sport: 'Tennis', lat: 53.345083, lng: -6.256712,  facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor",  website: 'https://www.tcd.ie/sport/student-sport/sport-clubs/lawn-tennis/' , favicon_url: "images/logos/botany.png"},
+
+
+
+{ id: 168, name: 'Kilternan Parish Lawn Tennis Club', address: 'Kilternan Church of Ireland, Enniskerry Rd, Dublin 18, D18 C642, Ireland', county: 'Dublin', sport: 'Tennis', lat: 53.243069, lng: -6.200784,  facility_type: "Tennis Club", courts: 3, court_surface: "Artificial Grass", court_type: "Outdoor",  website: 'http://www.kpltc.ie/' , favicon_url: "images/logos/kilternan.png"},
+
+{ id: 169, name: 'Herbert Park Tennis Courts', address: '8-10 Clyde Ln, Dublin 4, D04 A782, Ireland	', county: 'Dublin', sport: 'Tennis', lat: 53.328214, lng: -6.236115,  facility_type: "Tennis Club", courts: 6, court_surface: "Artificial Grass", court_type: "Outdoor",  website: 'https://www.herbertparktennis.ie/' , favicon_url: "images/logos/herbert.png"},
+
+
+
+
+
+
+
+// === Major Padel Clubs ===
+{ id: 300, name: 'PadelZone Carrigtwohill', address: 'Fota Retail Park, Carrigtwohill, Co. Cork', county: 'Cork', sport: 'Padel', lat: 51.908436, lng: -8.289745, website: 'https://padeltennisireland.ie/' , favicon_url: "images/logos/padelzone.png"},
+
+  { id: 301, name: 'Westwood Club Padel Leopardstown', address: 'Leopardstown Race Course, Dublin 18, D18 C9V6, Ireland', county: 'Dublin', sport: 'Padel', lat: 53.264986, lng: -6.194280, website: 'https://westwood.ie/' , favicon_url: "images/logos/westwood-club-padel-leopardstown-301.ico"},
+
+  { id: 302, name: 'Bushy Park Tennis & Padel Club', address: "Rathdown Ave, Terenure, Dublin 6W, Co. Dublin, D6W TX24, Ireland", county: "Dublin", lat: 53.3026614, lng: -6.289463, sport: 'Padel', website: 'http://www.bushytennispadel.ie/' , favicon_url: "images/logos/bushy.png"},
+
+  { id: 303, name: 'PadelZone Celbridge', address: 'Ballyoulster, Celbridge, Co. Kildare, W23 YX30, Ireland', county: 'Kildare', sport: 'Padel', lat: 53.340915, lng: -6.509885, website: 'https://www.ohanlonpark.ie//' , favicon_url: "images/logos/padelzone.png"},
+
+  { id: 304, name: 'House of Padel', address: '5 Old Belgard Rd, Cookstown Industrial Estate, Dublin, D24 WD00, Ireland	', county: 'Dublin', sport: 'Padel', lat: 53.297224, lng: -6.372655, website: 'https://www.houseofpadel.co/' , favicon_url: "images/logos/house-of-padel-304.ico"},
+
+  { id: 305, name: 'Padel LK', address: "Ennis Rd, Farranshone More, Limerick, Ireland", county: "Limerick", lat: 52.6677722, lng: -8.6438011, sport: 'Padel', website: 'https://www.lltc.ie/' , favicon_url: "images/logos/limerick-lawn-tennis-club.png"},
+
+  { id: 306, name: 'Waterford Padel Club', address: 'Ballynakill, Waterford, X91 VC2R, Ireland', county: 'Waterford', sport: 'Padel', lat: 52.239151, lng: -7.064555, website: 'https://www.woodlandshotel.ie/' , favicon_url: "images/logos/woodlands.png"},
+
+  { id: 308, name: 'Eddie Irvine Sports', address: 'Balloo Road, Bangor, Co. Down', county: 'Down', sport: 'Padel', lat: 54.64352, lng: -5.70452, website: 'https://www.eddieirvinesports.com/', favicon_url: 'images/logos/eddieirvine.png'},
+
+  { id: 309, name: 'Portmarnock Padel Club', address: 'Blackwood Ln, Beechwood, Portmarnock, Co. Dublin', county: 'Dublin', sport: 'Padel', lat: 53.4338697, lng: -6.1391582, website: 'https://portmarnockpadel.ie/' , favicon_url: "images/logos/portmarnock-padel.png"},
+
+  { id: 310, name: 'Project Padel Galway', address: 'Corrib Business Park, Carrowbrowne, Galway, H91 XH56, Ireland', county: 'Galway', sport: 'Padel', lat: 53.3281985, lng: -9.0222478, website: 'https://projectpadel.ie/' , favicon_url: "images/logos/project-padel.png"},
+
+  { id: 311, name: 'Bective Tennis & Padel', address: 'Main Street, Donnybrook, Dublin, D04 A0P1, Ireland', county: 'Dublin', sport: 'Padel', lat: 53.321469, lng: -6.232721, website: 'https://bectivetennis.com/' , favicon_url: "images/logos/bective.png"},
+
+  { id: 312, name: 'Fitzwilliam Lawn Tennis Club', address: 'Winton Rd, Ranelagh, Dublin, D06 X6X2, Ireland', county: 'Dublin', sport: 'Padel', lat: 53.3278581, lng: -6.249333, website: 'https://www.fltc.ie/', favicon_url: "images/logos/fitzwilliam-lawn-tennis-club.png"  },
+  { id: 313, name: 'Padel Dome', address: 'Sportslink Complex, The Sports Dome, Santry, Dublin, D09 V8XT, Ireland', county: 'Dublin', sport: 'Padel', lat: 53.4083225, lng: -6.242021, website: 'https://padeldome.ie/' , favicon_url: "images/logos/padel-dome.png"},
+
+  { id: 314, name: 'Rockbrook Padel', address: 'Rockbrook House, Rathfarnham, Rockbrook, Co. Dublin, D16 P897, Ireland', county: 'Dublin', sport: 'Padel', lat: 53.2624196, lng: -6.3006718, website: 'https://trustpadel.com/padel-courts/rockbrook-padel-club/' , favicon_url: "images/logos/rockbrook-padel-314.ico"},
+
+  { id: 315, name: 'River Valley Padel Wicklow', address: 'River Valley, Redcross, Co. Wicklow, A67 H799, Ireland', county: 'Wicklow', sport: 'Padel', lat: 52.8886069, lng: -6.1430729, website: 'https://www.rivervalleypark.ie/' , favicon_url: "images/logos/rivervalley.png"},
+
+  { id: 316, name: 'Active Tribe Courtown', address: 'Courtown Harbour, Ballinatray Lower, Gorey, Co. Wexford, Ireland', county: 'Wexford', sport: 'Padel', lat: 52.648606, lng: -6.228840, website: 'https://www.activetribe.ie/' , favicon_url: "images/logos/active.png"},
+
+  { id: 317, name: 'Rosslare Community & Sports Centre', address: 'Strand Rd, Bearlough, Rosslare, Co. Wexford, Y35 CC9N, Ireland', county: 'Wexford', sport: 'Padel', lat: 52.2814351, lng: -6.3926711, website: 'https://www.rosslareholidayresort.ie/rosslare-communit-sports-centre' , favicon_url: "images/logos/rosslare.png"},
+
+  { id: 318, name: 'Kilkenny County & City Lawn Tennis Club', address: 'Archers Field, Bennettsbridge Rd, Archerstreet Lot, Kilkenny, Ireland', county: 'Kilkenny', sport: 'Padel', lat: 52.6453437, lng: -7.242227, website: 'https://www.kilkennytennisclub.com/' , favicon_url: "images/logos/kilkenny.png"},
+
+  { id: 319, name: 'Let\'s Go Padel (Carryduff)', address: '1 Mealough Rd, Carryduff, Belfast BT8 8GB, United Kingdom', county: 'Down', sport: 'Padel', lat: 54.525698, lng: -5.893710, website: 'https://www.letsgopadel.co.uk/' , favicon_url: "images/logos/letsgopadel.png"},
+  
+  { id: 320, name: 'Padel 54', address: '20 Lisnabilla Rd, Moira, Craigavon BT67 0JW, United Kingdom', county: 'Armagh', sport: 'Padel', lat: 54.495783, lng: -6.2090867, website: 'https://www.padel54.com/' , favicon_url: "images/logos/padel54.png"},
+  
+  { id: 321, name: 'Padel Society - Antrim', address: '5 Nursery Park, Belfast Rd, Antrim BT41 1QS, United Kingdom', county: 'Antrim', sport: 'Padel', lat: 54.7031898, lng: -6.2002792, website: 'https://padelsocietygroup.com/' , favicon_url: "images/logos/padel-society.png"},
+
+// === Major Pickleball Clubs ===
+ { id: 500, name: 'East Cork Pickleball Club', address: 'Cork Show Grounds, Cork', county: 'Cork', sport: 'Pickleball', lat: 51.88853, lng: -8.45953, website: 'https://www.globalpickleball.network/network/home/4151-east-cork-pickleball' , favicon_url: "images/logos/east-cork-pickleball-club-500.ico"},
+  
+ { id: 501, name: 'Sandyford Pickleball', address: 'Naomh Olaf\'s GAA Club, Sandyford, Dublin', county: 'Dublin', sport: 'Pickleball', lat: 53.27857, lng: -6.24657, website: 'https://www.naomholaf.ie/' , favicon_url: "images/logos/sandyford-pickleball-naomh-olaf-s-gaa-501.ico"},
+
+ { id: 502, name: 'Terenure Pickleball Club', address: 'The Dome, Our Lady\'s School, Dublin 6W', county: 'Dublin', sport: 'Pickleball', lat: 53.299728, lng: -6.295835, website: 'https://www.terenurepickleballclub.ie/' , favicon_url: 'images/logos/terenurepickle.png'},
+
+ { id: 503, name: 'Dundalk Pickleball', address: 'Dundalk Sports Centre, Dundalk, Co. Louth', county: 'Louth', sport: 'Pickleball', lat: 53.989986, lng: -6.385709, website: 'https://www.dundalksportscentre.com/' , favicon_url: "images/logos/dundalk-pickleball-503.ico"},
+ 
+ { id: 504, name: 'Rebel Pickleball', address: 'Shean Lower, Cork, Ireland', county: 'Cork', sport: 'Pickleball', lat: 51.932442, lng: -8.5600464, website: 'https://www.facebook.com/RebelPickleball/' , favicon_url: "images/logos/rebelpickleball.png"},
+ 
+ { id: 505, name: 'Dinking Hub Limited', address: 'St Tiernan\'s Community School, Parkvale, Sandyford, Dublin', county: 'Dublin', sport: 'Pickleball', lat: 53.2816791, lng: -6.2387565, website: 'https://dinkinghub.com/' , favicon_url: "images/logos/dinking-hub-limited-505.ico"},
+ 
+ { id: 506, name: 'Flemington Community Centre', address: 'Flemington Community Centre, Hamlet Ln, Balbriggan, Ireland', county: 'Dublin', sport: 'Pickleball', lat: 53.6120456, lng: -6.2061381, website: 'https://www.flemingtoncc.ie/' , favicon_url: "images/logos/flemington.png"},
+ 
+ { id: 507, name: 'Galway Pickleball Club', address: 'Seamus Quirke Rd, Westside, Galway, Ireland', county: 'Galway', sport: 'Pickleball', lat: 53.2776409, lng: -9.0729833, website: 'https://galwaypickleball.ie/' , favicon_url: "images/logos/galwaypickle.png"},
+ 
+ { id: 508, name: 'Loreto Abbey Dalkey Sports Hall', address: 'Loreto Ave, Harbour Rd, Dalkey Commons, Dalkey, Co. Dublin', county: 'Dublin', sport: 'Pickleball', lat: 53.279040, lng: -6.100288, website: 'https://www.pickleheads.com/courts/ie/county-dublin/dalkey/loreto-abbey-dalkey-sports-hall' , favicon_url: "images/logos/loreto.png"},
+ 
+ { id: 509, name: 'Luttrellstown Community Centre', address: 'Porterstown Rd, Annfield, Co. Dublin', county: 'Dublin', sport: 'Pickleball', lat: 53.3744765, lng: -6.4090069, website: 'https://fingalcommunityfacilitiesnetwork.ie/centres/luttrellstown-community-centre/' , favicon_url: "images/logos/luttrellstown.png"},
+ 
+ { id: 510, name: 'Southside Pickleball Club Dublin', address: 'Kilmacud Rd Upper, Stillorgan, Dublin', county: 'Dublin', sport: 'Pickleball', lat: 53.2858852, lng: -6.2085494, website: 'https://www.facebook.com/profile.php?id=61565652607784' , favicon_url: "images/logos/southsidepickle.png"},
+ 
+ { id: 511, name: 'Andersonstown Leisure Centre', address: '132 Andersonstown Rd, Belfast BT11 9BY, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5733828, lng: -5.9873267, website: 'https://www.better.org.uk/leisure-centre/belfast/andersonstown-leisure-centre' , favicon_url: "images/logos/andersonstown-leisure-centre-511.ico"},
+ 
+ { id: 512, name: 'Ards Blair Mayne Wellbeing and Leisure Complex', address: '1 Dairy Hall Ln, Newtownards BT23 4DB, United Kingdom', county: 'Down', sport: 'Pickleball', lat: 54.5907821, lng: -5.7005352, website: 'https://www.leisureardsandnorthdown.com/' , favicon_url: "images/logos/ards-blair-mayne-wellbeing-and-leisure-complex-512.ico"},
+ 
+ { id: 513, name: 'Belvoir Activity Centre', address: 'Belvoir Dr, Belfast BT8 7DT, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5524328, lng: -5.9321948, website: 'https://www.better.org.uk/leisure-centre/belfast/belvoir-activity-centre' , favicon_url: "images/logos/belvoir-activity-centre-513.ico"},
+ 
+ { id: 514, name: 'Brook Leisure Centre', address: '32 Summerhill Rd, Dunmurry, Belfast BT17 0RP, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5544108, lng: -6.0207747, website: 'https://www.better.org.uk/leisure-centre/belfast/brook-leisure-centre' , favicon_url: "images/logos/brook-leisure-centre-514.ico"},
+ 
+ { id: 515, name: 'Comber Leisure Centre', address: '15 Castle St Ct, Comber, Newtownards BT23 5DY, United Kingdom', county: 'Down', sport: 'Pickleball', lat: 54.5521143, lng: -5.7460015, website: 'https://www.leisureardsandnorthdown.com/' , favicon_url: "images/logos/comber-leisure-centre-515.ico"},
+ 
+ { id: 516, name: 'Falls Leisure Centre', address: '15-17 Falls Rd, Belfast BT12 4PB, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5990478, lng: -5.9495466, website: 'https://www.better.org.uk/leisure-centre/belfast/falls-leisure-centre' , favicon_url: "images/logos/falls-leisure-centre-516.ico"},
+ 
+ { id: 517, name: 'Girdwood Community Hub', address: '10 Girdwood Avenue, Belfast, Antrim BT14 6EG, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.6115965, lng: -5.9409562, website: 'https://www.better.org.uk/leisure-centre/belfast/girdwood-community-hub' , favicon_url: "images/logos/girdwood-community-hub-517.ico"},
+ 
+ { id: 518, name: 'Glenmore Activity Centre', address: '43 Glenmore Park, Lisburn BT27 4RT, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5237245, lng: -6.0257085, website: 'https://www.lisburncastlereagh.gov.uk/things-to-do/leisure-centres-and-facilities/glenmore-activity-centre' , favicon_url: "images/logos/glenmore-activity-centre-518.png"},
+ 
+ { id: 519, name: 'Indoor Tennis Arena and Ozone Complex', address: 'Ormeau Embankment, Belfast BT6 8LT, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5896789, lng: -5.9151837, website: 'https://www.better.org.uk/leisure-centre/belfast/ozone-complex' , favicon_url: "images/logos/indoor-tennis-arena-and-ozone-complex-519.ico"},
+ 
+ { id: 520, name: 'Let\'s Go Padel (Belfast)', address: '1 Mealough Rd, Carryduff, Belfast BT8 8GB, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5256979, lng: -5.8937104, website: 'https://www.letsgopadel.co.uk/' , favicon_url: "images/logos/letsgopadel.png"},
+ 
+ { id: 521, name: 'Lisburn Pickleball Club', address: 'Lisburn Leisure Centre, Lisburn Leisure Park, Lisburn BT28 1LP, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.506324, lng: -6.052117, website: 'https://lisburnpickleball.club/' , favicon_url: "images/logos/lisburnpickle.png"},
+ 
+ { id: 522, name: 'Lisburn Racquets Club', address: '36 Belfast Rd, Lisburn BT27 4AS, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5173416, lng: -6.0340528, website: 'https://www.lisburnracquets.co.uk/' , favicon_url: "images/logos/lisburn-racquets-club.png"},
+ 
+ { id: 523, name: 'Lisnasharragh Leisure Centre', address: 'Montgomery Rd, Castlereagh, Belfast BT6 9HS, United Kingdom', county: 'Down', sport: 'Pickleball', lat: 54.5774223, lng: -5.8818956, website: 'https://www.better.org.uk/leisure-centre/belfast/lisnasharragh-leisure-centre' , favicon_url: "images/logos/lisnasharragh.png"},
+ 
+ { id: 524, name: 'Olympia Leisure Centre and Spa', address: 'Boucher Rd, Belfast BT12 6HR, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5831893, lng: -5.9568013, website: 'https://www.better.org.uk/leisure-centre/belfast/olympia-leisure-centre' , favicon_url: "images/logos/better.png"},
+ 
+ { id: 525, name: 'Shankill Leisure Centre', address: '100 Shankill Rd, Belfast BT13 2BD, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.6033695, lng: -5.9451254, website: 'https://www.better.org.uk/leisure-centre/belfast/shankill-leisure-centre' , favicon_url: "images/logos/shankill-leisure-centre-525.ico"},
+ 
+ { id: 526, name: 'Ulster University Belfast Sports Centre', address: '8 Nelson St, Nelson Place, Belfast BT15 1BH, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.6054927, lng: -5.9255479, website: 'https://www.ulster.ac.uk/sport/facilities/belfast' , favicon_url: "images/logos/ulster-university-belfast-sports-centre-526.ico"},
+ 
+ { id: 527, name: 'Whiterock Leisure Centre', address: 'Whiterock Close, Whiterock Road, Belfast, Antrim BT12 7RJ, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5910869, lng: -5.9856048, website: 'https://www.better.org.uk/leisure-centre/belfast/whiterock-leisure-centre' , favicon_url: "images/logos/whiterock-leisure-centre-527.ico"},
+ 
+ { id: 528, name: 'Knocknarea Arena (Sligo Pickleball)', address: 'Ash Ln, Ballytivnan, Sligo, F91 YW50, Ireland', county: 'Sligo', sport: 'Pickleball', lat: 54.2792078, lng: -8.4654942, website: 'https://www.sligosportandrecreation.ie/club_directory/24219/' , favicon_url: "images/logos/knocknarea-arena-sligo-pickleball-528.ico"},
+ 
+ { id: 529, name: 'Galway County Pickleball', address: 'Loughnane & Quinn Memorial Hall, Ballylara, Ardrahan, Co. Galway, H91 W9E4, Ireland', county: 'Galway', sport: 'Pickleball', lat: 53.1412116, lng: -8.8061976, website: 'https://www.facebook.com/p/Galway-County-Pickleball-Club-100090662990217/' , favicon_url: "images/logos/galwaypickle2.png"},
+ 
+ { id: 530, name: 'Belfast Pickleball Club', address: 'Strathearn School, 188 Belmont Rd, Belfast, BT4 2AT, United Kingdom', county: 'Antrim', sport: 'Pickleball', lat: 54.5953, lng: -5.8647, website: 'https://www.facebook.com/belfastpickleballclub/' , favicon_url: "images/logos/belfastpickle.png"},
+];
+
+// Normalize boolean-like fields (indoor, floodlit) to real booleans where possible.
+// This prevents string values like 'False' from being treated as truthy later in the UI.
+allClubs.forEach(c => {
+    ['indoor', 'floodlit'].forEach(key => {
+        if (!Object.prototype.hasOwnProperty.call(c, key)) return;
+        const v = c[key];
+        if (typeof v === 'string') {
+            const lv = v.trim().toLowerCase();
+            if (['true', 'yes', '1', 'y'].includes(lv)) c[key] = true;
+            else if (['false', 'no', '0', 'n'].includes(lv)) c[key] = false;
+            else c[key] = undefined; // unknown
+        } else if (typeof v === 'number') {
+            c[key] = v !== 0;
+        } else {
+            c[key] = !!v;
+        }
+    });
+});
+
+// Expose early so depending scripts (React bundle) can safely poll/use them.
+window.allClubs = window.allClubs || allClubs;
+
+// If a club doesn't explicitly include an `indoor` field but does have a
+// canonical `court_type`, infer `indoor` for simple cases so filters behave
+// deterministically in the UI. We only set it when missing to avoid
+// overwriting authorititive data.
+allClubs.forEach(c => {
+  if (Object.prototype.hasOwnProperty.call(c, 'indoor')) return; // already present
+  if (!c.court_type) return;
+  const ct = String(c.court_type).trim().toLowerCase();
+  if (ct === 'outdoor') c.indoor = false;
+  else if (ct === 'indoor') c.indoor = true;
+  else c.indoor = undefined; // e.g. 'Indoor/Outdoor' -> unknown
+});
+
+// Re-calculate counties based on the current curated list
+// Ensure deterministic alphabetical ordering (by name) once up-front.
+// Using localeCompare with base sensitivity for case/diacritic insensitivity.
+allClubs = allClubs.slice().sort((a,b)=> (a?.name||'').localeCompare(b?.name||'', undefined, { sensitivity:'base' }));
+
+const counties = [...new Set(allClubs.map(club => club.county).filter(Boolean))].sort();
+window.counties = window.counties || counties;
+
+// Provide a pure JSON serialisable snapshot for maintenance scripts (audit).
+try { window.__ALL_CLUBS_JSON__ = JSON.parse(JSON.stringify(allClubs)); } catch(e) {}
+
+// Tennis surface categories & classification
+// Now prefer `court_type` values when present; options are restricted to the canonical
+// list you provided. Falling back to parsing `court_surface` only when `court_type` is missing.
+(function () {
+    try {
+        const CANONICAL = [
+            'Artificial Clay',
+            'Artificial Clay (Red Plus)',
+            'Natural Clay',
+            'Artificial Grass',
+            'Artificial Grass (Savannah)',
+            'Artificial Grass (TigerTurf)',
+            'Natural Grass',
+            'Hard Court'
+        ];
+
+    // Gather explicit court_type / court_types values present in the data (trimmed).
+    // We support both a single `court_type` string (possibly multi-valued) and a `court_types` array.
+    const normalizeSplit = s => (s || '').toString().split(/[,&/\\|]+/).map(p => p.trim()).filter(Boolean);
+    const rawPresent = [];
+    allClubs.forEach(c => {
+      if (Array.isArray(c.court_types)) {
+        c.court_types.forEach(t => { if (t && t.toString().trim()) rawPresent.push(t.toString().trim()); });
+      }
+      if (c.court_type && c.court_type.toString().trim()) {
+        normalizeSplit(c.court_type).forEach(p => rawPresent.push(p));
+      }
+    });
+    const presentTypes = [...new Set(rawPresent)];
+
+    // Keep only canonical values (case-insensitive compare)
+    const tennisSurfaceOptions = presentTypes.length
+      ? CANONICAL.filter(can => presentTypes.some(p => p.toLowerCase() === can.toLowerCase()))
+      : CANONICAL.slice();
+
+    // Fallback classifier (for records without explicit court types)
+        const classifySegment = seg => {
+            if (!seg || !seg.trim()) return null;
+            const s = seg.toLowerCase();
+            if (s.includes('savannah')) return 'Artificial Grass (Savannah)';
+            if (s.includes('tigerturf') || s.includes('tiger')) return 'Artificial Grass (TigerTurf)';
+            if (s.includes('artificial grass') || s.includes('synthetic grass') || s.includes('astroturf') || s.includes('astro')) return 'Artificial Grass';
+            if (s.includes('natural') && s.includes('grass')) return 'Natural Grass';
+            if (s === 'grass' || (s.includes('grass') && !s.includes('artificial') && !s.includes('synthetic'))) return 'Natural Grass';
+            if (s.includes('hardcourt') || s.includes('hard court') || s.includes('acrylic') || s.includes('poraflex') || s.includes('polymeric')) return 'Hard Court';
+            if (s.includes('redplus') || s.includes('red plus') || s.includes('red+')) return 'Artificial Clay (Red Plus)';
+            if (s.includes('advantage red') || s.includes('advantage red court')) return 'Artificial Clay (Red Plus)';
+            if (s.includes('artificial clay') || s.includes('synthetic clay') || s.includes('matchclay') || s.includes('clayrite') || s.includes('claytech') || s.includes('topclay') || s.includes('smashcourt') || s.includes('lano')) return 'Artificial Clay';
+            if (s.includes('real clay') || s.includes('natural clay') || (s.includes('clay') && !s.includes('artificial') && !s.includes('synthetic') && !s.includes('red'))) return 'Natural Clay'; // legacy 'real clay' retained in condition for backward compatibility (now maps to Natural Clay)
+            return null;
+        };
+
+        const classification = {};
+    allClubs.forEach(c => {
+      if (c.sport !== 'Tennis') return;
+      // Prefer explicit `court_types` array when present (allows multiple canonical values)
+      const explicitSet = new Set();
+      if (Array.isArray(c.court_types)) {
+        c.court_types.forEach(t => {
+          if (!t) return;
+          const trimmed = t.toString().trim();
+          const match = CANONICAL.find(can => can.toLowerCase() === trimmed.toLowerCase());
+          if (match) explicitSet.add(match);
+        });
+      }
+      // Also treat `court_type` string as possibly multi-valued (split by common separators)
+      if (c.court_type && c.court_type.toString().trim()) {
+        normalizeSplit(c.court_type).forEach(part => {
+          const match = CANONICAL.find(can => can.toLowerCase() === part.toLowerCase());
+          if (match) explicitSet.add(match);
+        });
+      }
+
+      if (explicitSet.size) {
+        classification[c.id] = explicitSet;
+        return;
+      }
+
+      // Otherwise parse free-text court_surface
+      if (!c.court_surface) return;
+      const parts = c.court_surface.split(/[,&/\\|]/).map(p => p.trim()).filter(Boolean);
+      parts.forEach(p => {
+        const cleaned = p.replace(/court/i, '').replace(/\//g, '').trim();
+        const cat = classifySegment(cleaned);
+        if (cat) {
+          if (!classification[c.id]) classification[c.id] = new Set();
+          classification[c.id].add(cat);
+        }
+      });
+    });
+
+        window.tennisSurfaceOptions = tennisSurfaceOptions.length ? tennisSurfaceOptions : CANONICAL.slice();
+        window.tennisSurfaceClassification = Object.fromEntries(
+            Object.entries(classification).map(([id, set]) => [id, [...set]])
+        );
+  } catch (e) {
+    window.tennisSurfaceOptions = ['Artificial Grass', 'Artificial Grass (Savannah)', 'Artificial Grass (TigerTurf)', 'Natural Grass', 'Hard Court', 'Artificial Clay', 'Artificial Clay (Red Plus)', 'Natural Clay'];
+    window.tennisSurfaceClassification = {};
+  }
+})();
+
+// Normalize capitalized `Website` keys to lowercase `website` for UI compatibility.
+// This is non-destructive: if `website` already exists we leave it alone; otherwise
+// we copy from `Website` and delete the original key to avoid confusion elsewhere.
+allClubs.forEach(c => {
+  if (!c) return;
+  if (!Object.prototype.hasOwnProperty.call(c, 'website') && Object.prototype.hasOwnProperty.call(c, 'Website')) {
+    c.website = c.Website || undefined;
+    try { delete c.Website; } catch (e) { /* ignore */ }
+  }
+});
+
+// Quick diagnostics exported to window for developer inspection:
+// - window._clubsDuplicateIds : array of {id, count} where count > 1
+// - window._allClubsCount : total number of club entries
+(function(){
+  try {
+    const counts = {};
+    allClubs.forEach(c => { if (c && typeof c.id !== 'undefined') counts[c.id] = (counts[c.id]||0)+1; });
+    window._clubsDuplicateIds = Object.entries(counts).filter(([id,n])=>n>1).map(([id,n])=>({id:Number(id),count:n}));
+    window._allClubsCount = allClubs.length;
+  } catch(e) {
+    /* noop */
+  }
+})();
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--TODO: For Test SCF-312 test in production execute below code -->
+    <script type="text/javascript" id="inspectletjs">
+      if (window) {
+        window.__insp = window.__insp || [];
+        __insp.push(['wid', 2024130468]);
+        __insp.push(['tagSession', { email: localStorage.email }]);
+        (function () {
+          function ldinsp() {
+            if (typeof window.__inspld != 'undefined') return;
+            window.__inspld = 1;
+            var insp = document.createElement('script');
+            insp.type = 'text/javascript';
+            insp.async = true;
+            insp.id = 'inspsync';
+            insp.src =
+              ('https:' == document.location.protocol ? 'https' : 'http') +
+              '://cdn.inspectlet.com/inspectlet.js';
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(insp, x);
+          }
+          setTimeout(ldinsp, 500);
+        })();
+      }
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-NWJV3Z5');
+    </script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NWJV3Z5"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Other meta tags and scripts -->
+    <meta charset="utf-8"/>
+    <title>Clubforce</title>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png"/>
+    <link rel="manifest" href="manifest.webmanifest"/>
+  <link rel="stylesheet" href="styles.4e1fbf9364f05c1c.css"></head>
+  <body>
+    <app-root></app-root>
+  <script src="runtime.70bf2e3028897dce.js" type="module"></script><script src="polyfills.a8e44911e00a69dd.js" type="module"></script><script src="scripts.737620501494bc9a.js" defer></script><script src="vendor.432688c3d385a6c9.js" type="module"></script><script src="main.194270779a67d6fe.js" type="module"></script></body>
+</html>

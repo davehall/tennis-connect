@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page not found – Tennis Club Connect</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background:#f8fafc; color:#0f172a; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
+    .card { background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:24px; max-width:520px; box-shadow:0 6px 24px rgba(0,0,0,.06); }
+    a { color:#0d9488; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+  </style>
+  <script>
+    (function(){
+      var path = (location.pathname || '').replace(/\/$/, '');
+      if (path === '/search') {
+        // Rescue clean URL if server doesn't serve /search/index.html
+        var q = location.search || '';
+        var h = location.hash || '';
+        try { location.replace('/search.html' + q + h); } catch(e) { location.href = '/search.html' + q + h; }
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="card">
+    <h1 style="margin:0 0 8px 0; font-size:22px;">Page not found</h1>
+    <p style="margin:0 0 16px 0; color:#334155;">We couldn't find that page. You can go back home or open the club map.</p>
+    <p style="margin:0 0 6px 0;"><a href="/">Go to homepage</a></p>
+    <p style="margin:0;"><a href="/search">Open the club map</a> <span style="color:#64748b;">(or <a href="/search.html">fallback</a>)</span></p>
+  </div>
+</body>
+</html>
