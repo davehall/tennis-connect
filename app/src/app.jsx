@@ -620,7 +620,7 @@ function ClubFinder(){
     try {
       const isSmall = (typeof window !== 'undefined' && window.innerWidth < 768);
       if (isSmall) {
-        if (isIOSRef.current) return 'py-3'; // iOS: slightly taller
+        if (isIOSRef.current) return 'py-4 text-lg'; // iOS: noticeably larger tap target + larger text
         return 'py-2.5'; // non-iOS small screens: a bit less tall
       }
     } catch(_){ }
