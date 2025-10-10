@@ -621,10 +621,10 @@ function ClubFinder(){
       const isSmall = (typeof window !== 'undefined' && window.innerWidth < 768);
       if (isSmall) {
         if (isIOSRef.current) return 'py-4 text-lg'; // iOS: noticeably larger tap target + larger text
-        return 'py-2.5'; // non-iOS small screens: a bit less tall
+        return 'py-2.5 text-base'; // non-iOS small screens: a bit less tall
       }
     } catch(_){ }
-    return 'py-3';
+    return 'py-3 text-base';
   };
 
   // Helper: search input padding — slightly larger on iOS small screens, slightly smaller elsewhere
@@ -632,7 +632,8 @@ function ClubFinder(){
     try {
       const isSmall = (typeof window !== 'undefined' && window.innerWidth < 768);
       if (isSmall) {
-        return isIOSRef.current ? 'py-3.5' : 'py-1.5';
+        // Apply reduced height on all small screens (including iOS) per request
+        return 'py-1.5';
       }
     } catch(_){ }
     return 'py-2';
@@ -1221,7 +1222,7 @@ if(newMarkers.length && !selectedClubId){
                   <div className="grid grid-cols-1 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-slate-600 mb-2">County</label>
-                      <select ref={firstMobileFilterRef} value={countyFilter} onChange={e=> setCountyFilter(e.target.value)} className={`w-full px-4 ${mobileFilterPaddingClass()} border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-base`}>
+                      <select ref={firstMobileFilterRef} value={countyFilter} onChange={e=> setCountyFilter(e.target.value)} className={`w-full px-4 ${mobileFilterPaddingClass()} border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50`}>
                         <option value="">All counties</option>
                         {getCountiesSafe().map(c => {
                           const n = countyCounts[c] || 0;
@@ -1232,7 +1233,7 @@ if(newMarkers.length && !selectedClubId){
                     {activeSport === 'Tennis' && (
                       <div>
                         <label className="block text-sm font-medium text-slate-600 mb-2">Surface</label>
-                        <select value={surfaceFilter} onChange={e=> setSurfaceFilter(e.target.value)} className={`w-full px-4 ${mobileFilterPaddingClass()} border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-base`}>
+                        <select value={surfaceFilter} onChange={e=> setSurfaceFilter(e.target.value)} className={`w-full px-4 ${mobileFilterPaddingClass()} border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50`}>
                           <option value="">All surfaces</option>
                           {(surfacesSorted||CANONICAL_SURFACES).map(s => <option key={s} value={s}>{s}{` (${surfaceCounts[s]||0})`}</option>)}
                         </select>
@@ -1240,7 +1241,7 @@ if(newMarkers.length && !selectedClubId){
                     )}
                     <div>
                       <label className="block text-sm font-medium text-slate-600 mb-2">Venue type</label>
-                      <select value={indoorFilter} onChange={e=> setIndoorFilter(e.target.value)} className={`w-full px-4 ${mobileFilterPaddingClass()} border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-base`}>
+                      <select value={indoorFilter} onChange={e=> setIndoorFilter(e.target.value)} className={`w-full px-4 ${mobileFilterPaddingClass()} border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50`}>
                         <option value="">All venue types</option>
                         <option value="outdoor">Outdoor</option>
                         <option value="indoor">Indoor</option>
