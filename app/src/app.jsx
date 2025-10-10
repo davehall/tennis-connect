@@ -632,7 +632,7 @@ function ClubFinder(){
     try {
       const isSmall = (typeof window !== 'undefined' && window.innerWidth < 768);
       if (isSmall) {
-        return isIOSRef.current ? 'py-3.5' : 'py-2.5';
+        return isIOSRef.current ? 'py-3.5' : 'py-1.5';
       }
     } catch(_){ }
     return 'py-2';
