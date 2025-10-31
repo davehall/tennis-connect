@@ -370,6 +370,23 @@ function ClubFinder(){
   };
   useEffect(()=> { const t=setTimeout(()=> setLocationSearch(rawLocationSearch), getSearchDebounceMs()); return ()=> clearTimeout(t); }, [rawLocationSearch]);
 
+  // On small screens, when the user types into the global search box, open the
+  // mobile list panel automatically so they immediately see matching clubs.
+  useEffect(() => {
+    try {
+      if (typeof window === 'undefined') return;
+      const isSmall = window.innerWidth < 768;
+      if (!isSmall) return;
+      if (rawLocationSearch && rawLocationSearch.trim().length > 0) {
+        setMobileListVisible(true);
+        // Close mobile filters if open (we want list visible)
+        setMobileFiltersOpen(false);
+        // Hide the top header for extra vertical space on mobile lists
+        setTopHeaderHidden(true);
+      }
+    } catch (_) {}
+  }, [rawLocationSearch]);
+
   // Auto-focus search on desktop initial load
   useEffect(()=>{
     if (typeof window === 'undefined') return;
