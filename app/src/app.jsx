@@ -483,7 +483,8 @@ function ClubFinder(){
           const ct = club.court_type.toString().trim().toLowerCase(); indoorMatch = ct === 'indoor' || ct === 'indoor/outdoor';
         } else if (Object.prototype.hasOwnProperty.call(club, 'indoor')) indoorMatch = club.indoor === true; else indoorMatch=false;
       }
-      const locationMatch = locationSearch.trim() === '' || club.name.toLowerCase().includes(locationSearch.toLowerCase()) || club.address.toLowerCase().includes(locationSearch.toLowerCase());
+  // Only match against the club name (title). Do not match address or other fields.
+  const locationMatch = locationSearch.trim() === '' || (club.name && club.name.toLowerCase().includes(locationSearch.toLowerCase()));
       return sportMatch && countyMatch && surfaceMatch && indoorMatch && locationMatch;
     }); } catch(err) {
       console.error('Filter computation failed', err);
