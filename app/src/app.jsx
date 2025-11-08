@@ -483,14 +483,47 @@ function ClubFinder(){
           const ct = club.court_type.toString().trim().toLowerCase(); indoorMatch = ct === 'indoor' || ct === 'indoor/outdoor';
         } else if (Object.prototype.hasOwnProperty.call(club, 'indoor')) indoorMatch = club.indoor === true; else indoorMatch=false;
       }
-      const locationMatch = locationSearch.trim() === '' || club.name.toLowerCase().includes(locationSearch.toLowerCase()) || club.address.toLowerCase().includes(locationSearch.toLowerCase());
+  // Only match against the club name (title). Do not match address or other fields.
+  const locationMatch = locationSearch.trim() === '' || (club.name && club.name.toLowerCase().includes(locationSearch.toLowerCase()));
       return sportMatch && countyMatch && surfaceMatch && indoorMatch && locationMatch;
     }); } catch(err) {
       console.error('Filter computation failed', err);
       filtered = allClubsLocal.filter(c=>c.sport==='Tennis').slice().sort((a,b)=>(a?.name||'').localeCompare(b?.name||'', undefined, { sensitivity:'base' }));
     }
     const cmp = (a,b)=> (a?.name||'').localeCompare(b?.name||'', undefined, { sensitivity:'base' });
-    filtered.sort((a,b)=> sortOrder === 'za' ? -cmp(a,b) : cmp(a,b));
+
+    // Normalize text for consistent matching (remove diacritics, lowercase)
+    const normalizeText = (s) => String(s || '').normalize && String(s || '').normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase() || String(s || '').toLowerCase();
+
+    // Scoring function: prefix (starts-with) matches first, then first-token prefix,
+    // then any token prefix, then contains, then others.
+    const makeNameScore = (query) => {
+      const q = normalizeText(query || '').trim();
+      return (name) => {
+        const n = normalizeText(name || '');
+        if (!q) return 10; // neutral score when no query
+        if (n.startsWith(q)) return 0;
+        const tokens = n.split(/\s+/).filter(Boolean);
+        if (tokens[0] && tokens[0].startsWith(q)) return 1;
+        if (tokens.some(t => t.startsWith(q))) return 2;
+        if (n.includes(q)) return 3;
+        return 9;
+      };
+    };
+
+    // If there's an active location search, prefer prefix/token-first matches.
+    if (locationSearch && locationSearch.trim()) {
+      const score = makeNameScore(locationSearch);
+      filtered.sort((a,b)=>{
+        const sa = score(a.name || '');
+        const sb = score(b.name || '');
+        if (sa !== sb) return sa - sb;
+        // tie-break by alphabetical (or reverse if requested)
+        return sortOrder === 'za' ? -cmp(a,b) : cmp(a,b);
+      });
+    } else {
+      filtered.sort((a,b)=> sortOrder === 'za' ? -cmp(a,b) : cmp(a,b));
+    }
     setFilteredClubs(filtered); setSelectedClubId(null);
   }, [activeSport, countyFilter, surfaceFilter, indoorFilter, locationSearch, allClubsLocal, sortOrder]);
 
