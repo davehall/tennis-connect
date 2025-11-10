@@ -282,6 +282,15 @@ function ClubFinder(){
   const [form, setForm] = useState({ website:'', email:'', notes:'' });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Open suggest modal if URL hash is #suggest-edit (for "suggesting an edit" links)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash === '#suggest-edit') {
+      setSuggestModalOpen(true);
+      // Clear the hash after opening so back button works naturally
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }, []);
   const [isMobileListVisible, setMobileListVisible] = useState(false);
   const [sortOrder, setSortOrder] = useState('az'); // 'az' | 'za'
   const [isMobileFiltersOpen, setMobileFiltersOpen] = useState(false);
