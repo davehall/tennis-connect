@@ -27,7 +27,8 @@ exports.handler = async function(event) {
   } catch (e) {
     return { statusCode: 400, body: JSON.stringify({ ok: false, error: 'Invalid request body' }) };
   }
-  if (!payload.name || !payload.sport || !payload.county || !payload.address || !payload.email) {
+  // Accept simplified payload: description (notes) and email required
+  if (!payload.notes || !payload.email) {
     return { statusCode: 400, body: JSON.stringify({ ok:false, error:'Missing required fields' }) };
   }
   // Append to suggestions log (Netlify functions have /tmp writable)
@@ -40,15 +41,10 @@ exports.handler = async function(event) {
   try {
     if (process.env.SMTP_HOST) {
       const transporter = nodemailer.createTransport({ host: process.env.SMTP_HOST, port: process.env.SMTP_PORT?parseInt(process.env.SMTP_PORT,10):587, secure: process.env.SMTP_PORT==='465', auth: process.env.SMTP_USER?{user:process.env.SMTP_USER, pass:process.env.SMTP_PASS}:undefined });
-      const subject = `Club suggestion: ${payload.name || 'Unnamed'}`;
-      const lines = [];
-      lines.push(`Club Name: ${payload.name || ''}`);
-      lines.push(`Sport: ${payload.sport || ''}`);
-      lines.push(`County: ${payload.county || ''}`);
-      lines.push(`Address: ${payload.address || ''}`);
-      if (payload.website) lines.push(`Website: ${payload.website}`);
-      if (payload.email) lines.push(`Contact Email: ${payload.email}`);
-      if (payload.notes) { lines.push('', 'Notes:'); lines.push(payload.notes); }
+  const subject = `Club suggestion`;
+  const lines = [];
+  lines.push(`Description: ${payload.notes || ''}`);
+  lines.push(`Contact Email: ${payload.email || ''}`);
       await transporter.sendMail({ from: process.env.SUGGEST_FROM || 'noreply@example.com', to: process.env.SUGGEST_TO || 'hello@davidhall.io', subject, text: lines.join('\n') });
     }
   } catch (e) { console.error('Email send failed', e); }

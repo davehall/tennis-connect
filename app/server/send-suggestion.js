@@ -43,8 +43,8 @@ async function trySendEmail(payload) {
 app.post('/api/suggest-club', async (req, res) => {
   try {
     const payload = req.body || {};
-    // Basic server-side validation
-    if (!payload.name || !payload.sport || !payload.county || !payload.address || !payload.email) {
+    // Simplified validation: require description (notes) and email
+    if (!payload.notes || !payload.email) {
       return res.status(400).json({ ok: false, error: 'Missing required fields' });
     }
     // Append to local log as JSON line for auditing

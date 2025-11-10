@@ -195,11 +195,11 @@ function ClubCard({ club, isSelected, onClick, priority=false, animateOnLoad=fal
 }
 
 const SuggestClubModal = React.memo(function SuggestClubModal({ open, onClose, submitted, form, errors, isSubmitting, onChange, onSubmit }) {
-  if(!open) return null;
+  if (!open) return null;
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-  <div className="relative bg-white rounded-md shadow-2xl w-full max-w-lg p-6 animate-fade-in">
+      <div className="relative bg-white rounded-md shadow-2xl w-full max-w-lg p-6 animate-fade-in">
         <div className="flex items-start justify-between mb-4">
           <h3 className="text-xl font-heading font-bold text-slate-800">Suggest a Club</h3>
           <button onClick={onClose} className="text-slate-400 hover:text-slate-600" aria-label="Close">✕</button>
@@ -212,47 +212,14 @@ const SuggestClubModal = React.memo(function SuggestClubModal({ open, onClose, s
         ) : (
           <form onSubmit={onSubmit} noValidate name="suggestClubForm" className="space-y-4 text-sm">
             <div>
-              <label className="block font-medium text-slate-700 mb-1">Club name<span className="text-teal-500">*</span></label>
-              <input autoFocus required name="name" value={form.name} onChange={onChange} className={`w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 ${errors.name ? 'border-red-400 focus:ring-red-400/50' : 'border-slate-300'}`} placeholder="e.g. Lakeside Tennis Club" aria-invalid={!!errors.name} aria-describedby={errors.name ? 'err-name' : undefined} />
-              {errors.name && <p id="err-name" className="mt-1 text-xs text-red-600">{errors.name}</p>}
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block font-medium text-slate-700 mb-1">Sport<span className="text-teal-500">*</span></label>
-                <select name="sport" value={form.sport} onChange={onChange} className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
-                  {['Tennis','Padel','Pickleball'].map(s=> <option key={s}>{s}</option>)}
-                </select>
-                {errors.sport && <p className="mt-1 text-xs text-red-600" id="err-sport">{errors.sport}</p>}
-              </div>
-              <div>
-                <label className="block font-medium text-slate-700 mb-1">County<span className="text-teal-500">*</span></label>
-                <select name="county" value={form.county} onChange={onChange} className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
-                  <option value="">Select</option>
-                  {getCountiesSafe().map(c=> <option key={c} value={c}>{c}</option>)}
-                </select>
-                {errors.county && <p className="mt-1 text-xs text-red-600" id="err-county">{errors.county}</p>}
-              </div>
+              <label className="block font-medium text-slate-700 mb-1">Description<span className="text-teal-500">*</span></label>
+              <textarea autoFocus required name="notes" value={form.notes} onChange={onChange} rows={4} className={`w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 ${errors.notes ? 'border-red-400 focus:ring-red-400/50' : 'border-slate-300'}`} placeholder="Describe the club or suggestion" aria-invalid={!!errors.notes} aria-describedby={errors.notes ? 'err-notes' : undefined} />
+              {errors.notes && <p id="err-notes" className="mt-1 text-xs text-red-600">{errors.notes}</p>}
             </div>
             <div>
-              <label className="block font-medium text-slate-700 mb-1">Address<span className="text-teal-500">*</span></label>
-              <input name="address" value={form.address} onChange={onChange} className={`w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 ${errors.address ? 'border-red-400 focus:ring-red-400/50' : 'border-slate-300'}`} placeholder="Street, Town" aria-invalid={!!errors.address} aria-describedby={errors.address ? 'err-address' : undefined} />
-              {errors.address && <p id="err-address" className="mt-1 text-xs text-red-600">{errors.address}</p>}
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block font-medium text-slate-700 mb-1">Website <span className="text-xs text-slate-400 font-normal">(optional)</span></label>
-                <input type="url" name="website" value={form.website} onChange={onChange} className={`w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 ${errors.website ? 'border-red-400 focus:ring-red-400/50' : 'border-slate-300'}`} placeholder="https://" aria-invalid={!!errors.website} aria-describedby={errors.website ? 'err-website' : undefined} />
-                {errors.website && <p id="err-website" className="mt-1 text-xs text-red-600">{errors.website}</p>}
-              </div>
-              <div>
-                <label className="block font-medium text-slate-700 mb-1">Contact email<span className="text-teal-500">*</span></label>
-                <input type="email" name="email" value={form.email} onChange={onChange} className={`w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 ${errors.email ? 'border-red-400 focus:ring-red-400/50' : 'border-slate-300'}`} placeholder="you@example.com" aria-invalid={!!errors.email} aria-describedby={errors.email ? 'err-email' : undefined} />
-                {errors.email && <p id="err-email" className="mt-1 text-xs text-red-600">{errors.email}</p>}
-              </div>
-            </div>
-            <div>
-              <label className="block font-medium text-slate-700 mb-1">Notes <span className="text-xs text-slate-400 font-normal">(optional)</span></label>
-              <textarea name="notes" value={form.notes} onChange={onChange} rows={3} className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50" placeholder="Anything else (indoor, floodlit, etc.)" />
+              <label className="block font-medium text-slate-700 mb-1">Contact email<span className="text-teal-500">*</span></label>
+              <input type="email" name="email" value={form.email} onChange={onChange} className={`w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 ${errors.email ? 'border-red-400 focus:ring-red-400/50' : 'border-slate-300'}`} placeholder="you@example.com" aria-invalid={!!errors.email} aria-describedby={errors.email ? 'err-email' : undefined} />
+              {errors.email && <p id="err-email" className="mt-1 text-xs text-red-600">{errors.email}</p>}
             </div>
             <div className="flex items-center justify-between pt-2">
               <button type="submit" disabled={isSubmitting} className={`bg-teal-500 text-white font-semibold px-5 py-2 rounded-md shadow-sm transition ${isSubmitting ? 'opacity-60 cursor-not-allowed' : 'hover:bg-teal-600'}`}>{isSubmitting ? 'Submitting...' : 'Submit'}</button>
@@ -1090,7 +1057,10 @@ if (newMarkers.length && !selectedClubId) {
   useEffect(()=> { if(!isSuggestModalOpen) return; const onKey=e=> { if(e.key==='Escape') setSuggestModalOpen(false); }; window.addEventListener('keydown', onKey); return ()=> window.removeEventListener('keydown', onKey); }, [isSuggestModalOpen]);
 
   const handleChange=e=> { const { name, value } = e.target; setForm(f=>({ ...f, [name]: value })); };
-  const validateForm=()=> { const errs={}; if(!form.name.trim()) errs.name='Club name is required'; else if(form.name.trim().length<3) errs.name='Name must be at least 3 characters'; if(!form.sport) errs.sport='Sport is required'; if(!form.county) errs.county='County is required'; if(!form.address.trim()) errs.address='Address is required'; if(!form.email.trim()) errs.email='Email is required'; else { const re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/; if(!re.test(form.email)) errs.email='Invalid email address'; } if(form.website){ try { new URL(form.website); } catch { errs.website='Invalid URL'; } } return errs; };
+  const validateForm=()=> { const errs={}; // Simplified: require description (notes) and email only
+    if(!form.notes || !form.notes.trim()) errs.notes='Description is required';
+    if(!form.email || !form.email.trim()) errs.email='Email is required'; else { const re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/; if(!re.test(form.email)) errs.email='Invalid email address'; }
+    return errs; };
   const handleSubmit=async e=> {
     e.preventDefault();
     console.log('[suggest] submit clicked', form);
