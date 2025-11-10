@@ -200,14 +200,13 @@ const SuggestClubModal = React.memo(function SuggestClubModal({ open, onClose, s
     <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
       <div className="relative bg-white rounded-md shadow-2xl w-full max-w-lg p-6 animate-fade-in">
-        <div className="flex items-start justify-between mb-4">
-          <h3 className="text-xl font-heading font-bold text-slate-800">Say hello</h3>
+        <div className="flex items-end justify-end mb-4">
           <button onClick={onClose} className="text-slate-400 hover:text-slate-600" aria-label="Close">✕</button>
         </div>
         {submitted ? (
           <div className="py-10 text-center" aria-live="polite">
-            <p className="text-lg font-medium text-teal-600">✅ Sent!</p>
-            <p className="text-slate-600 mt-2 text-sm">Thanks for helping improve the map. We'll review it shortly.</p>
+            <p className="text-xl font-medium text-teal-600">✅ Your message was sent!</p>
+            <p className="text-slate-600 mt-2 text-md">Thanks for sendfing us your comments. We'll review it shortly.</p>
           </div>
         ) : (
           <form onSubmit={onSubmit} noValidate name="suggestClubForm" className="space-y-4 text-sm">
@@ -1130,7 +1129,7 @@ if (newMarkers.length && !selectedClubId) {
             setErrors({});
             // Clean up form element after a short delay to avoid interrupting submission
             try { document.body.removeChild(formEl); } catch(_){ }
-          }, 1400);
+          }, 3000);
           setIsSubmitting(false);
           return;
         } catch (errSimple) {
@@ -1205,7 +1204,7 @@ if (newMarkers.length && !selectedClubId) {
         setSuggestSubmitted(false);
         setForm({ website:'', email:'', notes:'' });
         setErrors({});
-      }, 1400);
+      }, 3000);
     } catch (err) {
       console.error('Failed to send suggestion', err);
       // Show error to user inline
