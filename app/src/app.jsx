@@ -201,7 +201,7 @@ const SuggestClubModal = React.memo(function SuggestClubModal({ open, onClose, s
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
       <div className="relative bg-white rounded-md shadow-2xl w-full max-w-lg p-6 animate-fade-in">
         <div className="flex items-start justify-between mb-4">
-          <h3 className="text-xl font-heading font-bold text-slate-800">Suggest a Club</h3>
+          <h3 className="text-xl font-heading font-bold text-slate-800">Say hello</h3>
           <button onClick={onClose} className="text-slate-400 hover:text-slate-600" aria-label="Close">✕</button>
         </div>
         {submitted ? (
@@ -278,7 +278,8 @@ function ClubFinder(){
   const [selectedClubId, setSelectedClubId] = useState(null);
   const [isSuggestModalOpen, setSuggestModalOpen] = useState(false);
   const [suggestSubmitted, setSuggestSubmitted] = useState(false);
-  const [form, setForm] = useState({ name:'', sport:'Tennis', county:'', address:'', website:'', email:'', notes:'' });
+  // Simplified form state: only description (notes), contact email and optional website
+  const [form, setForm] = useState({ website:'', email:'', notes:'' });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMobileListVisible, setMobileListVisible] = useState(false);
@@ -1086,7 +1087,7 @@ if (newMarkers.length && !selectedClubId) {
       localStorage.setItem('suggestedClubs', JSON.stringify(submissions));
     } catch (err) {}
 
-    // Quick option: if a simple external endpoint is configured (e.g. Formsubmit.co or Formspree),
+  // Quick option: if a simple external endpoint is configured (e.g. Formsubmit.co or Formspree),
     // try posting form-encoded there first. This lets you receive suggestions without running
     // any server. Set `window.SIMPLE_SUGGEST_ENDPOINT = 'https://formsubmit.co/you@domain.tld'`
     // or `window.SIMPLE_SUGGEST_ENDPOINT = 'https://formspree.io/f/xxxxx'` in your page.
@@ -1114,13 +1115,13 @@ if (newMarkers.length && !selectedClubId) {
           formEl.submit();
           // Show sent UI immediately
           setSuggestSubmitted(true);
-          setTimeout(()=>{
+            setTimeout(()=>{
             setSuggestModalOpen(false);
             setSuggestSubmitted(false);
-            setForm({ name:'', sport:'Tennis', county:'', address:'', website:'', email:'', notes:'' });
+            setForm({ website:'', email:'', notes:'' });
             setErrors({});
             // Clean up form element after a short delay to avoid interrupting submission
-            try { document.body.removeChild(formEl); } catch(_){}
+            try { document.body.removeChild(formEl); } catch(_){ }
           }, 1400);
           setIsSubmitting(false);
           return;
@@ -1129,32 +1130,70 @@ if (newMarkers.length && !selectedClubId) {
         }
       }
 
-  // POST to backend endpoint. Expect JSON { ok: true }
-  const tryPost = async (url) => {
-        const r = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(form),
-        });
-        if (!r.ok) {
-          let json = null; try { json = await r.json(); } catch(_){}
-          throw new Error((json && json.error) ? json.error : `Request failed (${r.status})`);
-        }
-        return r;
+    // POST to backend endpoint. Expect JSON { ok: true }
+    const tryPost = async (url) => {
+      // Build a minimal payload: description (notes), contact email, and optional website
+      const payloadToSend = {
+        notes: form.notes || '',
+        email: form.email || '',
+        website: form.website || '',
+        // Temporary compatibility: include a minimal 'name' so older deployed
+        // server validators that expect it don't reject the request. Derived
+        // from the email local-part when available or set to 'Anonymous'.
+        name: (form.email && form.email.toString().trim()) ? (form.email.toString().split('@')[0] || 'Anonymous') : 'Anonymous'
       };
-      // First try relative path (works on Netlify or when API is proxied)
-      try {
-        await tryPost('/api/suggest-club');
-      } catch (err) {
-        // Fallback: try local dev server (common when static site served separately)
-        console.warn('Relative POST failed, trying local dev server...', err && err.message);
-        await tryPost('http://localhost:5173/api/suggest-club');
+      const r = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payloadToSend),
+      });
+      if (!r.ok) {
+        // Try to read body as text first (some error responses are empty or not JSON)
+        let txt = null;
+        try { txt = await r.text(); } catch (_) { txt = null; }
+        if (txt) {
+          try {
+            const j = JSON.parse(txt);
+            if (j && j.error) throw new Error(j.error);
+            // if JSON but no error field, stringify it for message
+            throw new Error(typeof j === 'string' ? j : JSON.stringify(j));
+          } catch (e) {
+            // Not JSON — use raw text
+            throw new Error(txt);
+          }
+        }
+        throw new Error(`Request failed (${r.status})`);
       }
+      return r;
+    };
+
+    // First try relative path (works on Netlify or when API is proxied).
+    // Use trailing slash to avoid server redirects which can convert POST -> GET and drop the body.
+    try {
+      await tryPost('/api/suggest-club/');
+    } catch (err) {
+      // If served from a non-local origin (production), don't attempt to call localhost
+      const hostname = (typeof window !== 'undefined' && window.location && window.location.hostname) ? window.location.hostname : '';
+      const isLocalHost = hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1' || hostname === '0.0.0.0';
+      if (isLocalHost) {
+        console.warn('Relative POST failed, trying local dev server (running on localhost)...', err && err.message);
+        try {
+          await tryPost('http://localhost:5173/api/suggest-club/');
+        } catch (err2) {
+          // surface the local failure
+          throw err2;
+        }
+      } else {
+        // Do not try localhost from non-local origins (avoids CORS / address-space blocking in browsers)
+        console.warn('Relative POST failed and origin is non-local; not attempting localhost fallback:', hostname, err && err.message);
+        throw err;
+      }
+    }
       setSuggestSubmitted(true);
       setTimeout(()=>{
         setSuggestModalOpen(false);
         setSuggestSubmitted(false);
-        setForm({ name:'', sport:'Tennis', county:'', address:'', website:'', email:'', notes:'' });
+        setForm({ website:'', email:'', notes:'' });
         setErrors({});
       }, 1400);
     } catch (err) {
@@ -1170,7 +1209,7 @@ if (newMarkers.length && !selectedClubId) {
     <>
     <div className="h-screen w-screen flex flex-col bg-slate-100">
   <header ref={headerRef} className="flex-shrink-0 bg-white border-b border-slate-200 z-[150]">
-          <div className="px-4 sm:px-6 lg:px-8">
+              <div className="px-4 sm:px-6 lg:px-8">
             <div
               ref={logoRowRef}
         className={`flex items-center justify-between h-14 md:h-18 lg:h-20 ${ (isMobileListVisible && isTopHeaderHidden) ? 'md:opacity-100  md:pointer-events-auto overflow-hidden opacity-0 pointer-events-none' : 'overflow-hidden md:overflow-visible'}`}
@@ -1190,7 +1229,7 @@ if (newMarkers.length && !selectedClubId) {
               <a href="/"><Logo variant="dark" className="-my-1, mt-2" /></a>
               <div className="hidden md:flex items-center">
                 <div className="flex items-center gap-3">
-                  <button onClick={()=> setSuggestModalOpen(true)} className="text-sm bg-teal-500 text-white font-medium py-2.5 px-5 rounded-md hover:bg-teal-600 transition">Suggest a club</button>
+                  <button onClick={()=> setSuggestModalOpen(true)} className="text-sm bg-teal-500 text-white font-medium py-2.5 px-5 rounded-md hover:bg-teal-600 transition">Say hello</button>
                 </div>
               </div>
             </div>
