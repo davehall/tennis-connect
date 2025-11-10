@@ -293,7 +293,14 @@ function ClubFinder(){
       .sort((a,b) => (a?.name||'').localeCompare(b?.name||'', undefined, { sensitivity:'base' }))
   );
   const [activeSport, setActiveSport] = useState('Tennis');
-  const [rawLocationSearch, setRawLocationSearch] = useState('');
+  const [rawLocationSearch, setRawLocationSearch] = useState(() => {
+    try {
+      const params = (typeof window !== 'undefined') ? new URLSearchParams(window.location.search) : new URLSearchParams();
+      return params.get('query') || params.get('q') || '';
+    } catch (e) {
+      return '';
+    }
+  });
   const [locationSearch, setLocationSearch] = useState('');
   const [countyFilter, setCountyFilter] = useState('');
   // Seed surface filter from URL param if present
