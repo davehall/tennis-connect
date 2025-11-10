@@ -5,8 +5,28 @@ const nodemailer = require('nodemailer');
 
 exports.handler = async function(event) {
   if (event.httpMethod !== 'POST') return { statusCode: 405, body: 'Method not allowed' };
-  let payload;
-  try { payload = JSON.parse(event.body || '{}'); } catch(e) { return { statusCode: 400, body: 'Invalid JSON' }; }
+  // Robust parsing: accept JSON, form-encoded, or base64-encoded bodies.
+  let payload = {};
+  try {
+    let bodyStr = event.body || '';
+    if (event.isBase64Encoded) {
+      bodyStr = Buffer.from(bodyStr, 'base64').toString('utf8');
+    }
+    try {
+      payload = JSON.parse(bodyStr || '{}');
+    } catch (jsonErr) {
+      // Fallback: try URL-encoded form data
+      try {
+        payload = Object.fromEntries(new URLSearchParams(bodyStr || ''));
+      } catch (e2) {
+        // Give up; return clearer error for logs
+        console.error('Failed to parse request body as JSON or form-encoded', jsonErr, e2);
+        return { statusCode: 400, body: JSON.stringify({ ok: false, error: 'Invalid request body' }) };
+      }
+    }
+  } catch (e) {
+    return { statusCode: 400, body: JSON.stringify({ ok: false, error: 'Invalid request body' }) };
+  }
   if (!payload.name || !payload.sport || !payload.county || !payload.address || !payload.email) {
     return { statusCode: 400, body: JSON.stringify({ ok:false, error:'Missing required fields' }) };
   }
