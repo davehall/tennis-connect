@@ -3,7 +3,9 @@
 // favicons (https://domain.tld/favicon.ico).
 
 // Bump this version when you change any cached shell asset so old caches purge.
-const CACHE_NAME = 'tcm-assets-v7';
+// Updated from v7 -> v8 to force clients to refresh cached app assets after
+// the recent app.js rebuild (map maxZoom and other fixes).
+const CACHE_NAME = 'tcm-assets-v8';
 const PRECACHE_ASSETS = [
   '/',
   '/images/favicon_fallback.png'
