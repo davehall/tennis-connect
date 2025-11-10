@@ -41,10 +41,10 @@ exports.handler = async function(event) {
   try {
     if (process.env.SMTP_HOST) {
       const transporter = nodemailer.createTransport({ host: process.env.SMTP_HOST, port: process.env.SMTP_PORT?parseInt(process.env.SMTP_PORT,10):587, secure: process.env.SMTP_PORT==='465', auth: process.env.SMTP_USER?{user:process.env.SMTP_USER, pass:process.env.SMTP_PASS}:undefined });
-  const subject = `Club suggestion`;
-  const lines = [];
-  lines.push(`Description: ${payload.notes || ''}`);
-  lines.push(`Contact Email: ${payload.email || ''}`);
+      const subject = `Tennis Connect message`;
+      const lines = [];
+      lines.push(`Description: ${payload.notes || ''}`);
+      lines.push(`Contact Email: ${payload.email || ''}`);
       await transporter.sendMail({ from: process.env.SUGGEST_FROM || 'noreply@example.com', to: process.env.SUGGEST_TO || 'hello@davidhall.io', subject, text: lines.join('\n') });
     }
   } catch (e) { console.error('Email send failed', e); }
