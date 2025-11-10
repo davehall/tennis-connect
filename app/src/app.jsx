@@ -837,7 +837,7 @@ function ClubFinder(){
       const irelandBounds=L.latLngBounds([ base.south-padDeg, base.west-padDeg ], [ base.north+padDeg, base.east+padDeg ]);
       const initialZoom=isSmall?12.5:11;
       const center=[53.4,-7.9];
-      const map=L.map('map',{ zoomControl:false, scrollWheelZoom:true, worldCopyJump:false, minZoom:isSmall?6:8, maxZoom:18 }).setView(center,initialZoom);
+    const map=L.map('map',{ zoomControl:false, scrollWheelZoom:true, worldCopyJump:false, minZoom:isSmall?6:8, maxZoom:17 }).setView(center,initialZoom);
       map.setMaxBounds(irelandBounds);
       map.options.maxBoundsViscosity=isSmall?0.35:0.7;
 
