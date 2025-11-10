@@ -975,28 +975,49 @@ function ClubFinder(){
     markersRef.current[club.id] = marker;
     newMarkers.push(marker);
   });
-if(newMarkers.length && !selectedClubId){
+if (newMarkers.length && !selectedClubId) {
   const group = new L.featureGroup(newMarkers);
   const bounds = group.getBounds();
   const isSmall = (typeof window !== 'undefined' && window.innerWidth < 768);
-  const smallPaddingTL = L.point(8,8);
-  const smallPaddingBR = L.point(8,8);
-  const desktopPadding = L.point(16,16);
-  if(!didInitialFitRef.current){
-    if(isSmall){
-      map.fitBounds(bounds, { paddingTopLeft: smallPaddingTL, paddingBottomRight: smallPaddingBR, animate:false });
-    } else {
-      map.fitBounds(bounds.pad(getMarkerFitPadDesktop()), { paddingTopLeft: desktopPadding, paddingBottomRight: desktopPadding, animate:false });
+  const smallPaddingTL = L.point(8, 8);
+  const smallPaddingBR = L.point(8, 8);
+  const desktopPadding = L.point(16, 16);
+
+  // Cap the fit/zoom to avoid requesting tiles beyond available coverage.
+  // Use the map's maxZoom when available, but prefer a conservative cap (15)
+  // so single-point fits don't zoom to an extreme level.
+  const mapMaxZoom = (map && map.getMaxZoom) ? (map.getMaxZoom() || 17) : 17;
+  const conservativeMax = Math.min(mapMaxZoom, 15);
+
+  if (newMarkers.length === 1) {
+    // Single marker: avoid fitBounds which can compute an infinite zoom for a
+    // zero-area bounds. Center on the marker and set a moderate zoom level.
+    try {
+      const single = newMarkers[0];
+      const latlng = (single && single.getLatLng) ? single.getLatLng() : bounds.getCenter();
+      const desiredZoom = Math.min(conservativeMax, 14);
+      map.setView(latlng, desiredZoom, { animate: false });
+    } catch (_) {
+      // Fallback to fitBounds if anything goes wrong
+      try {
+        map.fitBounds(bounds.pad(getMarkerFitPadDesktop()), { paddingTopLeft: desktopPadding, paddingBottomRight: desktopPadding, animate: false, maxZoom: conservativeMax });
+      } catch (_) {}
     }
     didInitialFitRef.current = true;
   } else {
-    if(isSmall){
-      map.fitBounds(bounds, { paddingTopLeft: smallPaddingTL, paddingBottomRight: smallPaddingBR, animate:false });
-    } else {
-      map.fitBounds(bounds.pad(getMarkerFitPadDesktop()), { paddingTopLeft: desktopPadding, paddingBottomRight: desktopPadding, animate:false });
+    // Multiple markers: fit bounds but cap the computed zoom to avoid overshoot.
+    try {
+      if (isSmall) {
+        map.fitBounds(bounds, { paddingTopLeft: smallPaddingTL, paddingBottomRight: smallPaddingBR, animate: false, maxZoom: conservativeMax });
+      } else {
+        map.fitBounds(bounds.pad(getMarkerFitPadDesktop()), { paddingTopLeft: desktopPadding, paddingBottomRight: desktopPadding, animate: false, maxZoom: conservativeMax });
+      }
+    } catch (_) {
+      // ignore failures from fitBounds
     }
+    didInitialFitRef.current = true;
   }
- }
+}
   if(selectedClubId && markersRef.current[selectedClubId]){ setTimeout(()=>{ const m=markersRef.current[selectedClubId]; if(m){ m.openPopup(); } },60); }
   }, [filteredClubs, selectedClubId, surfaceFilter]);
 
