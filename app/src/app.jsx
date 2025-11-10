@@ -195,64 +195,29 @@ function ClubCard({ club, isSelected, onClick, priority=false, animateOnLoad=fal
 }
 
 const SuggestClubModal = React.memo(function SuggestClubModal({ open, onClose, submitted, form, errors, isSubmitting, onChange, onSubmit }) {
-  if(!open) return null;
+  if (!open) return null;
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-  <div className="relative bg-white rounded-md shadow-2xl w-full max-w-lg p-6 animate-fade-in">
-        <div className="flex items-start justify-between mb-4">
-          <h3 className="text-xl font-heading font-bold text-slate-800">Suggest a Club</h3>
+      <div className="relative bg-white rounded-md shadow-2xl w-full max-w-lg p-6 animate-fade-in">
+        <div className="flex items-end justify-end mb-4">
           <button onClick={onClose} className="text-slate-400 hover:text-slate-600" aria-label="Close">✕</button>
         </div>
         {submitted ? (
           <div className="py-10 text-center" aria-live="polite">
-            <p className="text-lg font-medium text-teal-600">✅ Sent!</p>
-            <p className="text-slate-600 mt-2 text-sm">Thanks for helping improve the map. We'll review it shortly.</p>
+            <p className="text-xl font-medium text-teal-600">✅ Your message was sent!</p>
+            <p className="text-slate-600 mt-2 text-md">Thanks for sending us your comments. We'll review it shortly.</p>
           </div>
         ) : (
           <form onSubmit={onSubmit} noValidate name="suggestClubForm" className="space-y-4 text-sm">
             <div>
-              <label className="block font-medium text-slate-700 mb-1">Club name<span className="text-teal-500">*</span></label>
-              <input autoFocus required name="name" value={form.name} onChange={onChange} className={`w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 ${errors.name ? 'border-red-400 focus:ring-red-400/50' : 'border-slate-300'}`} placeholder="e.g. Lakeside Tennis Club" aria-invalid={!!errors.name} aria-describedby={errors.name ? 'err-name' : undefined} />
-              {errors.name && <p id="err-name" className="mt-1 text-xs text-red-600">{errors.name}</p>}
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block font-medium text-slate-700 mb-1">Sport<span className="text-teal-500">*</span></label>
-                <select name="sport" value={form.sport} onChange={onChange} className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
-                  {['Tennis','Padel','Pickleball'].map(s=> <option key={s}>{s}</option>)}
-                </select>
-                {errors.sport && <p className="mt-1 text-xs text-red-600" id="err-sport">{errors.sport}</p>}
-              </div>
-              <div>
-                <label className="block font-medium text-slate-700 mb-1">County<span className="text-teal-500">*</span></label>
-                <select name="county" value={form.county} onChange={onChange} className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
-                  <option value="">Select</option>
-                  {getCountiesSafe().map(c=> <option key={c} value={c}>{c}</option>)}
-                </select>
-                {errors.county && <p className="mt-1 text-xs text-red-600" id="err-county">{errors.county}</p>}
-              </div>
+              <textarea autoFocus required name="notes" value={form.notes} onChange={onChange} rows={4} className={`w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 ${errors.notes ? 'border-red-400 focus:ring-red-400/50' : 'border-slate-300'}`} placeholder="Send us your comments or suggest a club" aria-invalid={!!errors.notes} aria-describedby={errors.notes ? 'err-notes' : undefined} />
+              {errors.notes && <p id="err-notes" className="mt-1 text-xs text-red-600">{errors.notes}</p>}
             </div>
             <div>
-              <label className="block font-medium text-slate-700 mb-1">Address<span className="text-teal-500">*</span></label>
-              <input name="address" value={form.address} onChange={onChange} className={`w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 ${errors.address ? 'border-red-400 focus:ring-red-400/50' : 'border-slate-300'}`} placeholder="Street, Town" aria-invalid={!!errors.address} aria-describedby={errors.address ? 'err-address' : undefined} />
-              {errors.address && <p id="err-address" className="mt-1 text-xs text-red-600">{errors.address}</p>}
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block font-medium text-slate-700 mb-1">Website <span className="text-xs text-slate-400 font-normal">(optional)</span></label>
-                <input type="url" name="website" value={form.website} onChange={onChange} className={`w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 ${errors.website ? 'border-red-400 focus:ring-red-400/50' : 'border-slate-300'}`} placeholder="https://" aria-invalid={!!errors.website} aria-describedby={errors.website ? 'err-website' : undefined} />
-                {errors.website && <p id="err-website" className="mt-1 text-xs text-red-600">{errors.website}</p>}
-              </div>
-              <div>
-                <label className="block font-medium text-slate-700 mb-1">Contact email<span className="text-teal-500">*</span></label>
-                <input type="email" name="email" value={form.email} onChange={onChange} className={`w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 ${errors.email ? 'border-red-400 focus:ring-red-400/50' : 'border-slate-300'}`} placeholder="you@example.com" aria-invalid={!!errors.email} aria-describedby={errors.email ? 'err-email' : undefined} />
-                {errors.email && <p id="err-email" className="mt-1 text-xs text-red-600">{errors.email}</p>}
-              </div>
-            </div>
-            <div>
-              <label className="block font-medium text-slate-700 mb-1">Notes <span className="text-xs text-slate-400 font-normal">(optional)</span></label>
-              <textarea name="notes" value={form.notes} onChange={onChange} rows={3} className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50" placeholder="Anything else (indoor, floodlit, etc.)" />
+              <label className="block font-medium text-slate-700 mb-1">Contact email</label>
+              <input type="email" name="email" value={form.email} onChange={onChange} className={`w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 ${errors.email ? 'border-red-400 focus:ring-red-400/50' : 'border-slate-300'}`} placeholder="you@example.com" aria-invalid={!!errors.email} aria-describedby={errors.email ? 'err-email' : undefined} />
+              {errors.email && <p id="err-email" className="mt-1 text-xs text-red-600">{errors.email}</p>}
             </div>
             <div className="flex items-center justify-between pt-2">
               <button type="submit" disabled={isSubmitting} className={`bg-teal-500 text-white font-semibold px-5 py-2 rounded-md shadow-sm transition ${isSubmitting ? 'opacity-60 cursor-not-allowed' : 'hover:bg-teal-600'}`}>{isSubmitting ? 'Submitting...' : 'Submit'}</button>
@@ -311,9 +276,19 @@ function ClubFinder(){
   const [selectedClubId, setSelectedClubId] = useState(null);
   const [isSuggestModalOpen, setSuggestModalOpen] = useState(false);
   const [suggestSubmitted, setSuggestSubmitted] = useState(false);
-  const [form, setForm] = useState({ name:'', sport:'Tennis', county:'', address:'', website:'', email:'', notes:'' });
+  // Simplified form state: only description (notes), contact email and optional website
+  const [form, setForm] = useState({ website:'', email:'', notes:'' });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Open suggest modal if URL hash is #suggest-edit (for "suggesting an edit" links)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash === '#suggest-edit') {
+      setSuggestModalOpen(true);
+      // Clear the hash after opening so back button works naturally
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }, []);
   const [isMobileListVisible, setMobileListVisible] = useState(false);
   const [sortOrder, setSortOrder] = useState('az'); // 'az' | 'za'
   const [isMobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -1090,7 +1065,10 @@ if (newMarkers.length && !selectedClubId) {
   useEffect(()=> { if(!isSuggestModalOpen) return; const onKey=e=> { if(e.key==='Escape') setSuggestModalOpen(false); }; window.addEventListener('keydown', onKey); return ()=> window.removeEventListener('keydown', onKey); }, [isSuggestModalOpen]);
 
   const handleChange=e=> { const { name, value } = e.target; setForm(f=>({ ...f, [name]: value })); };
-  const validateForm=()=> { const errs={}; if(!form.name.trim()) errs.name='Club name is required'; else if(form.name.trim().length<3) errs.name='Name must be at least 3 characters'; if(!form.sport) errs.sport='Sport is required'; if(!form.county) errs.county='County is required'; if(!form.address.trim()) errs.address='Address is required'; if(!form.email.trim()) errs.email='Email is required'; else { const re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/; if(!re.test(form.email)) errs.email='Invalid email address'; } if(form.website){ try { new URL(form.website); } catch { errs.website='Invalid URL'; } } return errs; };
+  const validateForm=()=> { const errs={}; // Simplified: require description (notes) and email only
+    if(!form.notes || !form.notes.trim()) errs.notes='Description is required';
+    if(!form.email || !form.email.trim()) errs.email='Email is required'; else { const re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/; if(!re.test(form.email)) errs.email='Invalid email address'; }
+    return errs; };
   const handleSubmit=async e=> {
     e.preventDefault();
     console.log('[suggest] submit clicked', form);
@@ -1116,7 +1094,7 @@ if (newMarkers.length && !selectedClubId) {
       localStorage.setItem('suggestedClubs', JSON.stringify(submissions));
     } catch (err) {}
 
-    // Quick option: if a simple external endpoint is configured (e.g. Formsubmit.co or Formspree),
+  // Quick option: if a simple external endpoint is configured (e.g. Formsubmit.co or Formspree),
     // try posting form-encoded there first. This lets you receive suggestions without running
     // any server. Set `window.SIMPLE_SUGGEST_ENDPOINT = 'https://formsubmit.co/you@domain.tld'`
     // or `window.SIMPLE_SUGGEST_ENDPOINT = 'https://formspree.io/f/xxxxx'` in your page.
@@ -1144,14 +1122,14 @@ if (newMarkers.length && !selectedClubId) {
           formEl.submit();
           // Show sent UI immediately
           setSuggestSubmitted(true);
-          setTimeout(()=>{
+            setTimeout(()=>{
             setSuggestModalOpen(false);
             setSuggestSubmitted(false);
-            setForm({ name:'', sport:'Tennis', county:'', address:'', website:'', email:'', notes:'' });
+            setForm({ website:'', email:'', notes:'' });
             setErrors({});
             // Clean up form element after a short delay to avoid interrupting submission
-            try { document.body.removeChild(formEl); } catch(_){}
-          }, 1400);
+            try { document.body.removeChild(formEl); } catch(_){ }
+          }, 3000);
           setIsSubmitting(false);
           return;
         } catch (errSimple) {
@@ -1159,34 +1137,74 @@ if (newMarkers.length && !selectedClubId) {
         }
       }
 
-  // POST to backend endpoint. Expect JSON { ok: true }
-  const tryPost = async (url) => {
-        const r = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(form),
-        });
-        if (!r.ok) {
-          let json = null; try { json = await r.json(); } catch(_){}
-          throw new Error((json && json.error) ? json.error : `Request failed (${r.status})`);
-        }
-        return r;
+    // POST to backend endpoint. Expect JSON { ok: true }
+    const tryPost = async (url) => {
+      // Build a minimal payload: description (notes), contact email, and optional website
+      const payloadToSend = {
+        notes: form.notes || '',
+        email: form.email || '',
+        website: form.website || '',
+        // Temporary compatibility fields for older deployed validators
+        name: (form.email && form.email.toString().trim()) ? (form.email.toString().split('@')[0] || 'Anonymous') : 'Anonymous',
+        sport: 'Tennis',
+        county: 'Unknown',
+        // Some older validators expect an address; populate from the description
+        address: (form.notes && form.notes.toString().trim()) ? form.notes.toString().trim().slice(0,512) : 'Not provided'
       };
-      // First try relative path (works on Netlify or when API is proxied)
-      try {
-        await tryPost('/api/suggest-club');
-      } catch (err) {
-        // Fallback: try local dev server (common when static site served separately)
-        console.warn('Relative POST failed, trying local dev server...', err && err.message);
-        await tryPost('http://localhost:5173/api/suggest-club');
+      const r = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payloadToSend),
+      });
+      if (!r.ok) {
+        // Try to read body as text first (some error responses are empty or not JSON)
+        let txt = null;
+        try { txt = await r.text(); } catch (_) { txt = null; }
+        if (txt) {
+          try {
+            const j = JSON.parse(txt);
+            if (j && j.error) throw new Error(j.error);
+            // if JSON but no error field, stringify it for message
+            throw new Error(typeof j === 'string' ? j : JSON.stringify(j));
+          } catch (e) {
+            // Not JSON — use raw text
+            throw new Error(txt);
+          }
+        }
+        throw new Error(`Request failed (${r.status})`);
       }
+      return r;
+    };
+
+    // First try relative path (works on Netlify or when API is proxied).
+    // Use trailing slash to avoid server redirects which can convert POST -> GET and drop the body.
+    try {
+      await tryPost('/api/suggest-club/');
+    } catch (err) {
+      // If served from a non-local origin (production), don't attempt to call localhost
+      const hostname = (typeof window !== 'undefined' && window.location && window.location.hostname) ? window.location.hostname : '';
+      const isLocalHost = hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1' || hostname === '0.0.0.0';
+      if (isLocalHost) {
+        console.warn('Relative POST failed, trying local dev server (running on localhost)...', err && err.message);
+        try {
+          await tryPost('http://localhost:5173/api/suggest-club/');
+        } catch (err2) {
+          // surface the local failure
+          throw err2;
+        }
+      } else {
+        // Do not try localhost from non-local origins (avoids CORS / address-space blocking in browsers)
+        console.warn('Relative POST failed and origin is non-local; not attempting localhost fallback:', hostname, err && err.message);
+        throw err;
+      }
+    }
       setSuggestSubmitted(true);
       setTimeout(()=>{
         setSuggestModalOpen(false);
         setSuggestSubmitted(false);
-        setForm({ name:'', sport:'Tennis', county:'', address:'', website:'', email:'', notes:'' });
+        setForm({ website:'', email:'', notes:'' });
         setErrors({});
-      }, 1400);
+      }, 3000);
     } catch (err) {
       console.error('Failed to send suggestion', err);
       // Show error to user inline
@@ -1200,7 +1218,7 @@ if (newMarkers.length && !selectedClubId) {
     <>
     <div className="h-screen w-screen flex flex-col bg-slate-100">
   <header ref={headerRef} className="flex-shrink-0 bg-white border-b border-slate-200 z-[150]">
-          <div className="px-4 sm:px-6 lg:px-8">
+              <div className="px-4 sm:px-6 lg:px-8">
             <div
               ref={logoRowRef}
         className={`flex items-center justify-between h-14 md:h-18 lg:h-20 ${ (isMobileListVisible && isTopHeaderHidden) ? 'md:opacity-100  md:pointer-events-auto overflow-hidden opacity-0 pointer-events-none' : 'overflow-hidden md:overflow-visible'}`}
@@ -1220,7 +1238,7 @@ if (newMarkers.length && !selectedClubId) {
               <a href="/"><Logo variant="dark" className="-my-1, mt-2" /></a>
               <div className="hidden md:flex items-center">
                 <div className="flex items-center gap-3">
-                  <button onClick={()=> setSuggestModalOpen(true)} className="text-sm bg-teal-500 text-white font-medium py-2.5 px-5 rounded-md hover:bg-teal-600 transition">Suggest a club</button>
+                  <button onClick={()=> setSuggestModalOpen(true)} className="text-sm bg-teal-500 text-white font-medium py-2.5 px-5 rounded-md hover:bg-teal-600 transition">Say hello</button>
                 </div>
               </div>
             </div>

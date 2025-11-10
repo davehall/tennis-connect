@@ -25,15 +25,12 @@ async function trySendEmail(payload) {
   const to = process.env.SUGGEST_TO || 'hello@davidhall.io';
 
   const transporter = nodemailer.createTransport({ host, port, secure: port===465, auth: user ? { user, pass } : undefined });
-  const subject = `Club suggestion: ${payload.name || 'Unnamed'}`;
+  const subject = `Tennis Connect message`;
   const lines = [];
-  lines.push(`Club Name: ${payload.name || ''}`);
-  lines.push(`Sport: ${payload.sport || ''}`);
-  lines.push(`County: ${payload.county || ''}`);
-  lines.push(`Address: ${payload.address || ''}`);
+  // Send description (notes) as the main content of the message
+  lines.push(`Description: ${payload.notes || ''}`);
   if (payload.website) lines.push(`Website: ${payload.website}`);
   if (payload.email) lines.push(`Contact Email: ${payload.email}`);
-  if (payload.notes) { lines.push('', 'Notes:'); lines.push(payload.notes); }
   const body = lines.join('\n');
 
   await transporter.sendMail({ from, to, subject, text: body });
@@ -43,8 +40,8 @@ async function trySendEmail(payload) {
 app.post('/api/suggest-club', async (req, res) => {
   try {
     const payload = req.body || {};
-    // Basic server-side validation
-    if (!payload.name || !payload.sport || !payload.county || !payload.address || !payload.email) {
+    // Simplified validation: require description (notes) and email
+    if (!payload.notes || !payload.email) {
       return res.status(400).json({ ok: false, error: 'Missing required fields' });
     }
     // Append to local log as JSON line for auditing
