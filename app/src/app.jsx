@@ -1137,10 +1137,12 @@ if (newMarkers.length && !selectedClubId) {
         notes: form.notes || '',
         email: form.email || '',
         website: form.website || '',
-        // Temporary compatibility: include a minimal 'name' so older deployed
-        // server validators that expect it don't reject the request. Derived
-        // from the email local-part when available or set to 'Anonymous'.
-        name: (form.email && form.email.toString().trim()) ? (form.email.toString().split('@')[0] || 'Anonymous') : 'Anonymous'
+        // Temporary compatibility fields for older deployed validators
+        name: (form.email && form.email.toString().trim()) ? (form.email.toString().split('@')[0] || 'Anonymous') : 'Anonymous',
+        sport: 'Tennis',
+        county: 'Unknown',
+        // Some older validators expect an address; populate from the description
+        address: (form.notes && form.notes.toString().trim()) ? form.notes.toString().trim().slice(0,512) : 'Not provided'
       };
       const r = await fetch(url, {
         method: 'POST',
