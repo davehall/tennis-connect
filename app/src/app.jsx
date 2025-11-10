@@ -206,7 +206,7 @@ const SuggestClubModal = React.memo(function SuggestClubModal({ open, onClose, s
         {submitted ? (
           <div className="py-10 text-center" aria-live="polite">
             <p className="text-xl font-medium text-teal-600">✅ Your message was sent!</p>
-            <p className="text-slate-600 mt-2 text-md">Thanks for sendfing us your comments. We'll review it shortly.</p>
+            <p className="text-slate-600 mt-2 text-md">Thanks for sending us your comments. We'll review it shortly.</p>
           </div>
         ) : (
           <form onSubmit={onSubmit} noValidate name="suggestClubForm" className="space-y-4 text-sm">
