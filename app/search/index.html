@@ -146,6 +146,36 @@
     })();
   </script>
   <script>
+    // Fallback: apply ?query or ?q to the global search input if present.
+    // This uses a polling approach (like the surface script) and dispatches an input event
+    // so React's onChange handler picks up the value even if the bundle mounted after page load.
+    (function(){
+      const params = new URLSearchParams(window.location.search);
+      const rawQuery = params.get('query') || params.get('q');
+      if(!rawQuery) return;
+      const decoded = decodeURIComponent(rawQuery);
+      function tryApply(){
+        const input = document.getElementById('global-search');
+        if(!input) return false;
+        try {
+          // Only apply if the input is empty or different
+          if((input.value || '').trim() !== decoded.trim()){
+            input.focus && input.focus();
+            // set value and notify React by dispatching an InputEvent
+            input.value = decoded;
+            const ev = new Event('input', { bubbles: true });
+            input.dispatchEvent(ev);
+          }
+          return true;
+        } catch (e){ return false; }
+      }
+      let tries = 0;
+      const h = setInterval(()=>{ if(tryApply() || ++tries > 80) clearInterval(h); }, 150);
+      window.addEventListener('DOMContentLoaded', tryApply);
+      window.addEventListener('load', tryApply);
+    })();
+  </script>
+  <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').catch(()=>{});
