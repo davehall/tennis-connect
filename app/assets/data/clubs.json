@@ -887,6 +887,22 @@
     "favicon": "/images/logos/claremorris.png"
   },
   {
+    "id": 537,
+    "name": "Clarinda Tennis",
+    "address": "Clarinda Park, Dún Laoghaire, Dublin, Ireland",
+    "county": "Dublin",
+    "lat": 53.289146,
+    "lng": -6.131412,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 4,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "indoor": false,
+    "favicon": "/images/logos/parks_tennis.png"
+  },
+  {
     "id": 48,
     "name": "Clonakilty Tennis Club",
     "address": "Clonakilty Tennis Club, Clonakilty Sports Complex, Scartagh, Clonakilty, Co. Cork, P85 Y009, Ireland",
@@ -3296,23 +3312,6 @@
     "court_type": "Outdoor",
     "website": "https://parkstennis.com/",
     "indoor": false,
-    "favicon": "/images/logos/parks_tennis.png"
-  }
-,
-  {
-    "id": 537,
-    "name": "Clarinda Tennis",
-    "address": "Clarinda Park, Dún Laoghaire, Dublin, Ireland",
-    "county": "Dublin",
-    "lat": 53.289146,
-    "lng": -6.131412,
-    "sport": "Tennis",
-    "facility_type": "Tennis Club",
-    "courts": 4,
-    "court_surface": "Hard Court",
-    "court_type": "Outdoor",
-    "website": "https://parkstennis.com/",
-    "indoor": false,
-    "favicon": "/images/logos/parks_tennis.png"
+    "favicon": "/images/logos/malahide_castle.png"
   }
 ]
