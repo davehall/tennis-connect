@@ -43,6 +43,22 @@
     "favicon": "/images/logos/active.png"
   },
   {
+    "id": 532,
+    "name": "Airlie Park Tennis Court",
+    "address": "Adamstown, Co. Dublin, Ireland",
+    "county": "Dublin",
+    "lat": 53.342834,
+    "lng": -6.469926,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 3,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "indoor": false,
+    "favicon": "/images/logos/parks_tennis.png"
+  },
+  {
     "id": 511,
     "name": "Andersonstown Leisure Centre",
     "address": "132 Andersonstown Rd, Belfast BT11 9BY, United Kingdom",
@@ -372,6 +388,22 @@
     "favicon": "/images/logos/bangor.png"
   },
   {
+    "id": 535,
+    "name": "Beckett Park Tennis",
+    "address": "Seagrange Park, Seacliff Ave, Kilbarrack Lower, Dublin, D13 EY11, Ireland",
+    "county": "Dublin",
+    "lat": 53.249642,
+    "lng": -6.161448,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 6,
+    "court_surface": "Artificial Grass",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "indoor": false,
+    "favicon": "/images/logos/parks_tennis.png"
+  },
+  {
     "id": 21,
     "name": "Bective Tennis & Padel",
     "address": "Main Street, Donnybrook, Dublin, D04 A0P1, Ireland",
@@ -397,6 +429,22 @@
     "lng": -6.232721,
     "website": "https://bectivetennis.com/",
     "favicon": "/images/logos/bective.png"
+  },
+  {
+    "name": "Beechfield Park Tennis",
+    "address": "Beechfield Rd, Crumlin, Dublin, Ireland",
+    "county": "Dublin",
+    "lat": 53.315435,
+    "lng": -6.325653,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 6,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "indoor": false,
+    "favicon": "/images/logos/parks_tennis.png",
+    "id": 541
   },
   {
     "id": 22,
@@ -1120,6 +1168,22 @@
     "favicon": "/images/logos/dinking-hub-limited-505.ico"
   },
   {
+    "name": "Dodder Valley Park Tennis",
+    "address": "20 Bawnville Cl, Oldbawn, Dublin 24, D24 TCW7, Ireland",
+    "county": "Dublin",
+    "lat": 53.278787,
+    "lng": -6.355109,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 3,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "indoor": false,
+    "favicon": "/images/logos/parks_tennis.png",
+    "id": 542
+  },
+  {
     "id": 60,
     "name": "Donabate Portrane Tennis Club",
     "address": "Ballalease, Co. Dublin, Donabate, Co. Dublin, K36 PK70, Ireland",
@@ -1271,6 +1335,22 @@
     "website": "https://dungannontennisclub.com/",
     "indoor": false,
     "favicon": "/images/logos/dungannon.png"
+  },
+  {
+    "name": "Eamonn Ceannt Park Tennis",
+    "address": "Rutland Grove, Harold's Cross, Dublin 12, Ireland",
+    "county": "Dublin",
+    "lat": 53.324742,
+    "lng": -6.290053,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 2,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "indoor": false,
+    "favicon": "/images/logos/parks_tennis.png",
+    "id": 540
   },
   {
     "id": 500,
@@ -1619,6 +1699,22 @@
     "website": "https://clubspark.net/hawardentennisclub",
     "indoor": false,
     "favicon": "/images/logos/hawarden-lawn-tennis-club.png"
+  },
+  {
+    "name": "Hazel Lawns Tennis Courts",
+    "address": "Hazel Lawn, Blanchardstown, Dublin 15, Ireland",
+    "county": "Dublin",
+    "lat": 53.385548,
+    "lng": -6.379866,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 2,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "indoor": false,
+    "favicon": "/images/logos/parks_tennis.png",
+    "id": 539
   },
   {
     "id": 83,
@@ -2231,6 +2327,22 @@
     "favicon": "/images/logos/luttrellstown.png"
   },
   {
+    "id": 536,
+    "name": "Malahide Castle Sports Pavilion",
+    "address": "Malahide Demesne, Co. Dublin, Ireland",
+    "county": "Dublin",
+    "lat": 53.448564,
+    "lng": -6.161776,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 6,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "indoor": false,
+    "favicon": "/images/logos/malahide_castle.png"
+  },
+  {
     "id": 113,
     "name": "Malahide Lawn Tennis and Croquet Club",
     "address": "The Square, Malahide, Co. Dublin, Ireland",
@@ -2244,6 +2356,22 @@
     "court_type": "Indoor/Outdoor",
     "website": "https://mltcc.com/",
     "favicon": "/images/logos/malahide.png"
+  },
+  {
+    "id": 531,
+    "name": "Marlay Park Tennis Courts",
+    "address": "Grange Rd, Rathfarnham, Dublin, D14 Y6X5, Ireland",
+    "county": "Dublin",
+    "lat": 53.272457,
+    "lng": -6.274787,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 6,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "indoor": false,
+    "favicon": "/images/logos/malahide_castle.png"
   },
   {
     "id": 114,
@@ -2524,6 +2652,22 @@
     "favicon": "/images/logos/omagh-lawn-tennis-club.png"
   },
   {
+    "name": "Orlynn Park Tennis",
+    "address": "Lusk, Co. Dublin, Ireland",
+    "county": "Dublin",
+    "lat": 53.521553,
+    "lng": -6.164437,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 2,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "indoor": false,
+    "favicon": "/images/logos/parks_tennis.png",
+    "id": 538
+  },
+  {
     "id": 320,
     "name": "Padel 54",
     "address": "20 Lisnabilla Rd, Moira, Craigavon BT67 0JW, United Kingdom",
@@ -2764,6 +2908,22 @@
     "lng": -8.5600464,
     "website": "https://www.facebook.com/RebelPickleball/",
     "favicon": "/images/logos/rebelpickleball.png"
+  },
+  {
+    "id": 533,
+    "name": "Ringsend Park Tennis Courts",
+    "address": "Malahide Castle & Gardens, Malahide Demesne, Malahide, Dublin, Ireland",
+    "county": "Dublin",
+    "lat": 53.448542,
+    "lng": -6.161746,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 4,
+    "court_surface": "Artificial Grass",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "indoor": false,
+    "favicon": "/images/logos/parks_tennis.png"
   },
   {
     "id": 315,
@@ -3142,6 +3302,22 @@
     "favicon": "/images/logos/terenurepickle.png"
   },
   {
+    "id": 534,
+    "name": "Trackside Lawn Tennis Club",
+    "address": "Seagrange Park, Seacliff Ave, Kilbarrack Lower, Dublin, D13 EY11, Ireland",
+    "county": "Dublin",
+    "lat": 53.392058,
+    "lng": -6.136605,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 8,
+    "court_surface": "Artificial Grass / Hard Court",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "indoor": false,
+    "favicon": "/images/logos/parks_tennis.png"
+  },
+  {
     "id": 160,
     "name": "Tralee Tennis Club",
     "address": "Dan Spring Rd, Tralee, Co. Kerry, Ireland",
@@ -3216,102 +3392,5 @@
     "lng": -5.9856048,
     "website": "https://www.better.org.uk/leisure-centre/belfast/whiterock-leisure-centre",
     "favicon": "/images/logos/whiterock-leisure-centre-527.ico"
-  },
-  {
-    "id": 531,
-    "name": "Marlay Park Tennis Courts",
-    "address": "Grange Rd, Rathfarnham, Dublin, D14 Y6X5, Ireland",
-    "county": "Dublin",
-    "lat": 53.272457,
-    "lng": -6.274787,
-    "sport": "Tennis",
-    "facility_type": "Tennis Club",
-    "courts": 6,
-    "court_surface": "Hard Court",
-    "court_type": "Outdoor",
-    "website": "https://parkstennis.com/",
-    "indoor": false,
-  "favicon": "/images/logos/malahide_castle.png"
-  },
-  {
-    "id": 532,
-    "name": "Airlie Park Tennis Court",
-    "address": "Adamstown, Co. Dublin, Ireland",
-    "county": "Dublin",
-    "lat": 53.342834,
-    "lng": -6.469926,
-    "sport": "Tennis",
-    "facility_type": "Tennis Club",
-    "courts": 3,
-    "court_surface": "Hard Court",
-    "court_type": "Outdoor",
-    "website": "https://parkstennis.com/",
-    "indoor": false,
-    "favicon": "/images/logos/parks_tennis.png"
-  },
-  {
-    "id": 533,
-    "name": "Ringsend Park Tennis Courts",
-    "address": "Malahide Castle & Gardens, Malahide Demesne, Malahide, Dublin, Ireland",
-    "county": "Dublin",
-    "lat": 53.448542,
-    "lng": -6.161746,
-    "sport": "Tennis",
-    "facility_type": "Tennis Club",
-    "courts": 4,
-    "court_surface": "Artificial Grass",
-    "court_type": "Outdoor",
-    "website": "https://parkstennis.com/",
-    "indoor": false,
-    "favicon": "/images/logos/parks_tennis.png"
-  },
-  {
-    "id": 534,
-    "name": "Trackside Lawn Tennis Club",
-    "address": "Seagrange Park, Seacliff Ave, Kilbarrack Lower, Dublin, D13 EY11, Ireland",
-    "county": "Dublin",
-    "lat": 53.392058,
-    "lng": -6.136605,
-    "sport": "Tennis",
-    "facility_type": "Tennis Club",
-    "courts": 8,
-    "court_surface": "Artificial Grass / Hard Court",
-    "court_type": "Outdoor",
-    "website": "https://parkstennis.com/",
-    "indoor": false,
-    "favicon": "/images/logos/parks_tennis.png"
-  },
-  {
-    "id": 535,
-    "name": "Beckett Park Tennis",
-    "address": "Seagrange Park, Seacliff Ave, Kilbarrack Lower, Dublin, D13 EY11, Ireland",
-    "county": "Dublin",
-    "lat": 53.249642,
-    "lng": -6.161448,
-    "sport": "Tennis",
-    "facility_type": "Tennis Club",
-    "courts": 6,
-    "court_surface": "Artificial Grass",
-    "court_type": "Outdoor",
-    "website": "https://parkstennis.com/",
-    "indoor": false,
-    "favicon": "/images/logos/parks_tennis.png"
-  }
-,
-  {
-    "id": 536,
-    "name": "Malahide Castle Sports Pavilion",
-    "address": "Malahide Demesne, Co. Dublin, Ireland",
-    "county": "Dublin",
-    "lat": 53.448564,
-    "lng": -6.161776,
-    "sport": "Tennis",
-    "facility_type": "Tennis Club",
-    "courts": 6,
-    "court_surface": "Hard Court",
-    "court_type": "Outdoor",
-    "website": "https://parkstennis.com/",
-    "indoor": false,
-    "favicon": "/images/logos/malahide_castle.png"
   }
 ]
