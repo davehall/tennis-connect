@@ -3281,4 +3281,21 @@
     "indoor": false,
     "favicon": "/images/logos/parks_tennis.png"
   }
+,
+  {
+    "id": 536,
+    "name": "Malahide Castle Sports",
+    "address": "Malahide Demesne, Co. Dublin, Ireland",
+    "county": "Dublin",
+    "lat": 53.448564,
+    "lng": -6.161776,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 6,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "indoor": false,
+    "favicon": "/images/logos/parks_tennis.png"
+  }
 ]
