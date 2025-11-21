@@ -56,7 +56,8 @@
     "court_type": "Outdoor",
     "website": "https://parkstennis.com/",
     "indoor": false,
-    "favicon": "/images/logos/parks_tennis.png"
+    "favicon": "/images/logos/parks_tennis.png",
+    "public": true
   },
   {
     "id": 511,
@@ -401,7 +402,8 @@
     "court_type": "Outdoor",
     "website": "https://parkstennis.com/",
     "indoor": false,
-    "favicon": "/images/logos/parks_tennis.png"
+    "favicon": "/images/logos/parks_tennis.png",
+    "public": true
   },
   {
     "id": 21,
@@ -444,7 +446,8 @@
     "website": "https://parkstennis.com/",
     "indoor": false,
     "favicon": "/images/logos/parks_tennis.png",
-    "id": 541
+    "id": 541,
+    "public": true
   },
   {
     "id": 22,
@@ -948,7 +951,8 @@
     "court_type": "Outdoor",
     "website": "https://parkstennis.com/",
     "indoor": false,
-    "favicon": "/images/logos/parks_tennis.png"
+    "favicon": "/images/logos/parks_tennis.png",
+    "public": true
   },
   {
     "id": 48,
@@ -1181,7 +1185,8 @@
     "website": "https://parkstennis.com/",
     "indoor": false,
     "favicon": "/images/logos/parks_tennis.png",
-    "id": 542
+    "id": 542,
+    "public": true
   },
   {
     "id": 60,
@@ -1350,7 +1355,8 @@
     "website": "https://parkstennis.com/",
     "indoor": false,
     "favicon": "/images/logos/parks_tennis.png",
-    "id": 540
+    "id": 540,
+    "public": true
   },
   {
     "id": 500,
@@ -1714,7 +1720,8 @@
     "website": "https://parkstennis.com/",
     "indoor": false,
     "favicon": "/images/logos/parks_tennis.png",
-    "id": 539
+    "id": 539,
+    "public": true
   },
   {
     "id": 83,
@@ -2665,7 +2672,8 @@
     "website": "https://parkstennis.com/",
     "indoor": false,
     "favicon": "/images/logos/parks_tennis.png",
-    "id": 538
+    "id": 538,
+    "public": true
   },
   {
     "id": 320,
@@ -2923,7 +2931,8 @@
     "court_type": "Outdoor",
     "website": "https://parkstennis.com/",
     "indoor": false,
-    "favicon": "/images/logos/parks_tennis.png"
+    "favicon": "/images/logos/parks_tennis.png",
+    "public": true
   },
   {
     "id": 315,
@@ -3315,7 +3324,8 @@
     "court_type": "Outdoor",
     "website": "https://parkstennis.com/",
     "indoor": false,
-    "favicon": "/images/logos/parks_tennis.png"
+    "favicon": "/images/logos/parks_tennis.png",
+    "public": true
   },
   {
     "id": 160,
