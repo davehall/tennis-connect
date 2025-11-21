@@ -1095,7 +1095,7 @@
   {
     "id": 505,
     "name": "Dinking Hub Limited",
-    "address": "St Tiernan's Community School, Parkvale, Sandyford, Dublin",
+    "address": "St Tiernan's Community School, Parkvale, Sandyford, Dublin, Ireland",
     "county": "Dublin",
     "sport": "Pickleball",
     "lat": 53.2816791,
@@ -1216,7 +1216,7 @@
   {
     "id": 503,
     "name": "Dundalk Pickleball",
-    "address": "Dundalk Sports Centre, Dundalk, Co. Louth",
+    "address": "Dundalk Sports Centre, Dundalk, Co. Louth, Ireland",
     "county": "Louth",
     "sport": "Pickleball",
     "lat": 53.989986,
@@ -1259,7 +1259,7 @@
   {
     "id": 500,
     "name": "East Cork Pickleball Club",
-    "address": "Cork Show Grounds, Cork",
+    "address": "Cork Show Grounds, Cork, Ireland",
     "county": "Cork",
     "sport": "Pickleball",
     "lat": 51.88853,
@@ -1270,7 +1270,7 @@
   {
     "id": 308,
     "name": "Eddie Irvine Sports",
-    "address": "Balloo Road, Bangor, Co. Down",
+    "address": "Balloo Road, Bangor, Co. Down, Ireland",
     "county": "Down",
     "sport": "Padel",
     "lat": 54.64352,
@@ -2147,7 +2147,7 @@
   {
     "id": 508,
     "name": "Loreto Abbey Dalkey Sports Hall",
-    "address": "Loreto Ave, Harbour Rd, Dalkey Commons, Dalkey, Co. Dublin",
+    "address": "Loreto Ave, Harbour Rd, Dalkey Commons, Dalkey, Co. Dublin, Ireland",
     "county": "Dublin",
     "sport": "Pickleball",
     "lat": 53.27904,
@@ -2206,7 +2206,7 @@
   {
     "id": 509,
     "name": "Luttrellstown Community Centre",
-    "address": "Porterstown Rd, Annfield, Co. Dublin",
+    "address": "Porterstown Rd, Annfield, Co. Dublin, Ireland",
     "county": "Dublin",
     "sport": "Pickleball",
     "lat": 53.3744765,
@@ -2554,7 +2554,7 @@
   {
     "id": 300,
     "name": "PadelZone Carrigtwohill",
-    "address": "Fota Retail Park, Carrigtwohill, Co. Cork",
+    "address": "Fota Retail Park, Carrigtwohill, Co. Cork, Ireland",
     "county": "Cork",
     "sport": "Padel",
     "lat": 51.908436,
@@ -2608,7 +2608,7 @@
   {
     "id": 309,
     "name": "Portmarnock Padel Club",
-    "address": "Blackwood Ln, Beechwood, Portmarnock, Co. Dublin",
+    "address": "Blackwood Ln, Beechwood, Portmarnock, Co. Dublin, Ireland",
     "county": "Dublin",
     "sport": "Padel",
     "lat": 53.4338697,
@@ -2897,7 +2897,7 @@
   {
     "id": 501,
     "name": "Sandyford Pickleball",
-    "address": "Naomh Olaf's GAA Club, Sandyford, Dublin",
+    "address": "Naomh Olaf's GAA Club, Sandyford, Dublin, Ireland",
     "county": "Dublin",
     "sport": "Pickleball",
     "lat": 53.27857,
@@ -2949,7 +2949,7 @@
   {
     "id": 510,
     "name": "Southside Pickleball Club Dublin",
-    "address": "Kilmacud Rd Upper, Stillorgan, Dublin",
+    "address": "Kilmacud Rd Upper, Stillorgan, Dublin, Ireland",
     "county": "Dublin",
     "sport": "Pickleball",
     "lat": 53.2858852,
@@ -3117,7 +3117,7 @@
   {
     "id": 502,
     "name": "Terenure Pickleball Club",
-    "address": "The Dome, Our Lady's School, Dublin 6W",
+    "address": "The Dome, Our Lady's School, Dublin 6W, Ireland",
     "county": "Dublin",
     "sport": "Pickleball",
     "lat": 53.299728,
@@ -3200,12 +3200,11 @@
     "lng": -5.9856048,
     "website": "https://www.better.org.uk/leisure-centre/belfast/whiterock-leisure-centre",
     "favicon": "/images/logos/whiterock-leisure-centre-527.ico"
-  }
-,
+  },
   {
     "id": 531,
     "name": "Marlay Park Tennis Courts",
-    "address": "Grange Rd, Rathfarnham, Dublin, D14 Y6X5",
+    "address": "Grange Rd, Rathfarnham, Dublin, D14 Y6X5, Ireland",
     "county": "Dublin",
     "lat": 53.272457,
     "lng": -6.274787,
@@ -3221,7 +3220,7 @@
   {
     "id": 532,
     "name": "Airlie Park Tennis Court",
-    "address": "Adamstown, Co. Dublin",
+    "address": "Adamstown, Co. Dublin, Ireland",
     "county": "Dublin",
     "lat": 53.342834,
     "lng": -6.469926,
@@ -3237,7 +3236,7 @@
   {
     "id": 533,
     "name": "Ringsend Park Tennis Courts",
-    "address": "Malahide Castle & Gardens, Malahide Demesne, Malahide, Dublin",
+    "address": "Malahide Castle & Gardens, Malahide Demesne, Malahide, Dublin, Ireland",
     "county": "Dublin",
     "lat": 53.448542,
     "lng": -6.161746,
@@ -3253,7 +3252,7 @@
   {
     "id": 534,
     "name": "Trackside Lawn Tennis Club",
-    "address": "Seagrange Park, Seacliff Ave, Kilbarrack Lower, Dublin, D13 EY11",
+    "address": "Seagrange Park, Seacliff Ave, Kilbarrack Lower, Dublin, D13 EY11, Ireland",
     "county": "Dublin",
     "lat": 53.392058,
     "lng": -6.136605,
@@ -3269,7 +3268,7 @@
   {
     "id": 535,
     "name": "Beckett Park Tennis",
-    "address": "Seagrange Park, Seacliff Ave, Kilbarrack Lower, Dublin, D13 EY11",
+    "address": "Seagrange Park, Seacliff Ave, Kilbarrack Lower, Dublin, D13 EY11, Ireland",
     "county": "Dublin",
     "lat": 53.249642,
     "lng": -6.161448,
