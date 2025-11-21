@@ -1058,7 +1058,8 @@
     "court_type": "Outdoor",
     "website": "https://corkparkstennis.com//",
     "indoor": false,
-    "favicon": "/images/logos/padel-54.png"
+    "favicon": "/images/logos/padel-54.png",
+    "public": true
   },
   {
     "id": 55,
@@ -1870,7 +1871,8 @@
     "court_type": "Outdoor",
     "website": "https://www.dublincity.ie/parks-and-nature/dublin-city-parks/visit-park/johnstown-park",
     "indoor": false,
-    "favicon": "/images/logos/johnstown-tennis-club-89.ico"
+    "favicon": "/images/logos/johnstown-tennis-club-89.ico",
+    "public": true
   },
   {
     "id": 90,
@@ -3114,7 +3116,8 @@
     "court_surface": "Artificial Grass / Hard Court",
     "court_type": "Indoor/Outdoor",
     "website": "https://www.shankilltennisclub.com/",
-    "favicon": "/images/logos/shankill-tennis-club-145.png"
+    "favicon": "/images/logos/shankill-tennis-club-145.png",
+    "public": true
   },
   {
     "id": 146,
@@ -3402,5 +3405,21 @@
     "lng": -5.9856048,
     "website": "https://www.better.org.uk/leisure-centre/belfast/whiterock-leisure-centre",
     "favicon": "/images/logos/whiterock-leisure-centre-527.ico"
+  },
+  {
+    "id": 600,
+    "name": "Kempton Park Tennis",
+    "address": "Kempton Park, Ballyvolane, Cork, Ireland",
+    "county": "Cork",
+    "lat": 51.919279,
+    "lng": -8.453377,
+    "sport": "Tennis",
+    "facility_type": "Tennis Club",
+    "courts": 2,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "website": "https://parkstennis.com/",
+    "favicon": "/images/logos/parks_tennis.png",
+    "public": true
   }
 ]

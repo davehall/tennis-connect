@@ -28,6 +28,14 @@ const {
   IndoorIcon, OutdoorIcon, WebsiteIcon
 } = window;
 
+// Inline Public icon (used when a venue is public/open-to-all)
+const PublicIcon = ({ className }) => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
+    <path d="M12 2a4 4 0 110 8 4 4 0 010-8z" />
+    <path d="M4 20v-1a4 4 0 014-4h8a4 4 0 014 4v1" />
+  </svg>
+);
+
 // Safe access helpers (globals provided by clubs.js/components.js may not yet be loaded)
 const getAllClubsSafe = () => (Array.isArray(window.allClubs) ? window.allClubs : []);
 const getCountiesSafe = () => (Array.isArray(window.counties) ? window.counties : []);
@@ -188,6 +196,7 @@ function ClubCard({ club, isSelected, onClick, priority=false, animateOnLoad=fal
             </div>
           )}
           {club.floodlit && <div className="flex items-center gap-1.5" title="Floodlit Courts"><FloodlitIcon className="h-5 w-5 text-slate-400" /><span className="text-sm font-medium">Floodlit</span></div>}
+          {club.public && <div className="flex items-center gap-1.5" title="Public"><PublicIcon className="h-5 w-5 text-slate-400" /><span className="text-sm font-medium">Public</span></div>}
         </div>
       )}
     </div>
@@ -464,6 +473,9 @@ function ClubFinder(){
         if (club.court_type && club.court_type.toString().trim()) {
           const ct = club.court_type.toString().trim().toLowerCase(); indoorMatch = ct === 'indoor' || ct === 'indoor/outdoor';
         } else if (Object.prototype.hasOwnProperty.call(club, 'indoor')) indoorMatch = club.indoor === true; else indoorMatch=false;
+      } else if (indoorFilter === 'public') {
+        // 'Public' filters venues that are explicitly marked as public/open-to-all
+        indoorMatch = !!club.public;
       }
   // Only match against the club name (title). Do not match address or other fields.
   const locationMatch = locationSearch.trim() === '' || (club.name && club.name.toLowerCase().includes(locationSearch.toLowerCase()));
@@ -928,6 +940,13 @@ function ClubFinder(){
         detailsBits.push(`<div class=\"flex items-center gap-1.5\" title=\"Indoor / Outdoor\">${icon}<span class=\"text-[12px] font-medium text-slate-700\">${label}</span></div>`);
       }
     })();
+    // If the club is explicitly public, show a Public badge in the popup details
+    if (club.public) {
+      detailsBits.push(`<div class=\"flex items-center gap-1.5\" title=\"Public\"> 
+          <svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"#94a3b8\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 2a4 4 0 110 8 4 4 0 010-8z\" /><path d=\"M4 20v-1a4 4 0 014-4h8a4 4 0 014 4v1\" /></svg>
+          <span class=\"text-[12px] font-medium text-slate-700\">Public</span>
+        </div>`);
+    }
     const detailsHtmlInner = detailsBits.length ? `<div class=\"mt-3 flex flex-wrap gap-x-4 gap-y-2 text-slate-600\">${detailsBits.join('')}</div>` : '';
     const directionsHtml = (typeof club.lat === 'number' && typeof club.lng === 'number')
       ? `<div class=\"mt-3 flex justify-end\"><a href=\"https://www.google.com/maps/search/?api=1&query=${club.lat},${club.lng}\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-1.5 text-[12px] font-semibold px-3 py-1.5 rounded-md bg-teal-500 text-white hover:bg-teal-600\" style=\"color:#fff !important; background:#14b8a6; text-decoration:none; padding:6px 12px; border-radius:6px; font-weight:600; font-size:12px;\">Get directions</a></div>`
@@ -1304,6 +1323,7 @@ if (newMarkers.length && !selectedClubId) {
                       <option value="">All venue types</option>
                       <option value="outdoor">Outdoor</option>
                       <option value="indoor">Indoor</option>
+                      <option value="public">Public</option>
                     </select>
                   </div>
                 </div>
@@ -1339,8 +1359,9 @@ if (newMarkers.length && !selectedClubId) {
                       <label className="block text-sm font-medium text-slate-600 mb-2">Venue type</label>
                       <select value={indoorFilter} onChange={e=> setIndoorFilter(e.target.value)} className={`w-full px-4 ${mobileFilterPaddingClass()} border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50`}>
                         <option value="">All venue types</option>
-                        <option value="outdoor">Outdoor</option>
-                        <option value="indoor">Indoor</option>
+                          <option value="outdoor">Outdoor</option>
+                          <option value="indoor">Indoor</option>
+                          <option value="public">Public</option>
                       </select>
                     </div>
                   </div>
