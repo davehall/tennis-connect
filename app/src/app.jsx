@@ -1502,7 +1502,7 @@ if (newMarkers.length && !selectedClubId) {
                       <option value="">All counties</option>
                       {getCountiesSafe().map(c => {
                         const n = getCountyCount(c) || 0;
-                        return <option key={c} value={c}>{c}{n?` (${n})`:''}</option>;
+                        return <option key={c} value={c}>{c} ({n})</option>;
                       })}
                     </select>
                     {activeSport === 'Tennis' && (
@@ -1513,9 +1513,9 @@ if (newMarkers.length && !selectedClubId) {
                     )}
                     <select aria-label="Venue type" value={indoorFilter} onChange={e=> setIndoorFilter(e.target.value)} className="w-full md:w-[150px] lg:w-[230px] xl:w-[230px] px-4 md:px-3 lg:px-4 xl:px-3 py-2.5 md:py-2 border border-slate-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500/60 focus:border-teal-500 text-sm font-medium">
                       <option value="">All venue types</option>
-                      <option value="outdoor">Outdoor{getVenueTypeCount('outdoor') ? ` (${getVenueTypeCount('outdoor')})` : ''}</option>
-                      <option value="indoor">Indoor{getVenueTypeCount('indoor') ? ` (${getVenueTypeCount('indoor')})` : ''}</option>
-                      <option value="public">Public{getVenueTypeCount('public') ? ` (${getVenueTypeCount('public')})` : ''}</option>
+                      <option value="outdoor">Outdoor ({getVenueTypeCount('outdoor') || 0})</option>
+                      <option value="indoor">Indoor ({getVenueTypeCount('indoor') || 0})</option>
+                      <option value="public">Public ({getVenueTypeCount('public') || 0})</option>
                     </select>
                   </div>
                 </div>
@@ -1534,7 +1534,7 @@ if (newMarkers.length && !selectedClubId) {
                         <option value="">All counties</option>
                         {getCountiesSafe().map(c => {
                           const n = getCountyCount(c) || 0;
-                          return <option key={c} value={c}>{c}{n?` (${n})`:''}</option>;
+                          return <option key={c} value={c}>{c} ({n})</option>;
                         })}
                       </select>
                     </div>
@@ -1551,9 +1551,9 @@ if (newMarkers.length && !selectedClubId) {
                       <label className="block text-sm font-medium text-slate-600 mb-2">Venue type</label>
                       <select value={indoorFilter} onChange={e=> setIndoorFilter(e.target.value)} className={`w-full px-4 ${mobileFilterPaddingClass()} border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50`}>
                         <option value="">All venue types</option>
-                        <option value="outdoor">Outdoor{getVenueTypeCount('outdoor') ? ` (${getVenueTypeCount('outdoor')})` : ''}</option>
-                        <option value="indoor">Indoor{getVenueTypeCount('indoor') ? ` (${getVenueTypeCount('indoor')})` : ''}</option>
-                        <option value="public">Public{getVenueTypeCount('public') ? ` (${getVenueTypeCount('public')})` : ''}</option>
+                        <option value="outdoor">Outdoor ({getVenueTypeCount('outdoor') || 0})</option>
+                        <option value="indoor">Indoor ({getVenueTypeCount('indoor') || 0})</option>
+                        <option value="public">Public ({getVenueTypeCount('public') || 0})</option>
                       </select>
                     </div>
                   </div>

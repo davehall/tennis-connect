@@ -1,0 +1,608 @@
+nohup: ignoring input
+ INFO  Accepting connections at http://localhost:3000
+ HTTP  11/22/2025 6:31:22 PM ::1 HEAD /search/index.html
+ HTTP  11/22/2025 6:31:22 PM ::1 Returned 301 in 995 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /search/index.html
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 301 in 3 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /search/index
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 301 in 2 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /search
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 200 in 8 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /assets/data/rk7a9nq3.js
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /components.js?v=20250917-2
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 200 in 4 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 200 in 3 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /config.js
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /app.js?v=20250917-2
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 200 in 3 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 200 in 3 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /images/logos/site-logo.svg?v=20250917-2
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /assets/data/rk7a9nq3.b64.txt
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /images/logos/parks_tennis.png
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 200 in 157 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 200 in 155 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 200 in 24 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /images/logos/ballycannon.jpg
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:31:51 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:31:51 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:31:52 PM ::1 GET /tennisconnectx.ico
+ HTTP  11/22/2025 6:31:52 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:31:53 PM ::1 GET /sw.js
+ HTTP  11/22/2025 6:31:53 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:31:54 PM ::1 GET /
+ HTTP  11/22/2025 6:31:54 PM ::1 GET /images/favicon_fallback.png
+ HTTP  11/22/2025 6:31:54 PM ::1 Returned 200 in 3 ms
+ HTTP  11/22/2025 6:31:54 PM ::1 Returned 404 in 3 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /search
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /assets/data/rk7a9nq3.js
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /components.js?v=20250917-2
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /config.js
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /app.js?v=20250917-2
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/site-logo.svg?v=20250917-2
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /assets/data/rk7a9nq3.b64.txt
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/a-team-tennis.png
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/ardee.jpg
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 200 in 3 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/ardfield-rathbarry-tennis-club.png
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/argideen.jpg
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/ashbrook-lawn-tennis-club-6.ico
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 200 in 3 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/athy.jpg
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/ballaghaderreen.jpg
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/ballinasloe-and-district-tennis-club-11.ico
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/ballina-tennis-club.png
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/athlone-tennis-club.png
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/parks_tennis.png
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/ballinlough.png
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /images/logos/ballycannon.jpg
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:08 PM ::1 GET /tennisconnectx.ico
+ HTTP  11/22/2025 6:36:08 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:10 PM ::1 GET /sw.js
+ HTTP  11/22/2025 6:36:10 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /search
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /config.js
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /assets/data/rk7a9nq3.js
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /components.js?v=20250917-2
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /app.js?v=20250917-2
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 304 in 2 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 304 in 3 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 304 in 3 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /assets/data/rk7a9nq3.b64.txt
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /images/logos/ballycastle-tennis-club.png
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /images/logos/ballyjamesduff-tennis-club.png
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /images/logos/ballymena.jpg
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /images/logos/ballynafeigh.jpg
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /images/logos/ballypatrick.jpg
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:13 PM ::1 GET /images/logos/balrothery.png
+ HTTP  11/22/2025 6:36:13 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/bangor.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/bective.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 304 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/belfast-boat-club-22.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/bishopstown-lawn-tennis-club.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/blackrock.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/botany.png
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/boyle-community-tennis-courts.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/brookfield.png
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/bushy.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 5 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 3 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/butthall.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/caherconlish.jpg
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/carlow-lawn-tennis-club-31.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/carraig-lawn-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/carrickonshannon.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/carrickmacross.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/carrickmines.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/carrigaline.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/castlebar.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/castleview-lawn-tennis-club-38.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/castleknock-lawn-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/catholicinstitute.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/causeway-community-tennis-club-40.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/cavan-lawn-tennis-club-41.jpg
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/cavehill.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/celbridge-and-district-tennis-club-43.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/charleville-lawn-tennis-club-44.png
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/ciyms-tennis-club-29.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/clane-tennis-club-45.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/claremont-railway-lawn-tennis-club-46.svg
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/claremorris.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/clonakilty-tennis-club-48.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/clontarf-lawn.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/clontarf-parish-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/cloughey.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/coleraine.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/cork_park.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/county-tipperary-lawn-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 3 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/county-wicklow-lawn-tennis-club-56.jpg
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/crosshaven-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/cym-tennis-club-58.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/davidlloyd.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/deerpark.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/donabate-portrane-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/donaghadee-lawn-tennis-club-61.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/donnybrook-lawn-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/douglas.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/downshire.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/dromahane.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/dunboyne-tennis-club-66.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/dundalk-lawn-tennis-squash-and-badminton-club-67.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/dungannon.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/emly.jpg
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/elmpark.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/ennis.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/enniskerry-tennis-club.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/enniskillen.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/fitzwilliam-lawn-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/fountainstown.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/garryduff.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/garvagh.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/glasnevin-lawn-tennis-club-78.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/glenageary-lawn-tennis-club-79.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/gorey-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/greystones-lawn-tennis-club-81.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/hawarden-lawn-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/grove.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/hazelwood.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/helens-bay-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/herbert.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 3 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/hillbrook-lawn-tennis-club-85.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/hillview-sports-club.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/hospital-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/indoor-tennis-arena-88.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/johnstown-tennis-club-89.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/kilcullen.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/kilkenny.png
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/kilfeacle.jpg
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/killaloe-ballina-tennis-club-93.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/kilternan.png
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/kilworth.png
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/kinsale-tennis-club-95.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 208 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 207 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 206 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 209 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/lakewood-tennis-club-97.png
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/lansdowne-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/larne.jpg
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/lattin.jpg
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 279 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 257 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 41 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 40 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 39 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 39 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/lc-tennis-academy-and-club-rosemont-96.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/leopardstown-tennis-club.ico
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/leixlip-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/letterkenny.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/limavady.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /search
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/limerick-lawn-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/lisburn-racquets-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/lombard.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 3 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/longford-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/loughrea.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/lowera.jpg
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /assets/data/rk7a9nq3.js
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /components.js?v=20250917-2
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /app.js?v=20250917-2
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /config.js
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/lurgan.jpg
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/malahide_castle.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/malahide.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/meadowvale-tennis.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/mitchel.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/moate.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /assets/data/rk7a9nq3.b64.txt
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/monkstown.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:14 PM ::1 GET /images/logos/monkstown-lawn-tennis-club.png
+ HTTP  11/22/2025 6:36:14 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/mount-pleasant.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/mullingar-tennis-and-badminton-club.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/naas-lawn-tennis-club.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/national-tennis-centre.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/navan-tennis-club.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/nenagh.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/new-inn-tennis-club.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/newry.png
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/newcastle-tennis-club.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/newtown-park-tennis-club.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/north-kildare-tennis-club.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/omagh-lawn-tennis-club.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/portadown.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/portarlington.jpg
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/portmarnock-tennis-club.png
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/portumna-tennis-club.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 3 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 4 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/propserous.jpg
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/puckane.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 3 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 4 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/rathangan.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/ratoath-tennis-club-138.ico
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/rathgar.jpg
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/riversdale-tennis-club.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/rockfield.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/rosanna-lawn-tennis-club-141.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/roscrea.jpg
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/rosslare.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/rushbrook.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/sandycove.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/shankill-tennis-club-145.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/sligo-tennis-and-badminton-club-146.ico
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/st-anne-s-park-tennis-club-147.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/stannes.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/st-michael-s-tennis-club-149.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/st-marys-lawn-tennis-club.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/patricks.jpg
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/stratford.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/sundayswell.jpg
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/sutton.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/swords-lawn-tennis-club.ico
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/templeogue.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/tralee.png
+ HTTP  11/22/2025 6:36:15 PM ::1 GET /images/logos/whitechurch.png
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:15 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:16 PM ::1 GET /search
+ HTTP  11/22/2025 6:36:16 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:16 PM ::1 GET /config.js
+ HTTP  11/22/2025 6:36:16 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:16 PM ::1 GET /components.js?v=20250917-2
+ HTTP  11/22/2025 6:36:16 PM ::1 GET /assets/data/rk7a9nq3.js
+ HTTP  11/22/2025 6:36:16 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:16 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:16 PM ::1 GET /app.js?v=20250917-2
+ HTTP  11/22/2025 6:36:16 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:16 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:36:16 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:16 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:36:16 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:16 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:36:16 PM ::1 Returned 304 in 2 ms
+ HTTP  11/22/2025 6:36:16 PM ::1 GET /assets/data/rk7a9nq3.b64.txt
+ HTTP  11/22/2025 6:36:16 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:17 PM ::1 GET /search
+ HTTP  11/22/2025 6:36:17 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:17 PM ::1 GET /config.js
+ HTTP  11/22/2025 6:36:17 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:17 PM ::1 GET /assets/data/rk7a9nq3.js
+ HTTP  11/22/2025 6:36:17 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:17 PM ::1 GET /components.js?v=20250917-2
+ HTTP  11/22/2025 6:36:17 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:17 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:36:17 PM ::1 GET /app.js?v=20250917-2
+ HTTP  11/22/2025 6:36:17 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:17 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:17 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:36:17 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:17 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:36:17 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:17 PM ::1 GET /assets/data/rk7a9nq3.b64.txt
+ HTTP  11/22/2025 6:36:17 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:19 PM ::1 GET /sw.js
+ HTTP  11/22/2025 6:36:19 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:22 PM ::1 GET /search
+ HTTP  11/22/2025 6:36:22 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:22 PM ::1 GET /assets/data/rk7a9nq3.js
+ HTTP  11/22/2025 6:36:22 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:22 PM ::1 GET /components.js?v=20250917-2
+ HTTP  11/22/2025 6:36:22 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:22 PM ::1 GET /config.js
+ HTTP  11/22/2025 6:36:22 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:22 PM ::1 GET /app.js?v=20250917-2
+ HTTP  11/22/2025 6:36:22 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:22 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:36:22 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:36:22 PM ::1 Returned 200 in 4 ms
+ HTTP  11/22/2025 6:36:22 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:22 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:36:22 PM ::1 Returned 200 in 2 ms
+ HTTP  11/22/2025 6:36:22 PM ::1 GET /assets/data/rk7a9nq3.b64.txt
+ HTTP  11/22/2025 6:36:22 PM ::1 Returned 200 in 0 ms
+ HTTP  11/22/2025 6:36:24 PM ::1 GET /sw.js
+ HTTP  11/22/2025 6:36:24 PM ::1 Returned 200 in 1 ms
+ HTTP  11/22/2025 6:36:28 PM ::1 GET /search
+ HTTP  11/22/2025 6:36:28 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:28 PM ::1 GET /config.js
+ HTTP  11/22/2025 6:36:28 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:28 PM ::1 GET /assets/data/rk7a9nq3.js
+ HTTP  11/22/2025 6:36:28 PM ::1 GET /components.js?v=20250917-2
+ HTTP  11/22/2025 6:36:28 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:28 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:28 PM ::1 GET /app.js?v=20250917-2
+ HTTP  11/22/2025 6:36:28 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:28 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:36:28 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:28 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:36:28 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:28 PM ::1 GET /assets/data/rk7a9nq3.b64.txt
+ HTTP  11/22/2025 6:36:28 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:28 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:36:28 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:29 PM ::1 GET /search
+ HTTP  11/22/2025 6:36:29 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:29 PM ::1 GET /config.js
+ HTTP  11/22/2025 6:36:29 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:29 PM ::1 GET /components.js?v=20250917-2
+ HTTP  11/22/2025 6:36:29 PM ::1 GET /assets/data/rk7a9nq3.js
+ HTTP  11/22/2025 6:36:29 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:29 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:29 PM ::1 GET /app.js?v=20250917-2
+ HTTP  11/22/2025 6:36:29 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:29 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:36:29 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:29 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:36:29 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:29 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:36:29 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:29 PM ::1 GET /assets/data/rk7a9nq3.b64.txt
+ HTTP  11/22/2025 6:36:29 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:30 PM ::1 GET /sw.js
+ HTTP  11/22/2025 6:36:30 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:31 PM ::1 GET /search
+ HTTP  11/22/2025 6:36:31 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:31 PM ::1 GET /config.js
+ HTTP  11/22/2025 6:36:31 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:31 PM ::1 GET /components.js?v=20250917-2
+ HTTP  11/22/2025 6:36:31 PM ::1 GET /assets/data/rk7a9nq3.js
+ HTTP  11/22/2025 6:36:31 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:31 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:31 PM ::1 GET /app.js?v=20250917-2
+ HTTP  11/22/2025 6:36:31 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:31 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:36:31 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:31 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:36:31 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:31 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:36:31 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:31 PM ::1 GET /assets/data/rk7a9nq3.b64.txt
+ HTTP  11/22/2025 6:36:31 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:31 PM ::1 GET /search
+ HTTP  11/22/2025 6:36:31 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:32 PM ::1 GET /config.js
+ HTTP  11/22/2025 6:36:32 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:32 PM ::1 GET /components.js?v=20250917-2
+ HTTP  11/22/2025 6:36:32 PM ::1 GET /assets/data/rk7a9nq3.js
+ HTTP  11/22/2025 6:36:32 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:32 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:32 PM ::1 GET /app.js?v=20250917-2
+ HTTP  11/22/2025 6:36:32 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:32 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:36:32 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:32 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:36:32 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:32 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:36:32 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:32 PM ::1 GET /assets/data/rk7a9nq3.b64.txt
+ HTTP  11/22/2025 6:36:32 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:33 PM ::1 GET /search
+ HTTP  11/22/2025 6:36:33 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:33 PM ::1 GET /assets/data/rk7a9nq3.js
+ HTTP  11/22/2025 6:36:33 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:33 PM ::1 GET /config.js
+ HTTP  11/22/2025 6:36:33 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:33 PM ::1 GET /components.js?v=20250917-2
+ HTTP  11/22/2025 6:36:33 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:33 PM ::1 GET /app.js?v=20250917-2
+ HTTP  11/22/2025 6:36:33 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:33 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:36:33 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:33 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:36:33 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:33 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:36:33 PM ::1 Returned 304 in 2 ms
+ HTTP  11/22/2025 6:36:33 PM ::1 GET /assets/data/rk7a9nq3.b64.txt
+ HTTP  11/22/2025 6:36:33 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:34 PM ::1 GET /search
+ HTTP  11/22/2025 6:36:34 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:34 PM ::1 GET /config.js
+ HTTP  11/22/2025 6:36:34 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:34 PM ::1 GET /components.js?v=20250917-2
+ HTTP  11/22/2025 6:36:34 PM ::1 GET /assets/data/rk7a9nq3.js
+ HTTP  11/22/2025 6:36:34 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:34 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:34 PM ::1 GET /app.js?v=20250917-2
+ HTTP  11/22/2025 6:36:34 PM ::1 Returned 304 in 1 ms
+ HTTP  11/22/2025 6:36:34 PM ::1 GET /images/logos/abbeyleix.png
+ HTTP  11/22/2025 6:36:34 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:34 PM ::1 GET /images/logos/bandon-tennis-club.png
+ HTTP  11/22/2025 6:36:34 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:34 PM ::1 GET /images/logos/galway.jpg
+ HTTP  11/22/2025 6:36:34 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:34 PM ::1 GET /assets/data/rk7a9nq3.b64.txt
+ HTTP  11/22/2025 6:36:34 PM ::1 Returned 304 in 0 ms
+ HTTP  11/22/2025 6:36:37 PM ::1 GET /sw.js
+ HTTP  11/22/2025 6:36:37 PM ::1 Returned 304 in 1 ms
