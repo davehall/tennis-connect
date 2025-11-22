@@ -521,7 +521,72 @@ function ClubFinder(){
     setFilteredClubs(filtered); setSelectedClubId(null);
   }, [activeSport, countyFilter, surfaceFilter, indoorFilter, locationSearch, allClubsLocal, sortOrder]);
 
-  const surfaceCounts = React.useMemo(()=>{ const classification = window.tennisSurfaceClassification || {}; const UI_TO_INTERNAL={ 'Hardcourt':'Hard Court' }; const keywordMap={ 'Artificial Grass':['synthetic grass','artificial grass','astro','astroturf','savannah','savannah turf','tiger','tigerturf','tiger turf','tiger turf advantage pro'],'Natural Grass':['natural grass','real grass'],'Hard Court':['hardcourt','hard court','hard-court','acrylic','poraflex','polymeric','poroplast'],'Hardcourt':['hardcourt','hard court','hard-court','acrylic','poraflex','polymeric','poroplast'],'Natural Clay':['real clay','clay'],'Artificial Clay':['synthetic clay','artificial clay','artifical clay','matchclay','clayrite','lano','claytech','topclay','smashcourt'] }; const surfaceToCourtType={ 'Artificial Clay':['Artificial Clay'],'Natural Clay':['Real Clay'],'Artificial Grass':['Artificial Grass'],'Natural Grass':['Real Grass'],'Hard Court':['Hard Court']}; const counts={}; CANONICAL_SURFACES.forEach(ui=>counts[ui]=0); allClubsLocal.forEach(club=>{ CANONICAL_SURFACES.forEach(ui=>{ const requested=UI_TO_INTERNAL[ui]||ui; let matched=false; if (club.court_type && club.court_type.toString().trim()) { const ct=club.court_type.toString().trim().toLowerCase(); const allowedCTs=(surfaceToCourtType[requested]||[]).map(s=>s.toLowerCase()); if (allowedCTs.length && allowedCTs.includes(ct)) matched=true; } if(!matched){ const raw=(club.court_surface||'').toLowerCase(); if (requested==='Natural Clay'){ const hasRealClayPhrase=raw.includes('real clay'); const hasGenericClay=raw.includes('clay'); const syntheticIndicators=['synthetic clay','artificial clay','artifical clay','matchclay','clayrite','lano','claytech','topclay','smashcourt']; const isSyntheticClay=syntheticIndicators.some(s=>raw.includes(s)); const isRedPlusClay=raw.includes('redplus')||raw.includes('red plus')||raw.includes('red+'); matched=(hasRealClayPhrase||(hasGenericClay&&!isSyntheticClay&&!isRedPlusClay)); } else if (requested==='Natural Grass'){ const syntheticIndicators=['synthetic grass','artificial grass','astroturf','astro','savannah','tigerturf','tiger']; const hasNaturalPhrase=raw.includes('natural grass')||raw.includes('real grass'); const hasGenericGrass=raw.includes('grass'); matched=hasNaturalPhrase||(hasGenericGrass&&!syntheticIndicators.some(s=>raw.includes(s))); } else { matched=(keywordMap[requested]||[]).some(k=>raw.includes(k)); } } if(matched) counts[ui]++; }); }); return counts; }, [allClubsLocal]); // eslint-disable-line
+  // Surface counts: global per-sport, independent of other filters.
+  // This mirrors the original behaviour: "Artificial Grass (N)" is the
+  // total number of tennis venues we classify as Artificial Grass.
+  const surfaceCounts = React.useMemo(()=>{
+    const classification = window.tennisSurfaceClassification || {};
+    const UI_TO_INTERNAL = { 'Hardcourt':'Hard Court' };
+    const keywordMap = {
+      'Artificial Grass': ['synthetic grass','artificial grass','astro','astroturf','savannah','savannah turf','tiger','tigerturf','tiger turf','tiger turf advantage pro'],
+      'Natural Grass': ['natural grass','real grass'],
+      'Hard Court': ['hardcourt','hard court','hard-court','acrylic','poraflex','polymeric','poroplast'],
+      'Hardcourt': ['hardcourt','hard court','hard-court','acrylic','poraflex','polymeric','poroplast'],
+      'Natural Clay': ['real clay','clay'],
+      'Artificial Clay': ['synthetic clay','artificial clay','artifical clay','matchclay','clayrite','lano','claytech','topclay','smashcourt']
+    };
+    const surfaceToCourtType = {
+      'Artificial Clay': ['Artificial Clay'],
+      'Natural Clay': ['Real Clay'],
+      'Artificial Grass': ['Artificial Grass'],
+      'Natural Grass': ['Real Grass'],
+      'Hard Court': ['Hard Court']
+    };
+    const counts = {};
+    CANONICAL_SURFACES.forEach(ui => { counts[ui] = 0; });
+
+    const clubs = allClubsLocal;
+    clubs.forEach(club => {
+      if (!club || club.sport !== 'Tennis') return;
+      CANONICAL_SURFACES.forEach(ui => {
+        const requested = UI_TO_INTERNAL[ui] || ui;
+        let matched = false;
+
+        // Prefer explicit court_type mapping when available
+        if (club.court_type && club.court_type.toString().trim()) {
+          const ct = club.court_type.toString().trim().toLowerCase();
+          const allowedCTs = (surfaceToCourtType[requested] || []).map(s => s.toLowerCase());
+          if (allowedCTs.length && allowedCTs.includes(ct)) matched = true;
+        }
+
+        if (!matched) {
+          const raw = (club.court_surface || '').toLowerCase();
+          const cats = (classification[club.id] || []).map(x => (x || '').toString());
+          if (cats.includes(requested)) {
+            matched = true;
+          } else if (requested === 'Natural Clay') {
+            const hasRealClayPhrase = raw.includes('real clay');
+            const hasGenericClay = raw.includes('clay');
+            const syntheticIndicators = ['synthetic clay','artificial clay','artifical clay','matchclay','clayrite','lano','claytech','topclay','smashcourt'];
+            const isSyntheticClay = syntheticIndicators.some(s => raw.includes(s));
+            const isRedPlusClay = raw.includes('redplus') || raw.includes('red plus') || raw.includes('red+');
+            matched = (hasRealClayPhrase || (hasGenericClay && !isSyntheticClay && !isRedPlusClay));
+          } else if (requested === 'Natural Grass') {
+            const syntheticIndicators = ['synthetic grass','artificial grass','astroturf','astro','savannah','tigerturf','tiger'];
+            const hasNaturalPhrase = raw.includes('natural grass') || raw.includes('real grass');
+            const hasGenericGrass = raw.includes('grass');
+            matched = hasNaturalPhrase || (hasGenericGrass && !syntheticIndicators.some(s => raw.includes(s)));
+          } else {
+            matched = (keywordMap[requested] || []).some(k => raw.includes(k));
+          }
+        }
+
+        if (matched) counts[ui]++;
+      });
+    });
+
+    return counts;
+  }, [allClubsLocal, CANONICAL_SURFACES]); // eslint-disable-line
 
   // Surfaces ordered by most to least frequent (stable by canonical order on ties)
   const surfacesSorted = React.useMemo(() => {
@@ -546,6 +611,45 @@ function ClubFinder(){
       const county = club.county || '';
       if (!county) continue;
       counts[county] = (counts[county] || 0) + 1;
+    }
+    return counts;
+  }, [allClubsLocal, activeSport]);
+
+  // Global venue type counts (Outdoor / Indoor / Public) per active sport,
+  // ignoring other filters so they behave like county and surface global counts.
+  const venueTypeCounts = React.useMemo(() => {
+    const counts = { outdoor: 0, indoor: 0, public: 0 };
+    const clubs = allClubsLocal;
+    for (const club of clubs) {
+      if (!club) continue;
+      const sportMatch = activeSport ? club.sport === activeSport : true;
+      if (!sportMatch) continue;
+
+      // Public: simple boolean flag on the club
+      if (club.public) counts.public += 1;
+
+      // Indoor / Outdoor: reuse same inference logic as the filter
+      const ctRaw = club.court_type && club.court_type.toString().trim();
+      const ct = ctRaw ? ctRaw.toLowerCase() : '';
+      const hasIndoorProp = Object.prototype.hasOwnProperty.call(club, 'indoor');
+      const indoorVal = hasIndoorProp ? club.indoor : undefined;
+
+      const isOutdoor = (() => {
+        if (ct === 'outdoor') return true;
+        if (!ct && indoorVal === false) return true;
+        if (ct.includes('outdoor') && !ct.includes('indoor')) return true;
+        return false;
+      })();
+
+      const isIndoor = (() => {
+        if (ct === 'indoor' || ct === 'indoor/outdoor') return true;
+        if (ct.includes('indoor')) return true;
+        if (!ct && indoorVal === true) return true;
+        return false;
+      })();
+
+      if (isOutdoor) counts.outdoor += 1;
+      if (isIndoor) counts.indoor += 1;
     }
     return counts;
   }, [allClubsLocal, activeSport]);
@@ -1321,9 +1425,9 @@ if (newMarkers.length && !selectedClubId) {
                     )}
                     <select aria-label="Venue type" value={indoorFilter} onChange={e=> setIndoorFilter(e.target.value)} className="w-full md:w-[150px] lg:w-[230px] xl:w-[230px] px-4 md:px-3 lg:px-4 xl:px-3 py-2.5 md:py-2 border border-slate-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500/60 focus:border-teal-500 text-sm font-medium">
                       <option value="">All venue types</option>
-                      <option value="outdoor">Outdoor</option>
-                      <option value="indoor">Indoor</option>
-                      <option value="public">Public</option>
+                      <option value="outdoor">Outdoor{venueTypeCounts.outdoor ? ` (${venueTypeCounts.outdoor})` : ''}</option>
+                      <option value="indoor">Indoor{venueTypeCounts.indoor ? ` (${venueTypeCounts.indoor})` : ''}</option>
+                      <option value="public">Public{venueTypeCounts.public ? ` (${venueTypeCounts.public})` : ''}</option>
                     </select>
                   </div>
                 </div>
@@ -1359,9 +1463,9 @@ if (newMarkers.length && !selectedClubId) {
                       <label className="block text-sm font-medium text-slate-600 mb-2">Venue type</label>
                       <select value={indoorFilter} onChange={e=> setIndoorFilter(e.target.value)} className={`w-full px-4 ${mobileFilterPaddingClass()} border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50`}>
                         <option value="">All venue types</option>
-                          <option value="outdoor">Outdoor</option>
-                          <option value="indoor">Indoor</option>
-                          <option value="public">Public</option>
+                        <option value="outdoor">Outdoor{venueTypeCounts.outdoor ? ` (${venueTypeCounts.outdoor})` : ''}</option>
+                        <option value="indoor">Indoor{venueTypeCounts.indoor ? ` (${venueTypeCounts.indoor})` : ''}</option>
+                        <option value="public">Public{venueTypeCounts.public ? ` (${venueTypeCounts.public})` : ''}</option>
                       </select>
                     </div>
                   </div>
