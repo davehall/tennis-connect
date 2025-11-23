@@ -405,86 +405,117 @@ function ClubFinder(){
   const tennisSurfaces = React.useMemo(()=> window.tennisSurfaceOptions || [], []); // eslint-disable-line
   const CANONICAL_SURFACES = React.useMemo(()=> ['Artificial Clay','Natural Clay','Artificial Grass','Natural Grass','Hardcourt'], []);
 
-  useEffect(()=> {
-    const classification = window.tennisSurfaceClassification || {};
-    const surfaceToCourtType = {
+  const classification = window.tennisSurfaceClassification || {};
+  const surfaceToCourtType = {
   'Artificial Clay': ['Artificial Clay'], 'Natural Clay': ['Real Clay'], 'Artificial Grass': ['Artificial Grass'], 'Natural Grass': ['Real Grass'], 'Hard Court': ['Hard Court']
-    };
-    const UI_TO_INTERNAL = { 'Hardcourt':'Hard Court' };
-    const keywordMap = {
-      'Artificial Grass': ['synthetic grass','artificial grass','astro','astroturf','savannah','savannah turf','tiger','tigerturf','tiger turf','tiger turf advantage pro'],
+  };
+  const UI_TO_INTERNAL = { 'Hardcourt':'Hard Court' };
+  const keywordMap = {
+    'Artificial Grass': ['synthetic grass','artificial grass','astro','astroturf','savannah','savannah turf','tiger','tigerturf','tiger turf','tiger turf advantage pro'],
   'Natural Grass': ['natural grass','real grass'],
-      'Hard Court': ['hardcourt','hard court','hard-court','acrylic','poraflex','polymeric','poroplast'],
-      'Hardcourt': ['hardcourt','hard court','hard-court','acrylic','poraflex','polymeric','poroplast'],
+    'Hard Court': ['hardcourt','hard court','hard-court','acrylic','poraflex','polymeric','poroplast'],
+    'Hardcourt': ['hardcourt','hard court','hard-court','acrylic','poraflex','polymeric','poroplast'],
   'Natural Clay': ['real clay','clay'],
   'Artificial Clay': ['synthetic clay','artificial clay','artifical clay','matchclay','clayrite','lano','claytech','topclay','smashcourt']
-    };
-    let filtered=[];
-  try { filtered = allClubsLocal.filter(club => {
-      const sportMatch = activeSport ? club.sport === activeSport : true;
-      const countyMatch = countyFilter ? club.county === countyFilter : true;
-      let surfaceMatch = true; const cats = classification[club.id] || [];
-      if (activeSport === 'Tennis' && surfaceFilter) {
-        const requested = UI_TO_INTERNAL[surfaceFilter] || surfaceFilter;
-        if (club.court_type && club.court_type.toString().trim()) {
-          const ct = club.court_type.toString().trim().toLowerCase();
-          const allowedCTs = (surfaceToCourtType[requested] || []).map(s => s.toLowerCase());
-          if (allowedCTs.length && allowedCTs.includes(ct)) surfaceMatch = true; else {
-            if (cats.includes(requested)) surfaceMatch=true; else {
-              const raw = (club.court_surface || '').toLowerCase(); const kws = keywordMap[requested] || [];
-              if (requested === 'Natural Clay') {
-                const hasRealClayPhrase = raw.includes('real clay'); const hasGenericClay = raw.includes('clay');
-                const syntheticIndicators = ['synthetic clay','artificial clay','artifical clay','matchclay','clayrite','lano','claytech','topclay','smashcourt'];
-                const isSyntheticClay = syntheticIndicators.some(s => raw.includes(s)); const isRedPlusClay = raw.includes('redplus') || raw.includes('red plus') || raw.includes('red+');
-                surfaceMatch = (hasRealClayPhrase || (hasGenericClay && !isSyntheticClay && !isRedPlusClay));
-              } else if (requested === 'Synthetic Clay') {
-                const syntheticIndicators = ['synthetic clay','artificial clay','matchclay','clayrite','lano','claytech','topclay','smashcourt']; surfaceMatch = syntheticIndicators.some(s => raw.includes(s));
-              } else if (requested === 'Natural Grass') {
-                const syntheticIndicators = ['synthetic grass','artificial grass','astroturf','astro','savannah','tigerturf','tiger'];
-                const hasNaturalPhrase = raw.includes('natural grass') || raw.includes('real grass'); const hasGenericGrass = raw.includes('grass');
-                surfaceMatch = hasNaturalPhrase || (hasGenericGrass && !syntheticIndicators.some(s => raw.includes(s)));
-              } else {
-                surfaceMatch = kws.some(k => raw.includes(k));
-              }
-            }
-          }
+  };
+
+  const clubMatchesFilters = React.useCallback((club, overrides = {}) => {
+    if (!club) return false;
+    const effSport = Object.prototype.hasOwnProperty.call(overrides, 'activeSport') ? overrides.activeSport : activeSport;
+    const effCounty = Object.prototype.hasOwnProperty.call(overrides, 'countyFilter') ? overrides.countyFilter : countyFilter;
+    const effSurface = Object.prototype.hasOwnProperty.call(overrides, 'surfaceFilter') ? overrides.surfaceFilter : surfaceFilter;
+    const effVenue = Object.prototype.hasOwnProperty.call(overrides, 'indoorFilter') ? overrides.indoorFilter : indoorFilter;
+    const effSearch = Object.prototype.hasOwnProperty.call(overrides, 'locationSearch') ? overrides.locationSearch : locationSearch;
+
+    const sportMatch = effSport ? club.sport === effSport : true;
+    const countyMatch = effCounty ? club.county === effCounty : true;
+
+    let surfaceMatch = true;
+    const cats = classification[club.id] || [];
+    if (effSport === 'Tennis' && effSurface) {
+      const requested = UI_TO_INTERNAL[effSurface] || effSurface;
+      if (club.court_type && club.court_type.toString().trim()) {
+        const ct = club.court_type.toString().trim().toLowerCase();
+        const allowedCTs = (surfaceToCourtType[requested] || []).map(s => s.toLowerCase());
+        if (allowedCTs.length && allowedCTs.includes(ct)) {
+          surfaceMatch = true;
+        } else if (cats.includes(requested)) {
+          surfaceMatch = true;
         } else {
-          const raw = (club.court_surface || '').toLowerCase(); const requested = UI_TO_INTERNAL[surfaceFilter] || surfaceFilter; const kws = keywordMap[requested] || [];
-          if (cats.includes(requested)) surfaceMatch=true; else if (requested === 'Natural Clay') {
-            const hasRealClayPhrase = raw.includes('real clay'); const hasGenericClay = raw.includes('clay');
-            const syntheticIndicators = ['synthetic clay','artificial clay','artifical clay','matchclay','clayrite','lano','claytech','topclay','smashcourt']; const isSyntheticClay = syntheticIndicators.some(s => raw.includes(s)); const isRedPlusClay = raw.includes('redplus') || raw.includes('red plus') || raw.includes('red+');
+          const raw = (club.court_surface || '').toLowerCase();
+          const kws = keywordMap[requested] || [];
+          if (requested === 'Natural Clay') {
+            const hasRealClayPhrase = raw.includes('real clay');
+            const hasGenericClay = raw.includes('clay');
+            const syntheticIndicators = ['synthetic clay','artificial clay','artifical clay','matchclay','clayrite','lano','claytech','topclay','smashcourt'];
+            const isSyntheticClay = syntheticIndicators.some(s => raw.includes(s));
+            const isRedPlusClay = raw.includes('redplus') || raw.includes('red plus') || raw.includes('red+');
             surfaceMatch = (hasRealClayPhrase || (hasGenericClay && !isSyntheticClay && !isRedPlusClay));
           } else if (requested === 'Synthetic Clay') {
-            const syntheticIndicators = ['synthetic clay','artificial clay','artifical clay','matchclay','clayrite','lano','claytech','topclay','smashcourt']; surfaceMatch = syntheticIndicators.some(s => raw.includes(s));
+            const syntheticIndicators = ['synthetic clay','artificial clay','matchclay','clayrite','lano','claytech','topclay','smashcourt'];
+            surfaceMatch = syntheticIndicators.some(s => raw.includes(s));
           } else if (requested === 'Natural Grass') {
-            const syntheticIndicators = ['synthetic grass','artificial grass','astroturf','astro','savannah','tigerturf','tiger']; const hasNaturalPhrase = raw.includes('natural grass') || raw.includes('real grass'); const hasGenericGrass = raw.includes('grass');
+            const syntheticIndicators = ['synthetic grass','artificial grass','astroturf','astro','savannah','tigerturf','tiger'];
+            const hasNaturalPhrase = raw.includes('natural grass') || raw.includes('real grass');
+            const hasGenericGrass = raw.includes('grass');
             surfaceMatch = hasNaturalPhrase || (hasGenericGrass && !syntheticIndicators.some(s => raw.includes(s)));
           } else {
             surfaceMatch = kws.some(k => raw.includes(k));
           }
         }
+      } else {
+        const raw = (club.court_surface || '').toLowerCase();
+        const requested2 = UI_TO_INTERNAL[effSurface] || effSurface;
+        const kws = keywordMap[requested2] || [];
+        if (cats.includes(requested2)) {
+          surfaceMatch = true;
+        } else if (requested2 === 'Natural Clay') {
+          const hasRealClayPhrase = raw.includes('real clay');
+          const hasGenericClay = raw.includes('clay');
+          const syntheticIndicators = ['synthetic clay','artificial clay','artifical clay','matchclay','clayrite','lano','claytech','topclay','smashcourt'];
+          const isSyntheticClay = syntheticIndicators.some(s => raw.includes(s));
+          const isRedPlusClay = raw.includes('redplus') || raw.includes('red plus') || raw.includes('red+');
+          surfaceMatch = (hasRealClayPhrase || (hasGenericClay && !isSyntheticClay && !isRedPlusClay));
+        } else if (requested2 === 'Synthetic Clay') {
+          const syntheticIndicators = ['synthetic clay','artificial clay','artifical clay','matchclay','clayrite','lano','claytech','topclay','smashcourt'];
+          surfaceMatch = syntheticIndicators.some(s => raw.includes(s));
+        } else if (requested2 === 'Natural Grass') {
+          const syntheticIndicators = ['synthetic grass','artificial grass','astroturf','astro','savannah','tigerturf','tiger'];
+          const hasNaturalPhrase = raw.includes('natural grass') || raw.includes('real grass');
+          const hasGenericGrass = raw.includes('grass');
+          surfaceMatch = hasNaturalPhrase || (hasGenericGrass && !syntheticIndicators.some(s => raw.includes(s)));
+        } else {
+          surfaceMatch = kws.some(k => raw.includes(k));
+        }
       }
-      let indoorMatch = true;
-      if (indoorFilter === 'outdoor') {
-        if (club.court_type && club.court_type.toString().trim()) {
-          indoorMatch = club.court_type.toString().trim().toLowerCase() === 'outdoor';
-        } else if (Object.prototype.hasOwnProperty.call(club, 'indoor')) indoorMatch = club.indoor === false; else indoorMatch=false;
-      } else if (indoorFilter === 'indoor') {
-        if (club.court_type && club.court_type.toString().trim()) {
-          const ct = club.court_type.toString().trim().toLowerCase(); indoorMatch = ct === 'indoor' || ct === 'indoor/outdoor';
-        } else if (Object.prototype.hasOwnProperty.call(club, 'indoor')) indoorMatch = club.indoor === true; else indoorMatch=false;
-      } else if (indoorFilter === 'public') {
-        // 'Public' filters venues that are explicitly marked as public/open-to-all
-        indoorMatch = !!club.public;
-      }
-  // Only match against the club name (title). Do not match address or other fields.
-  const locationMatch = locationSearch.trim() === '' || (club.name && club.name.toLowerCase().includes(locationSearch.toLowerCase()));
-      return sportMatch && countyMatch && surfaceMatch && indoorMatch && locationMatch;
-    }); } catch(err) {
+    }
+
+    let indoorMatch = true;
+    if (effVenue === 'outdoor') {
+      if (club.court_type && club.court_type.toString().trim()) {
+        indoorMatch = club.court_type.toString().trim().toLowerCase() === 'outdoor';
+      } else if (Object.prototype.hasOwnProperty.call(club, 'indoor')) indoorMatch = club.indoor === false; else indoorMatch = false;
+    } else if (effVenue === 'indoor') {
+      if (club.court_type && club.court_type.toString().trim()) {
+        const ct = club.court_type.toString().trim().toLowerCase(); indoorMatch = ct === 'indoor' || ct === 'indoor/outdoor';
+      } else if (Object.prototype.hasOwnProperty.call(club, 'indoor')) indoorMatch = club.indoor === true; else indoorMatch = false;
+    } else if (effVenue === 'public') {
+      indoorMatch = !!club.public;
+    }
+
+    const q = (effSearch || '').toString().trim().toLowerCase();
+    const locationMatch = !q || (club.name && club.name.toLowerCase().includes(q));
+
+    return sportMatch && countyMatch && surfaceMatch && indoorMatch && locationMatch;
+  }, [activeSport, countyFilter, surfaceFilter, indoorFilter, locationSearch]);
+
+  useEffect(()=> {
+    let filtered=[];
+  try { filtered = allClubsLocal.filter(club => clubMatchesFilters(club)); } catch(err) {
       console.error('Filter computation failed', err);
       filtered = allClubsLocal.filter(c=>c.sport==='Tennis').slice().sort((a,b)=>(a?.name||'').localeCompare(b?.name||'', undefined, { sensitivity:'base' }));
     }
-    const cmp = (a,b)=> (a?.name||'').localeCompare(b?.name||'', undefined, { sensitivity:'base' });
+  const cmp = (a,b)=> (a?.name||'').localeCompare(b?.name||'', undefined, { sensitivity:'base' });
 
     // Normalize text for consistent matching (remove diacritics, lowercase)
     const normalizeText = (s) => String(s || '').normalize && String(s || '').normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase() || String(s || '').toLowerCase();
@@ -519,7 +550,7 @@ function ClubFinder(){
       filtered.sort((a,b)=> sortOrder === 'za' ? -cmp(a,b) : cmp(a,b));
     }
     setFilteredClubs(filtered); setSelectedClubId(null);
-  }, [activeSport, countyFilter, surfaceFilter, indoorFilter, locationSearch, allClubsLocal, sortOrder]);
+  }, [allClubsLocal, sortOrder, clubMatchesFilters]);
 
   // Surface counts: context-aware — compute counts after applying other
   // active filters (county, venue type, search), but ignoring the surface
@@ -530,37 +561,9 @@ function ClubFinder(){
     CANONICAL_SURFACES.forEach(s => counts[s] = 0);
     const classification = window.tennisSurfaceClassification || {};
 
-    const matchesOther = (club) => {
-      if (!club) return false;
-      if (activeSport && club.sport !== activeSport) return false;
-      if (countyFilter && (club.county || '') !== countyFilter) return false;
-      // indoor filter (apply current indoorFilter when computing surface counts)
-      if (indoorFilter) {
-        if (indoorFilter === 'outdoor') {
-          if (club.court_type && club.court_type.toString().trim()) {
-            if (club.court_type.toString().trim().toLowerCase() !== 'outdoor') return false;
-          } else if (Object.prototype.hasOwnProperty.call(club, 'indoor')) {
-            if (club.indoor !== false) return false;
-          } else return false;
-        } else if (indoorFilter === 'indoor') {
-          if (club.court_type && club.court_type.toString().trim()) {
-            const ct = club.court_type.toString().trim().toLowerCase(); if (!(ct === 'indoor' || ct === 'indoor/outdoor' || ct.includes('indoor'))) return false;
-          } else if (Object.prototype.hasOwnProperty.call(club, 'indoor')) {
-            if (club.indoor !== true) return false;
-          } else return false;
-        } else if (indoorFilter === 'public') {
-          if (!club.public) return false;
-        }
-      }
-      // location search
-      if (locationSearch && locationSearch.trim()) {
-        const q = locationSearch.toLowerCase();
-        if (!(club.name && club.name.toLowerCase().includes(q))) return false;
-      }
-      return true;
-    };
-
-    const base = allClubsLocal.filter(matchesOther);
+    // Apply all current filters except the surface filter itself so we
+    // can see how many clubs would match for each surface option.
+    const base = allClubsLocal.filter(club => clubMatchesFilters(club, { surfaceFilter: '' }));
     base.forEach(club => {
       if (!club || club.sport !== 'Tennis') return;
       // classify club into a canonical surface
@@ -673,24 +676,12 @@ function ClubFinder(){
   const getVenueTypeCount = React.useCallback((type) => {
     let n = 0;
     for (const club of allClubsLocal) {
-      if (!club) continue;
-      if (activeSport && club.sport !== activeSport) continue;
-      if (countyFilter && (club.county || '') !== countyFilter) continue;
-      // apply surfaceFilter
-      if (activeSport === 'Tennis' && surfaceFilter) {
-        const requested = surfaceFilter.toLowerCase();
-        const cs = (club.court_surface || '').toString().toLowerCase();
-        const cats = (window.tennisSurfaceClassification && window.tennisSurfaceClassification[club.id]) || [];
-        const catMatch = cats.some(x => (x||'').toString().toLowerCase() === requested);
-        if (!catMatch && !cs.includes(requested)) continue;
-      }
-      // location search
-      if (locationSearch && locationSearch.trim()) {
-        const q = locationSearch.toLowerCase();
-        if (!(club.name && club.name.toLowerCase().includes(q))) continue;
-      }
-      if (type === 'public') { if (club.public) n++; }
-      else if (type === 'outdoor') {
+      // Apply all current filters except indoorFilter; we'll handle the
+      // venue-type dimension per option below.
+      if (!clubMatchesFilters(club, { indoorFilter: '' })) continue;
+      if (type === 'public') {
+        if (club.public) n++;
+      } else if (type === 'outdoor') {
         const ct = club.court_type && club.court_type.toString().trim();
         const ctLower = ct ? ct.toLowerCase() : '';
         if (ctLower === 'outdoor' || (!ctLower && club.indoor === false) || (ctLower.includes('outdoor') && !ctLower.includes('indoor'))) n++;
@@ -701,7 +692,7 @@ function ClubFinder(){
       }
     }
     return n;
-  }, [allClubsLocal, activeSport, countyFilter, surfaceFilter, locationSearch]);
+  }, [allClubsLocal, clubMatchesFilters]);
 
   // Global venue type counts (Outdoor / Indoor / Public) per active sport,
   // ignoring other filters so they behave like county and surface global counts.
