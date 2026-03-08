@@ -303,6 +303,7 @@ function ClubFinder(){
   const [isMobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const mobileFiltersPanelRef = useRef(null);
   const firstMobileFilterRef = useRef(null);
+  const [mapReady, setMapReady] = useState(false);
   const [isTopHeaderHidden, setTopHeaderHidden] = useState(false); // retained but no longer slides header
   const [didInitialListAnimate, setDidInitialListAnimate] = useState(false);
 
@@ -962,10 +963,11 @@ function ClubFinder(){
 
       L.control.zoom({ position:'topright' }).addTo(map);
       const legend=L.control({ position:'bottomleft' });
-      legend.onAdd=function(){ const div=L.DomUtil.create('div','surface-legend hidden sm:block'); div.style.display='none'; return div; };
+      legend.onAdd=function(){ const div=L.DomUtil.create('div','surface-legend'); div.style.display='none'; return div; };
       legend.addTo(map);
       map._surfaceLegend=legend;
       mapRef.current=map;
+      setMapReady(true);
       // expose helper for later swaps
       mapRef.current._applyBasemap = applyBasemap;
       // A few sizing passes to be extra safe on first paint
@@ -1140,7 +1142,7 @@ if (newMarkers.length && !selectedClubId) {
       return ()=> { try { ro.disconnect(); } catch(_){ } };
     }, []);
 
-  useEffect(()=>{ const map=mapRef.current; if(!map||!map._surfaceLegend) return; const container=map._surfaceLegend.getContainer(); if(activeSport!=='Tennis'){ container.style.display='none'; return; } container.style.display='block'; const colorMap={ 'Artificial Clay':'#d97706', 'Natural Clay':'#b45309', 'Artificial Grass':'#16a34a', 'Natural Grass':'#84cc16', 'Hardcourt':'#0ea5e9' }; const rows=(surfacesSorted||CANONICAL_SURFACES).map(s=>`<div class="legend-row"><span class="swatch" style="background:${colorMap[s]||'#94a3b8'}"></span> ${s}</div>`).join(''); container.innerHTML=`<div class="legend-title">Tennis surfaces</div>${rows}`; }, [activeSport, surfacesSorted]);
+  useEffect(()=>{ const map=mapRef.current; if(!map||!map._surfaceLegend) return; const container=map._surfaceLegend.getContainer(); if(activeSport!=='Tennis'){ container.style.display='none'; return; } container.style.display='block'; const colorMap={ 'Artificial Clay':'#d97706', 'Natural Clay':'#b45309', 'Artificial Grass':'#16a34a', 'Natural Grass':'#84cc16', 'Hardcourt':'#0ea5e9' }; const rows=(surfacesSorted||CANONICAL_SURFACES).map(s=>`<div class="legend-row"><span class="swatch" style="background:${colorMap[s]||'#94a3b8'}"></span> ${s}</div>`).join(''); container.innerHTML=`<div class="legend-title">Tennis surfaces</div>${rows}`; }, [activeSport, surfacesSorted, mapReady]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleClubSelect=(clubId, fromList=false)=>{ setSelectedClubId(clubId); if(window.innerWidth<768) setMobileFiltersOpen(false); const club=allClubsLocal.find(c=>c.id===clubId); if(club && club.lat && club.lng && mapRef.current){ mapRef.current.flyTo([club.lat, club.lng],14,{ animate:true, duration:1 }); } if(fromList && window.innerWidth<768) setMobileListVisible(false); };
 
