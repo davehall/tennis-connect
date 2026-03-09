@@ -23,7 +23,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: ./app 
+        working-directory: .
         
     steps:
       - name: Checkout
@@ -43,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: app
+          path: .
           
       - name: Deploy to GitHub Pages
         id: deployment
