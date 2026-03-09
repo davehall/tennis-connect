@@ -83,7 +83,12 @@
     .surface-legend .swatch { width:16px; height:16px; border-radius:4px; box-shadow:0 0 0 1px rgba(255,255,255,.9),0 0 0 1px rgba(0,0,0,.18) inset; }
     /* Mobile: compact legend + lift bottom controls above browser chrome / safe-area */
     @media (max-width:767px) {
-      .leaflet-bottom { padding-bottom: max(10px, env(safe-area-inset-bottom)); }
+      /* 100svh = smallest viewport height (URL bar visible). Prevents the app from
+         extending below the visible area when the mobile browser chrome is shown,
+         which would cut off the Leaflet legend at the bottom of the map. */
+      .h-screen { height: 100svh; }
+      /* Extra bottom clearance: safe-area (home indicator) + room above any residual chrome */
+      .leaflet-bottom { padding-bottom: max(20px, env(safe-area-inset-bottom, 0px) + 12px); }
       .surface-legend { padding:7px 10px; border-radius:8px; }
       .surface-legend .legend-title { font-size:11px; margin-bottom:4px; }
       .surface-legend .legend-row { gap:6px; font-size:11px; margin:2px 0; }
