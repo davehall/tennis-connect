@@ -121,6 +121,24 @@
         
         }
     </style>
+    <style>
+    /* Legend base + mobile safe-area fixes (inserted by script) */
+    .surface-legend { background:#fff; padding:10px 12px; border-radius:10px; font:500 13px/1.2 'IBM Plex Sans',sans-serif; box-shadow:0 4px 20px -2px rgba(0,0,0,.18),0 0 0 1px rgba(0,0,0,.06); }
+    .surface-legend .legend-title { font-weight:600; font-size:13px; margin-bottom:6px; letter-spacing:.25px; color:#0f172a; }
+    .surface-legend .legend-row { display:flex; align-items:center; gap:8px; font-size:12px; color:#334155; margin:4px 0; }
+    .surface-legend .swatch { width:16px; height:16px; border-radius:4px; box-shadow:0 0 0 1px rgba(255,255,255,.9),0 0 0 1px rgba(0,0,0,.18) inset; }
+    @media (max-width:767px) {
+      /* Ensure app root does not exceed the smallest-visible viewport (when browser chrome is visible) */
+      .h-screen { height: 100svh; }
+      /* Extra bottom clearance: safe-area (home indicator) + room above residual chrome */
+      .leaflet-bottom { padding-bottom: max(20px, env(safe-area-inset-bottom, 0px) + 12px); }
+      .surface-legend { padding:7px 10px; border-radius:8px; }
+      .surface-legend .legend-title { font-size:11px; margin-bottom:4px; }
+      .surface-legend .legend-row { gap:6px; font-size:11px; margin:2px 0; }
+      .surface-legend .swatch { width:12px; height:12px; border-radius:3px; }
+    }
+    </style>
+
 </head>
 <body>
     <div id="root" class="fade-root"></div>
