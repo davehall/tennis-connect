@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Search for Tennis, Padel & Pickleball Clubs – Tennis Club Connect</title>
+  <meta name="description" content="Search and filter 200+ tennis, padel & pickleball clubs across Ireland by county, surface, indoor/outdoor & more using an interactive map." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://tennisclubconnect.com/search/" />
+  <meta property="og:locale" content="en_IE" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Tennis Club Connect" />
+  <meta property="og:title" content="Interactive Map of Tennis, Padel & Pickleball Clubs – Tennis Club Connect" />
+  <meta property="og:description" content="Search and filter 200+ tennis, padel & pickleball clubs across Ireland by county, surface, indoor/outdoor & more using an interactive map." />
+  <meta property="og:url" content="https://tennisclubconnect.com/search/" />
+  <meta property="og:image" content="https://tennisclubconnect.com/images/map.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Interactive Map of Tennis, Padel & Pickleball Clubs – Tennis Club Connect" />
+  <meta name="twitter:description" content="Search and filter 200+ tennis, padel & pickleball clubs across Ireland by county, surface, indoor/outdoor & more using an interactive map." />
+  <meta name="twitter:image" content="https://tennisclubconnect.com/images/map.png" />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="icon" href="/tennisconnectx.ico" type="image/x-icon" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PRF6C0YJPB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-PRF6C0YJPB');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ta7gi0sthq");
+  </script>
+  <script type="application/ld+json">{
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Interactive Club Map",
+  "url":"https://tennisclubconnect.com/search/",
+    "description":"Search and filter 200+ tennis, padel & pickleball clubs across Ireland by county, surface, indoor/outdoor & more using an interactive map.",
+    "isPartOf":{"@type":"WebSite","name":"Tennis Club Connect","url":"https://tennisclubconnect.com/"}
+  }</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
+  <!-- Load runtime configuration (optional). Create config.js from config.example.js -->
+  <script src="/config.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Preload a handful of frequently visible logos (small set) -->
+  <link rel="prefetch" href="/images/logos/abbeyleix.png" as="image" />
+  <link rel="prefetch" href="/images/logos/bandon-tennis-club.png" as="image" />
+  <link rel="prefetch" href="/images/logos/galway.jpg" as="image" />
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    body { font-family:'IBM Plex Sans',sans-serif; background:#f1f5f9; }
+    h1,h2,h3,h4,h5,h6,.font-heading { font-family:'Bitter',serif; }
+    .custom-scrollbar::-webkit-scrollbar { width:8px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background:#f1f5f9; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background:#94a3b8; }
+    .fade-root { opacity:.92; }
+    .fade-root.page-loaded { opacity:1; transition:opacity .22s ease-out; }
+    .surface-marker { background:transparent; }
+    .surface-marker .marker-shell { width:26px; height:26px; border-radius:50%; border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.25); }
+    .surface-marker.selected .marker-shell { transform:scale(1.15); }
+    .marker-shell.rp { background:#ea580c; }
+    .marker-shell.sc { background:#d97706; }
+    .marker-shell.rc { background:#b45309; }
+    .marker-shell.sg { background:#16a34a; }
+    .marker-shell.ng { background:#84cc16; }
+    .marker-shell.hc { background:#0ea5e9 !important; }
+    .marker-shell.unknown { background:#0ea5e9 !important; }
+    .surface-legend { background:#fff; padding:10px 12px; border-radius:10px; font:500 13px/1.2 'IBM Plex Sans',sans-serif; box-shadow:0 4px 20px -2px rgba(0,0,0,.18),0 0 0 1px rgba(0,0,0,.06); }
+    .surface-legend .legend-title { font-weight:600; font-size:13px; margin-bottom:6px; letter-spacing:.25px; color:#0f172a; }
+    .surface-legend .legend-row { display:flex; align-items:center; gap:8px; font-size:12px; color:#334155; margin:4px 0; }
+    .surface-legend .swatch { width:16px; height:16px; border-radius:4px; box-shadow:0 0 0 1px rgba(255,255,255,.9),0 0 0 1px rgba(0,0,0,.18) inset; }
+    /* Mobile: compact legend + lift bottom controls above browser chrome / safe-area */
+    @media (max-width:767px) {
+      .leaflet-bottom { padding-bottom: max(10px, env(safe-area-inset-bottom)); }
+      .surface-legend { padding:7px 10px; border-radius:8px; }
+      .surface-legend .legend-title { font-size:11px; margin-bottom:4px; }
+      .surface-legend .legend-row { gap:6px; font-size:11px; margin:2px 0; }
+      .surface-legend .swatch { width:12px; height:12px; border-radius:3px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root" class="h-full w-full fade-root"></div>
+  <!-- Data & icon globals (must load before app bundle) -->
+  <script src="/assets/data/rk7a9nq3.js"></script>
+  <script src="/components.js?v=20250917-2"></script>
+  <script>
+    (function(){
+      var VER = '20250917-2';
+      window.SITE_LOGO_URL_DARK = '/images/logos/site-logo.svg?v=' + VER;
+      window.SITE_LOGO_URL_LIGHT = '/images/logos/site-logo-white.svg?v=' + VER;
+      // Backward-compatible single URL
+      window.SITE_LOGO_URL = window.SITE_LOGO_URL_DARK;
+    })();
+  </script>
+  <script>window.DISABLE_PREVIEWS = true; // Disable preview JPG requests to avoid 404 latency</script>
+  <!-- Compiled React application -->
+  <script src="/app.js?v=20250917-2" defer></script>
+  <script>
+    // Apply surface filter from query string after the app mounts
+    (function(){
+      const params = new URLSearchParams(window.location.search);
+      const rawSurface = params.get('surface');
+      if(!rawSurface) return;
+      // Normalize a few aliases to UI labels
+      const norm = (v)=>{
+        const s = (v||'').toString().trim().toLowerCase();
+        if(!s) return '';
+        if(s.includes('natural') && s.includes('grass')) return 'Natural Grass';
+        if((s.includes('real')||s.includes('natural')) && s.includes('clay')) return 'Natural Clay';
+        if(s.includes('artificial') && s.includes('grass')) return 'Artificial Grass';
+        if((s.includes('artificial')||s.includes('synthetic')||s.includes('matchclay')||s.includes('smashcourt')||s.includes('topclay')||s.includes('claytech')||s.includes('clayrite')||s.includes('lano')) && s.includes('clay')) return 'Artificial Clay';
+        if(s.includes('hard')) return 'Hardcourt';
+        // Fallback: title case first letters
+        return (s.charAt(0).toUpperCase()+s.slice(1));
+      };
+      const surface = norm(rawSurface);
+      if(!surface) return;
+      function tryApply(){
+        // Ensure Tennis is the active sport (surface filter only shows for Tennis)
+        const sportBtns = Array.from(document.querySelectorAll('button'));
+        const tennisBtn = sportBtns.find(b=> (b.textContent||'').trim() === 'Tennis');
+        if(tennisBtn && !/bg-white\s+text-teal-600/.test(tennisBtn.className||'')){
+          tennisBtn.click();
+        }
+        // Find selects that contain an option 'All surfaces'
+        const isSurfaceSelect = sel => Array.from(sel.options||[]).some(o => (o.textContent||'').trim().toLowerCase().startsWith('all surfaces'));
+        const surfaceSelects = Array.from(document.querySelectorAll('select')).filter(isSurfaceSelect);
+        if(!surfaceSelects.length) return false;
+        let applied = false;
+        surfaceSelects.forEach(sel => {
+          const opts = Array.from(sel.options||[]);
+          const match = opts.find(o => (o.value||'') === surface) || opts.find(o => (o.textContent||'').trim().toLowerCase().startsWith(surface.toLowerCase()));
+          if(match){ sel.value = match.value; sel.dispatchEvent(new Event('change', { bubbles:true })); applied = true; }
+        });
+        return applied;
+      }
+      let tries = 0;
+      const h = setInterval(()=>{ if(tryApply() || ++tries > 80) clearInterval(h); }, 150);
+      window.addEventListener('DOMContentLoaded', tryApply);
+      window.addEventListener('load', tryApply);
+    })();
+  </script>
+  <script>
+    // Fallback: apply ?query or ?q to the global search input if present.
+    // This uses a polling approach (like the surface script) and dispatches an input event
+    // so React's onChange handler picks up the value even if the bundle mounted after page load.
+    (function(){
+      const params = new URLSearchParams(window.location.search);
+      const rawQuery = params.get('query') || params.get('q');
+      if(!rawQuery) return;
+      const decoded = decodeURIComponent(rawQuery);
+      function tryApply(){
+        const input = document.getElementById('global-search');
+        if(!input) return false;
+        try {
+          // Only apply if the input is empty or different
+          if((input.value || '').trim() !== decoded.trim()){
+            input.focus && input.focus();
+            // set value and notify React by dispatching an InputEvent
+            input.value = decoded;
+            const ev = new Event('input', { bubbles: true });
+            input.dispatchEvent(ev);
+          }
+          return true;
+        } catch (e){ return false; }
+      }
+      let tries = 0;
+      const h = setInterval(()=>{ if(tryApply() || ++tries > 80) clearInterval(h); }, 150);
+      window.addEventListener('DOMContentLoaded', tryApply);
+      window.addEventListener('load', tryApply);
+    })();
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(()=>{});
+      });
+    }
+  </script>
+  <!-- Normalize Court Surface icons in dynamic map popups (size / stroke) -->
+  <script>
+  (function(){
+    function ensureThreeLines(svg){
+      var paths = svg.querySelectorAll('path');
+      if(paths.length >= 3) return;
+      var titleEl = svg.querySelector('title');
+      svg.innerHTML = (titleEl?('<title>'+titleEl.textContent+'</title>'):'')+
+        '<path d="M4 8c1-.8 2-.8 3 0s2 .8 3 0 2-.8 3 0 2 .8 3 0 2-.8 3 0" />'+
+        '<path d="M4 12c1-.8 2-.8 3 0s2 .8 3 0 2-.8 3 0 2 .8 3 0 2-.8 3 0" />'+
+        '<path d="M4 16c1-.8 2-.8 3 0s2 .8 3 0 2-.8 3 0 2 .8 3 0 2-.8 3 0" />';
+    }
+    function normalize(root){
+      if(!root) return;
+      root.querySelectorAll("div[title='Court Surface'] svg[viewBox='0 0 22 22']").forEach(function(svg){
+        if(!svg.dataset.norm){
+          svg.setAttribute('width','18');
+          svg.setAttribute('height','18');
+          svg.setAttribute('stroke','#94a3b8');
+          svg.setAttribute('stroke-width','1.8');
+          svg.setAttribute('fill','none');
+          svg.style.display='block';
+          ensureThreeLines(svg);
+          svg.dataset.norm='1';
+        } else {
+          ensureThreeLines(svg);
+        }
+      });
+    }
+    const mo = new MutationObserver(function(list){
+      list.forEach(function(m){
+        m.addedNodes && m.addedNodes.forEach(function(n){
+          if(n.nodeType===1 && n.classList.contains('leaflet-popup')) normalize(n);
+        });
+      });
+    });
+    if(document.body) mo.observe(document.body,{childList:true,subtree:true});
+    normalize(document);
+    window._normalizeSurfaceIcon = normalize;
+  })();
+  </script>
+</body>
+</html>
