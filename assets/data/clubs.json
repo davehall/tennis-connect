@@ -591,7 +591,8 @@
     "court_type": "Outdoor",
     "website": "http://www.bushytennispadel.ie/",
     "indoor": false,
-    "favicon": "/images/logos/bushy.png"
+    "favicon": "/images/logos/bushy.png",
+    "public": true
   },
   {
     "id": 302,
@@ -1770,7 +1771,8 @@
     "court_type": "Outdoor",
     "website": "https://www.herbertparktennis.ie/",
     "indoor": false,
-    "favicon": "/images/logos/herbert.png"
+    "favicon": "/images/logos/herbert.png",
+    "public": true
   },
   {
     "id": 85,
@@ -2380,7 +2382,8 @@
     "court_type": "Outdoor",
     "website": "https://parkstennis.com/",
     "indoor": false,
-    "favicon": "/images/logos/malahide_castle.png"
+    "favicon": "/images/logos/malahide_castle.png",
+    "public": true
   },
   {
     "id": 114,
@@ -3159,7 +3162,8 @@
     "court_type": "Outdoor",
     "website": "https://www.stannesparktennis.com/",
     "indoor": false,
-    "favicon": "/images/logos/st-anne-s-park-tennis-club-147.png"
+    "favicon": "/images/logos/st-anne-s-park-tennis-club-147.png",
+    "public": true
   },
   {
     "id": 148,
@@ -3436,7 +3440,8 @@
     "court_surface": "Hard Court",
     "court_type": "Outdoor",
     "indoor": false,
-    "public": true
+    "public": true,
+    "favicon": "/images/logos/parks_tennis.png"
   },
   {
     "id": 602,
@@ -3451,7 +3456,8 @@
     "court_surface": "Hard Court",
     "court_type": "Outdoor",
     "indoor": false,
-    "public": true
+    "public": true,
+    "favicon": "/images/logos/parks_tennis.png"
   },
   {
     "id": 603,
@@ -3466,6 +3472,7 @@
     "court_surface": "Hard Court",
     "court_type": "Outdoor",
     "indoor": false,
-    "public": true
+    "public": true,
+    "favicon": "/images/logos/parks_tennis.png"
   }
 ]
