@@ -1,18 +1,18 @@
 # GitHub Copilot Instructions for Tennis Club Connect
 
-A static React + Leaflet app bundled with esbuild and served from `app/`. Data and images live under `app/assets/` and `app/images/`. This guide sets the rules and workflows for AI-assisted edits to keep the site fast, safe, and maintainable.
+A static React + Leaflet app bundled with esbuild. NOTE: the project was moved from an `app/` subfolder into the repository root; some legacy references may still mention `app/`. Data and images now live under `assets/data/` and `images/` at the repository root. This guide sets the rules and workflows for AI-assisted edits to keep the site fast, safe, and maintainable.
 
 ## Architecture
-- UI: React 18 functional components in `app/src/app.jsx`, bundled to `app/app.js` (IIFE, minified, ES2018 target).
+- UI: React 18 functional components in `src/app.jsx`, bundled to `app.js` (IIFE, minified, ES2018 target).
 - Map: Leaflet for markers, popups, and bounds fitting.
 - Styling: Tailwind utility classes in JSX. No custom CSS build.
-- Data: Base64 JSON (`app/assets/data/rk7a9nq3.b64.txt`) loaded by `rk7a9nq3.js` hydrates global data at runtime.
+- Data: Base64 JSON (`assets/data/rk7a9nq3.b64.txt`) loaded by `rk7a9nq3.js` hydrates global data at runtime. When you update `assets/data/clubs.json` regenerate the base64 bundle with `node scripts/extract-b64.js assets/data/rk7a9nq3.b64.txt` and commit the resulting file.
 - Images: All logos/icons are local for privacy. No runtime remote favicon fetching.
 - SW: `app/sw.js` caches the shell and images. Bump cache version on asset changes.
 - Optional backend: Netlify function `netlify/functions/suggest-club.js` and local Express helper `app/server/send-suggestion.js` for suggestions.
 
 ## Golden rules
-- Edit source only: Make changes in `app/src/app.jsx`. Never edit the compiled bundle `app/app.js` directly.
+- Edit source only: Make changes in `src/app.jsx`. Never edit the compiled bundle `app.js` (or legacy `app/app.js`) directly.
 - Keep it small: Favor light, incremental changes. Preserve public behavior unless the task requires it.
 - Mobile-first: Ensure inputs/buttons remain touch-friendly. On iOS small screens, popover filter inputs can be slightly taller.
 - Privacy first: Don’t add third-party trackers or external data fetches. Keep all assets local unless explicitly requested.
@@ -25,7 +25,19 @@ A static React + Leaflet app bundled with esbuild and served from `app/`. Data a
 - Do NOT introduce new build tools unless requested. Stick with esbuild.
 
 ## Data workflows
-- Editing clubs: Update the base64 file `app/assets/data/rk7a9nq3.b64.txt` directly or regenerate from legacy `clubs.js` via `node app/scripts/extract-b64.js`.
+- Data workflows
+- Editing clubs: Update `assets/data/clubs.json`. After editing, regenerate and commit the base64 bundle so the deployed site uses the updated dataset:
+
+  1. `node scripts/extract-b64.js assets/data/rk7a9nq3.b64.txt`
+  2. `git add assets/data/rk7a9nq3.b64.txt assets/data/clubs.json`
+  3. `git commit -m "data: update clubs and regenerate base64 bundle"`
+
+  Optional verification: decode the regenerated bundle and search for your edited entry to confirm the change is present, for example:
+
+  - `base64 --decode assets/data/rk7a9nq3.b64.txt | grep -C2 "Galway Lawn Tennis Club"`
+  - or using Node: `node -e "console.log(Buffer.from(require('fs').readFileSync('assets/data/rk7a9nq3.b64.txt','utf8'),'base64').toString('utf8').includes('Artificial Clay'))"`
+
+  This prevents discrepancies between the JSON source and the base64 bundle used by the site.
 - Audits:
   - Logos: `npm run audit:logos` to report missing/unused logos.
   - Images: `npm run audit:images` to find large files and compression candidates.
@@ -71,16 +83,28 @@ A static React + Leaflet app bundled with esbuild and served from `app/`. Data a
 - Changing dataset without updating local logos/images.
 
 ## Quick references
-- Source: `app/src/app.jsx`
-- Bundle: `app/app.js` (generated)
-- Search page: `app/search/index.html`
-- Landing page: `app/index.html`
-- Data: `app/assets/data/`
-- Images: `app/images/`
-- Components: `app/components.js`
-- SW: `app/sw.js`
-- Scripts: `app/scripts/`
+- Source: `src/app.jsx`
+- Bundle: `app.js` (generated)
+- Search page: `search/index.html` (root `search/`)
+- Landing page: `index.html`
+- Data: `assets/data/`
+- Images: `images/`
+- Components: `components.js`
+- SW: `sw.js`
+- Scripts: `scripts/`
 - Netlify functions: `netlify/functions/`
+
+Deployment notes (avoid 405 / missing function issues):
+
+- Ensure `netlify.toml` (or your host settings) points `publish` to the repository root (or the correct publish directory) and `functions` to `netlify/functions`. Example:
+
+  [build]
+    publish = "."
+    functions = "netlify/functions"
+
+- If using `_redirects`, include both `/api/your-fn` and `/api/your-fn/` (trailing-slash variant) to avoid redirects that transform POSTs into GETs and strip request bodies.
+
+- After changing deploy config, trigger a fresh deploy and verify the function endpoint responds to `POST` with `200` before assuming client-side issues.
 
 ---
 If you need broader architectural changes or a new feature, propose a brief plan in the PR description before implementation. Keep performance and privacy top-of-mind.
