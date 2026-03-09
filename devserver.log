@@ -1,0 +1,16 @@
+nohup: ignoring input
+
+> tennis-club-map@1.0.0 start
+> npm run build && npx serve -l 3000 .
+
+
+> tennis-club-map@1.0.0 build
+> esbuild src/app.jsx --bundle --minify --format=iife --target=es2018 --outfile=app.js --define:process.env.NODE_ENV="'production'"
+
+
+  app.js  192.2kb
+
+⚡ Done in 69ms
+ INFO  Accepting connections at   HTTP  3/8/2026 10:06:40 PM ::1 HEAD /
+ HTTP  3/8/2026 10:06:40 PM ::1 Returned 200 in 23 ms
+ INFO  Gracefully shutting down. Please wait...

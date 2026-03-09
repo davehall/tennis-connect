@@ -1,1 +1,5 @@
-devserver.log
+# Local runtime config (contains secrets); don't commit
+config.js
+
+# Node
+node_modules/
