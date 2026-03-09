@@ -2,8 +2,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const DATA_JSON = path.join(__dirname, '../app/assets/data/clubs.json');
-const BACKUP = path.join(__dirname, '../app/assets/data/clubs.json.backup-' + new Date().toISOString().replace(/[:.]/g,'') + '.json');
+const DATA_JSON = path.join(__dirname, '../assets/data/clubs.json');
+const BACKUP = path.join(__dirname, '../assets/data/clubs.json.backup-' + new Date().toISOString().replace(/[:.]/g,'') + '.json');
 
 const CANONICAL = [
   'Artificial Grass',

@@ -5,7 +5,7 @@ if (process.argv.length < 3) {
   process.exit(2);
 }
 const rev = process.argv[2];
-const path = process.argv[3] || 'app/assets/data/clubs.json';
+const path = process.argv[3] || 'assets/data/clubs.json';
 try {
   const out = execSync(`git show ${rev}:${path}`, { encoding: 'utf8', stdio: ['pipe', 'pipe', 'inherit'] });
   const data = JSON.parse(out);

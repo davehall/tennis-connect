@@ -10,7 +10,7 @@ Use this workflow when you want to do bulk or manual edits in a friendly JSON fi
 ## Prerequisites
 
 - Node.js installed
-- Run commands from the project root: `app/`
+- Run commands from the project root: `.`
 
 ## Steps
 
