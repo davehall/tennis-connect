@@ -26,11 +26,14 @@ A static React + Leaflet app bundled with esbuild. NOTE: the project was moved f
 
 ## Data workflows
 - Data workflows
-- Editing clubs: Update `assets/data/clubs.json`. After editing, regenerate and commit the base64 bundle so the deployed site uses the updated dataset:
+- Editing clubs: Update `assets/data/clubs.json`. After editing, run BOTH regeneration steps and commit all three changed files — the page loads `assets/data/rk7a9nq3.js` at runtime, so both files must be updated:
 
-  1. `node scripts/extract-b64.js assets/data/rk7a9nq3.b64.txt`
-  2. `git add assets/data/rk7a9nq3.b64.txt assets/data/clubs.json`
-  3. `git commit -m "data: update clubs and regenerate base64 bundle"`
+  1. `node scripts/extract-b64.js assets/data/rk7a9nq3.b64.txt`   ← updates the raw b64 file
+  2. `node scripts/inline-data.js`                                  ← regenerates the JS bundle the browser actually loads
+  3. `git add assets/data/clubs.json assets/data/rk7a9nq3.b64.txt assets/data/rk7a9nq3.js`
+  4. `git commit -m "data: update clubs and regenerate base64 bundle"`
+
+  **Important:** Running only step 1 (extract-b64) is NOT enough — `rk7a9nq3.js` is what the page fetches and it will stay stale until `inline-data.js` is also run. Missing step 2 is why new clubs appear in the JSON but are invisible in the UI.
 
   Optional verification: decode the regenerated bundle and search for your edited entry to confirm the change is present, for example:
 
