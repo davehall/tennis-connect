@@ -3421,4 +3421,51 @@
     "favicon": "/images/logos/cork_park.png",
     "public": true
   }
+
+  ,
+  {
+    "id": 601,
+    "name": "Crestwood Tennis Courts",
+    "address": "Crestwood, Galway",
+    "county": "Galway",
+    "lat": 53.29382322864013,
+    "lng": -9.047880067683154,
+    "sport": "Tennis",
+    "facility_type": "Public",
+    "courts": 2,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "indoor": false,
+    "public": true
+  },
+  {
+    "id": 602,
+    "name": "McGrath's Field Tennis Courts",
+    "address": "Shangort Road, Knocknacarra, Galway",
+    "county": "Galway",
+    "lat": 53.2630205251781,
+    "lng": -9.112105956630668,
+    "sport": "Tennis",
+    "facility_type": "Public",
+    "courts": 2,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "indoor": false,
+    "public": true
+  },
+  {
+    "id": 603,
+    "name": "Westside Tennis Courts",
+    "address": "Westside Sports Ground, Westside, Galway",
+    "county": "Galway",
+    "lat": 53.276358884432966,
+    "lng": -9.078316033628067,
+    "sport": "Tennis",
+    "facility_type": "Public",
+    "courts": 4,
+    "court_surface": "Hard Court",
+    "court_type": "Outdoor",
+    "indoor": false,
+    "public": true
+  }
 ]
