@@ -81,14 +81,17 @@
     .surface-legend .legend-title { font-weight:600; font-size:13px; margin-bottom:6px; letter-spacing:.25px; color:#0f172a; }
     .surface-legend .legend-row { display:flex; align-items:center; gap:8px; font-size:12px; color:#334155; margin:4px 0; }
     .surface-legend .swatch { width:16px; height:16px; border-radius:4px; box-shadow:0 0 0 1px rgba(255,255,255,.9),0 0 0 1px rgba(0,0,0,.18) inset; }
-    /* Mobile: compact legend + lift bottom controls above browser chrome / safe-area */
+    /* Mobile: prevent body scroll + lock height to visible viewport + lift legend */
     @media (max-width:767px) {
-      /* 100svh = smallest viewport height (URL bar visible). Prevents the app from
-         extending below the visible area when the mobile browser chrome is shown,
-         which would cut off the Leaflet legend at the bottom of the map. */
-      .h-screen { height: 100svh; }
-      /* Extra bottom clearance: safe-area (home indicator) + room above any residual chrome */
-      .leaflet-bottom { padding-bottom: max(20px, env(safe-area-inset-bottom, 0px) + 12px); }
+      /* Prevent body-level scroll so the map bottom is never pushed below the viewport.
+         The list panel has its own overflow-y-auto scroll area so usability is unaffected. */
+      html, body { overflow: hidden; }
+      /* 100svh = smallest viewport height (URL bar visible).
+         !important overrides Tailwind CDN which injects .h-screen{height:100vh} via
+         appendChild AFTER this <style> block, winning the cascade without !important. */
+      .h-screen { height: 100svh !important; }
+      /* Bottom clearance: safe-area inset (iOS home bar / Android nav) + extra buffer */
+      .leaflet-bottom { padding-bottom: max(24px, env(safe-area-inset-bottom, 0px) + 16px); }
       .surface-legend { padding:7px 10px; border-radius:8px; }
       .surface-legend .legend-title { font-size:11px; margin-bottom:4px; }
       .surface-legend .legend-row { gap:6px; font-size:11px; margin:2px 0; }
