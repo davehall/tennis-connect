@@ -1392,7 +1392,7 @@
     "sport": "Tennis",
     "facility_type": "Sports Club",
     "courts": 14,
-    "court_surface": "Artificial Grass / Artificial Clay",
+    "court_surface": "Natural Grass / Artificial Grass / Artificial Clay",
     "court_type": "Indoor/Outdoor",
     "website": "https://www.elmpark.ie/",
     "favicon": "/images/logos/elmpark.png"
