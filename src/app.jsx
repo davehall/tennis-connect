@@ -1089,9 +1089,9 @@ function ClubFinder(){
         </div>`);
     }
     const detailsHtmlInner = detailsBits.length ? `<div class=\"mt-3 flex flex-wrap gap-x-4 gap-y-2 text-slate-600\">${detailsBits.join('')}</div>` : '';
-    const directionsHtml = (typeof club.lat === 'number' && typeof club.lng === 'number')
-      ? `<div class=\"mt-3 flex justify-end\"><a href=\"https://www.google.com/maps/search/?api=1&query=${club.lat},${club.lng}\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-1.5 text-[12px] font-semibold px-3 py-1.5 rounded-md bg-teal-500 text-white hover:bg-teal-600\" style=\"color:#fff !important; background:#14b8a6; text-decoration:none; padding:6px 12px; border-radius:6px; font-weight:600; font-size:12px;\">Get directions</a></div>`
-      : '';
+    const websiteUrl = club.website ? String(club.website).trim() : '';
+    const normalizedWebsiteUrl = websiteUrl && !/^(https?:)?\/\//i.test(websiteUrl) ? `https://${websiteUrl}` : websiteUrl;
+    const actionsHtml = `<div class=\"mt-3 flex flex-wrap justify-end gap-2\">${(typeof club.lat === 'number' && typeof club.lng === 'number') ? `<a href=\"https://www.google.com/maps/search/?api=1&query=${club.lat},${club.lng}\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-1.5 text-[12px] font-semibold px-3 py-1.5 rounded-md bg-teal-500 text-white hover:bg-teal-600\" style=\"color:#fff !important; background:#14b8a6; text-decoration:none; padding:6px 12px; border-radius:6px; font-weight:600; font-size:12px;\">Get directions</a>` : ''}${normalizedWebsiteUrl ? `<a href=\"${normalizedWebsiteUrl}\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-1.5 text-[12px] font-semibold px-3 py-1.5 rounded-md border border-slate-300 bg-white text-slate-700 hover:bg-slate-100\" style=\"text-decoration:none; padding:6px 12px; border-radius:6px; font-weight:600; font-size:12px;\">Website</a>` : ''}</div>`;
     const popupHtml = `
       <div class=\"p-2\">
         <div class=\"flex items-start gap-4\"> 
@@ -1100,7 +1100,7 @@ function ClubFinder(){
             <div class=\"font-heading font-semibold text-[16px] leading-tight text-slate-800 mb-2.5\">${club.name||''}</div>
             <div class=\"text-[13px] leading-snug text-slate-600 mt-1\">${club.address||''}</div>
             ${detailsHtmlInner}
-            ${directionsHtml}
+            ${actionsHtml}
           </div>
         </div>
       </div>`;
