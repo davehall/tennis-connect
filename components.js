@@ -31,9 +31,9 @@
     }
 
     const iconEl = useSvg
-      ? React.createElement('span', { className:'inline-block h-28 md:h-8', role:'img', 'aria-label':'Tennis Club Connect', dangerouslySetInnerHTML:{ __html: useSvg } })
+      ? React.createElement('span', { className:'inline-block h-7 md:h-8 w-auto max-h-full', role:'img', 'aria-label':'Tennis Club Connect', dangerouslySetInnerHTML:{ __html: useSvg } })
       : (useUrl
-        ? React.createElement('img', { src: useUrl, alt:'Tennis Club Connect', className:'h-7 md:h-8 w-auto inline-block', decoding:'async', loading:'eager' })
+        ? React.createElement('img', { src: useUrl, alt:'Tennis Club Connect', className:'h-7 md:h-8 w-auto inline-block max-h-full', decoding:'async', loading:'eager' })
         : React.createElement('svg', { className:'h-6 w-6 md:h-7 md:w-7', viewBox:'0 0 83 83', fill:'none', xmlns:'http://www.w3.org/2000/svg', role:'img', 'aria-label':'Tennis Club Connect logo' },
             React.createElement('circle', { cx:41.5, cy:41.5, r:41.5, fill:'#14B8A6'}),
             React.createElement('g', { transform:'translate(41.5 41.5) scale(1) translate(-43 -43)' },
