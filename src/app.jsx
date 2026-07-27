@@ -1301,28 +1301,27 @@ if (newMarkers.length && !selectedClubId) {
       return r;
     };
 
-    // First try relative path (works on Netlify or when API is proxied).
-    // Use trailing slash to avoid server redirects which can convert POST -> GET and drop the body.
-    try {
-      await tryPost('/api/suggest-club/');
-    } catch (err) {
-      // If served from a non-local origin (production), don't attempt to call localhost
-      const hostname = (typeof window !== 'undefined' && window.location && window.location.hostname) ? window.location.hostname : '';
-      const isLocalHost = hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1' || hostname === '0.0.0.0';
-      if (isLocalHost) {
-        console.warn('Relative POST failed, trying local dev server (running on localhost)...', err && err.message);
-        try {
-          await tryPost('http://localhost:5173/api/suggest-club/');
-        } catch (err2) {
-          // surface the local failure
-          throw err2;
-        }
-      } else {
-        // Do not try localhost from non-local origins (avoids CORS / address-space blocking in browsers)
-        console.warn('Relative POST failed and origin is non-local; not attempting localhost fallback:', hostname, err && err.message);
-        throw err;
+    // Try the Netlify function route first. This avoids the trailing-slash redirect pattern
+    // that can turn a POST into a GET and trigger the 405 response.
+    const hostname = (typeof window !== 'undefined' && window.location && window.location.hostname) ? window.location.hostname : '';
+    const isLocalHost = hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1' || hostname === '0.0.0.0';
+    const candidateUrls = isLocalHost
+      ? ['http://localhost:5173/api/suggest-club', '/api/suggest-club']
+      : ['/.netlify/functions/suggest-club', '/api/suggest-club'];
+
+    let lastErr = null;
+    for (const url of candidateUrls) {
+      try {
+        await tryPost(url);
+        lastErr = null;
+        break;
+      } catch (err) {
+        lastErr = err;
+        console.warn('[suggest] POST failed for', url, err && err.message);
       }
     }
+
+    if (lastErr) throw lastErr;
       setSuggestSubmitted(true);
       setTimeout(()=>{
         setSuggestModalOpen(false);
