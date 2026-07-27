@@ -266,7 +266,16 @@ function ClubFinder(){
       .slice()
       .sort((a,b) => (a?.name||'').localeCompare(b?.name||'', undefined, { sensitivity:'base' }))
   );
-  const [activeSport, setActiveSport] = useState('Tennis');
+  const getSportFromUrl = () => {
+    try {
+      const params = (typeof window !== 'undefined') ? new URLSearchParams(window.location.search) : new URLSearchParams();
+      const sportParam = params.get('sport') || '';
+      return ['Tennis', 'Padel', 'Pickleball'].includes(sportParam) ? sportParam : 'Tennis';
+    } catch (e) {
+      return 'Tennis';
+    }
+  };
+  const [activeSport, setActiveSport] = useState(getSportFromUrl);
   const [rawLocationSearch, setRawLocationSearch] = useState(() => {
     try {
       const params = (typeof window !== 'undefined') ? new URLSearchParams(window.location.search) : new URLSearchParams();
@@ -402,6 +411,21 @@ function ClubFinder(){
   }, []);
 
   useEffect(()=> { if(activeSport !== 'Tennis' && surfaceFilter) setSurfaceFilter(''); }, [activeSport]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    if (activeSport === 'Tennis') {
+      params.delete('sport');
+    } else {
+      params.set('sport', activeSport);
+    }
+    const nextUrl = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ''}${window.location.hash || ''}`;
+    const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash || ''}`;
+    if (nextUrl !== currentUrl) {
+      window.history.replaceState(null, '', nextUrl);
+    }
+  }, [activeSport]);
 
   const tennisSurfaces = React.useMemo(()=> window.tennisSurfaceOptions || [], []); // eslint-disable-line
   const CANONICAL_SURFACES = React.useMemo(()=> ['Artificial Clay','Natural Clay','Artificial Grass','Natural Grass','Hardcourt'], []);
