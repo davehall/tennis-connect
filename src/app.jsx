@@ -1618,7 +1618,7 @@ if (newMarkers.length && !selectedClubId) {
                   <path d="M10 4v13" />
                   <path d="M14 6.5v13" />
                 </svg>
-                <span className="whitespace-nowrap text-[13px] sm:text-sm">Show map</span>
+                <span className="hidden whitespace-nowrap text-[13px] sm:inline sm:text-sm">Show map</span>
                 <span className="whitespace-nowrap text-[13px] sm:hidden">Map</span>
               </button>
             </div>
