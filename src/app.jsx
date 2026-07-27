@@ -1603,8 +1603,9 @@ if (newMarkers.length && !selectedClubId) {
               </div>
               <button onClick={()=> setMobileListVisible(false)} aria-label="Show map" className="md:hidden inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:text-slate-900">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M12 21s-6-4.35-6-10a6 6 0 1 1 12 0c0 5.65-6 10-6 10Z" />
-                  <circle cx="12" cy="11" r="2.5" />
+                  <path d="M4 6.5 10 4l4 2.5 6-2.5v13l-6 2.5-4-2.5-6 2.5Z" />
+                  <path d="M10 4v13" />
+                  <path d="M14 6.5v13" />
                 </svg>
                 <span>Show map</span>
               </button>
