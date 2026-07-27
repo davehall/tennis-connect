@@ -890,8 +890,27 @@
                             .filter(l=> surfaceCounts[l])
                             .map(l=> { const count=surfaceCounts[l]; const pct=Math.round((count/surfaceTotal)*100); return { label:l, count, pct }; })
                             .sort((a,b)=> b.count - a.count);
-                        barsEl.innerHTML = surfaceEntries.map(se=> `<div><div class=\"flex items-center justify-between mb-1 text-sm\"><span class=\"font-medium text-slate-700\">${se.label}</span><span class=\"text-slate-500\">${se.pct}%</span></div><div class=\"h-2 md:h-3 r-md bg-slate-200 overflow-hidden\"><div class=\"h-full bg-teal-500 transition-all duration-700 ease-out\" style=\"width:0%;\" data-final=\"${se.pct}\"></div></div></div>`).join('');
-                        topEl.innerHTML = topCounties.map(([county,count])=>{ const pct = Math.round((count/total)*100); return `<div><div class=\"flex items-center justify-between mb-1 text-sm\"><span class=\"font-medium text-slate-700\">${county}</span><span class=\"text-slate-500\">${count} (${pct}%)</span></div><div class=\"h-2 md:h-3 r-md bg-slate-200 overflow-hidden\"><div class=\"h-full bg-amber-500 transition-all duration-700 ease-out\" style=\"width:0%;\" data-final=\"${pct}\"></div></div></div>`; }).join('');
+                        barsEl.innerHTML = surfaceEntries.map(se=> {
+                            const surfaceParam = encodeURIComponent(se.label);
+                            return `<a href="/search/?sport=Tennis&surface=${surfaceParam}" class="block rounded-lg border border-slate-200 bg-white/70 p-3 transition hover:-translate-y-0.5 hover:shadow-sm">
+  <div class="flex items-center justify-between mb-1 text-sm">
+    <span class="font-medium text-slate-700">${se.label}</span>
+    <span class="text-slate-500">${se.pct}%</span>
+  </div>
+  <div class="h-2 md:h-3 r-md bg-slate-200 overflow-hidden">
+    <div class="h-full bg-teal-500 transition-all duration-700 ease-out" style="width:0%;" data-final="${se.pct}"></div>
+  </div>
+</a>`;
+                        }).join('');
+                        topEl.innerHTML = topCounties.map(([county,count])=>{ const pct = Math.round((count/total)*100); const countyParam = encodeURIComponent(county); return `<a href="/search/?sport=Tennis&county=${countyParam}" class="block rounded-lg border border-slate-200 bg-white/70 p-3 transition hover:-translate-y-0.5 hover:shadow-sm">
+  <div class="flex items-center justify-between mb-1 text-sm">
+    <span class="font-medium text-slate-700">${county}</span>
+    <span class="text-slate-500">${count} (${pct}%)</span>
+  </div>
+  <div class="h-2 md:h-3 r-md bg-slate-200 overflow-hidden">
+    <div class="h-full bg-amber-500 transition-all duration-700 ease-out" style="width:0%;" data-final="${pct}"></div>
+  </div>
+</a>`; }).join('');
                                                 // Animate counts
                                                 requestAnimationFrame(()=>{
                                                     document.querySelectorAll('.count-up').forEach(el=>{
