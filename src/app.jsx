@@ -320,7 +320,13 @@ function ClubFinder(){
 
   const [isMobileListVisible, setMobileListVisible] = useState(() => {
     if (typeof window === 'undefined') return false;
-    return window.innerWidth < 768;
+    const referrer = (typeof document !== 'undefined' ? document.referrer : '') || '';
+    let cameFromHomepage = false;
+    try {
+      const ref = new URL(referrer, window.location.href);
+      cameFromHomepage = ref.origin === window.location.origin && ['/', '/index.html', '/index'].includes(ref.pathname);
+    } catch (_) {}
+    return window.innerWidth < 768 || cameFromHomepage;
   });
   const [sortOrder, setSortOrder] = useState('az'); // 'az' | 'za'
   const [isMobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -428,12 +434,17 @@ function ClubFinder(){
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const isSmall = window.innerWidth < 768;
-    if (isSmall) {
-      setMobileListVisible(true);
-      setTopHeaderHidden(true);
-      setMobileFiltersOpen(false);
-    }
+    const syncMobileListState = () => {
+      const isSmall = window.innerWidth < 768;
+      if (isSmall) {
+        setMobileListVisible(true);
+        setTopHeaderHidden(true);
+        setMobileFiltersOpen(false);
+      }
+    };
+    syncMobileListState();
+    window.addEventListener('resize', syncMobileListState);
+    return () => window.removeEventListener('resize', syncMobileListState);
   }, []);
 
   useEffect(() => {
@@ -1042,7 +1053,7 @@ function ClubFinder(){
     }
   }, [basemapPreset]);
 
-  useEffect(()=>{ const map=mapRef.current; if(!map) return; try { map.invalidateSize(false); } catch(_){} Object.values(markersRef.current).forEach(m=> { try { map.removeLayer(m); } catch(_){} }); markersRef.current={}; const classification=(window.tennisSurfaceClassification||{}); const mapCategoryToColor=cat=>{ if(!cat) return 'unknown'; const c=(cat||'').toString(); if(c==='Red Plus Clay') return 'rp'; if(c==='Real Clay' || c==='Natural Clay') return 'rc'; if(c==='Artificial Clay') return 'sc'; if(c==='Real Grass' || c==='Natural Grass') return 'ng'; if(c.startsWith('Artificial Grass')) return 'sg'; if(c==='Hard Court' || c==='Hardcourt') return 'hc'; return 'unknown'; }; const UI_TO_INTERNAL={ 'Hardcourt':'Hard Court' }; const requestedSurface=surfaceFilter ? (UI_TO_INTERNAL[surfaceFilter]||surfaceFilter):null; const surfaceColorClass=club=>{ const clubId=club.id; const cats=(classification[clubId]||[]).map(x=> (x||'').toString()); if(requestedSurface){ return mapCategoryToColor(requestedSurface); } if(!cats.length) return 'unknown'; if(cats.includes('Red Plus Clay')) return 'rp'; if(cats.includes('Real Clay')||cats.includes('Natural Clay')) return 'rc'; if(cats.includes('Artificial Clay')) return 'sc'; if(cats.includes('Real Grass')||cats.includes('Natural Grass')) return 'ng'; if(cats.includes('Artificial Grass (Savannah)')||cats.includes('Artificial Grass (TigerTurf)')||cats.includes('Artificial Grass')) return 'sg'; if(cats.includes('Hard Court')||cats.includes('Hardcourt')) return 'hc'; return 'unknown'; };
+  useEffect(()=>{ const map=mapRef.current; if(!map || !mapReady) return; try { map.invalidateSize(false); } catch(_){} Object.values(markersRef.current).forEach(m=> { try { map.removeLayer(m); } catch(_){} }); markersRef.current={}; const classification=(window.tennisSurfaceClassification||{}); const mapCategoryToColor=cat=>{ if(!cat) return 'unknown'; const c=(cat||'').toString(); if(c==='Red Plus Clay') return 'rp'; if(c==='Real Clay' || c==='Natural Clay') return 'rc'; if(c==='Artificial Clay') return 'sc'; if(c==='Real Grass' || c==='Natural Grass') return 'ng'; if(c.startsWith('Artificial Grass')) return 'sg'; if(c==='Hard Court' || c==='Hardcourt') return 'hc'; return 'unknown'; }; const UI_TO_INTERNAL={ 'Hardcourt':'Hard Court' }; const requestedSurface=surfaceFilter ? (UI_TO_INTERNAL[surfaceFilter]||surfaceFilter):null; const surfaceColorClass=club=>{ const clubId=club.id; const cats=(classification[clubId]||[]).map(x=> (x||'').toString()); if(requestedSurface){ return mapCategoryToColor(requestedSurface); } if(!cats.length) return 'unknown'; if(cats.includes('Red Plus Clay')) return 'rp'; if(cats.includes('Real Clay')||cats.includes('Natural Clay')) return 'rc'; if(cats.includes('Artificial Clay')) return 'sc'; if(cats.includes('Real Grass')||cats.includes('Natural Grass')) return 'ng'; if(cats.includes('Artificial Grass (Savannah)')||cats.includes('Artificial Grass (TigerTurf)')||cats.includes('Artificial Grass')) return 'sg'; if(cats.includes('Hard Court')||cats.includes('Hardcourt')) return 'hc'; return 'unknown'; };
   // Build markers for current filteredClubs
   const newMarkers = [];
   const normAsset = (u) => { try { const s=(u||'').toString().trim(); if(!s) return ''; if (s.startsWith('data:') || /^([a-z]+:)?\/\//i.test(s) || s.startsWith('/')) return s; if (s.startsWith('images/') || s.startsWith('logos/') || s.startsWith('assets/') || s.startsWith('img/')) return '/'+s.replace(/^\/+/,''); return s; } catch{ return u||'' } };
@@ -1167,7 +1178,7 @@ if (newMarkers.length && !selectedClubId) {
   }
 }
   if(selectedClubId && markersRef.current[selectedClubId]){ setTimeout(()=>{ const m=markersRef.current[selectedClubId]; if(m){ m.openPopup(); } },60); }
-  }, [filteredClubs, selectedClubId, surfaceFilter]);
+  }, [filteredClubs, selectedClubId, surfaceFilter, mapReady]);
 
     // Reflow the map when its container resizes (e.g., after fonts/layout settle)
     useEffect(()=>{
