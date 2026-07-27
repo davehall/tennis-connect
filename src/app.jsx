@@ -966,11 +966,6 @@ function ClubFinder(){
   const activeFilterSummary = (() => {
     const filters = [];
     if (countyFilter) filters.push(countyFilter);
-    if (surfaceFilter) filters.push(surfaceFilter);
-    if (indoorFilter) {
-      const label = indoorFilter === 'outdoor' ? 'outdoor' : indoorFilter === 'indoor' ? 'indoor' : 'public';
-      filters.push(label);
-    }
     if (rawLocationSearch && rawLocationSearch.trim()) filters.push(`“${rawLocationSearch.trim()}”`);
     return filters.length ? ` in ${filters.join(', ')}` : '';
   })();
@@ -1605,19 +1600,19 @@ if (newMarkers.length && !selectedClubId) {
         <main className="flex-grow flex relative overflow-hidden">
           <div className={`absolute md:relative top-0 bottom-0 left-0 right-0 z-40 transition-transform duration-300 ease-in-out ${isMobileListVisible ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 w-full md:w-[48%] lg:w-[40%] xl:w-[680px] 2xl:w-[710px] flex-shrink-0 flex flex-col bg-white border-r border-slate-200`}>
             <div className="px-4 sm:px-6 lg:px-8 py-3 md:py-4 flex-shrink-0 border-b border-slate-200 flex items-center justify-between gap-3 sticky top-0 z-20 bg-white shadow-md md:shadow-none">
-              <p role="status" aria-live="polite" aria-atomic="true" className="text-sm md:text-base font-semibold text-slate-700">{filteredClubs.length} {activeSport.toLowerCase()} {filteredClubs.length === 1 ? 'club' : 'clubs'}{activeFilterSummary}</p>
-              <div className="flex items-center gap-6 ml-auto">
+              <p role="status" aria-live="polite" aria-atomic="true" className="min-w-0 flex-1 text-sm md:text-base font-semibold text-slate-700 whitespace-nowrap overflow-hidden text-ellipsis">{filteredClubs.length} {activeSport.toLowerCase()} {filteredClubs.length === 1 ? 'club' : 'clubs'}{activeFilterSummary}</p>
+              <div className="flex items-center gap-6 ml-auto shrink-0">
                 <button
                   type="button"
                   onClick={()=> setSortOrder(prev => prev === 'az' ? 'za' : 'az')}
                   aria-pressed={sortOrder === 'za'}
-                  className="text-sm text-slate-600 hover:text-teal-700 inline-flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/50 rounded"
+                  className="h-10 shrink-0 text-sm text-slate-600 hover:text-teal-700 inline-flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/50 rounded"
                   title={sortOrder === 'za' ? 'Z → A' : 'A → Z'}
                 >
                   <span className="font-semibold">{sortOrder === 'za' ? 'Z → A' : 'A → Z'}</span>
                 </button>
               </div>
-              <button onClick={()=> setMobileListVisible(false)} aria-label="Show map" className="md:hidden inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:text-slate-900">
+              <button onClick={()=> setMobileListVisible(false)} aria-label="Show map" className="md:hidden inline-flex h-10 shrink-0 items-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:text-slate-900">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M4 6.5 10 4l4 2.5 6-2.5v13l-6 2.5-4-2.5-6 2.5Z" />
                   <path d="M10 4v13" />
