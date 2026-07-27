@@ -285,14 +285,7 @@ function ClubFinder(){
     }
   });
   const [locationSearch, setLocationSearch] = useState('');
-  const [countyFilter, setCountyFilter] = useState(() => {
-    try {
-      const params = (typeof window !== 'undefined') ? new URLSearchParams(window.location.search) : new URLSearchParams();
-      return params.get('county') || '';
-    } catch (e) {
-      return '';
-    }
-  });
+  const [countyFilter, setCountyFilter] = useState('');
   // Seed surface filter from URL param if present
   const urlParams = (typeof window !== 'undefined') ? new URLSearchParams(window.location.search) : new URLSearchParams();
   const surfaceParam = urlParams.get('surface') || '';
@@ -314,6 +307,17 @@ function ClubFinder(){
       window.history.replaceState(null, '', window.location.pathname + window.location.search);
     }
   }, []);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const countyParam = params.get('county') || '';
+      if (countyParam) {
+        setCountyFilter(countyParam);
+      }
+    } catch (_) {}
+  }, []);
+
   const [isMobileListVisible, setMobileListVisible] = useState(false);
   const [sortOrder, setSortOrder] = useState('az'); // 'az' | 'za'
   const [isMobileFiltersOpen, setMobileFiltersOpen] = useState(false);
