@@ -963,6 +963,17 @@ function ClubFinder(){
   }, [isMobileListVisible, filteredClubs, dynamicThresholds.hidePx, dynamicThresholds.showPx]);
 
   const mobileActiveFiltersCount = (countyFilter?1:0)+(surfaceFilter?1:0)+(indoorFilter?1:0)+((rawLocationSearch&&rawLocationSearch.trim())?1:0);
+  const activeFilterSummary = (() => {
+    const filters = [];
+    if (countyFilter) filters.push(countyFilter);
+    if (surfaceFilter) filters.push(surfaceFilter);
+    if (indoorFilter) {
+      const label = indoorFilter === 'outdoor' ? 'outdoor' : indoorFilter === 'indoor' ? 'indoor' : 'public';
+      filters.push(label);
+    }
+    if (rawLocationSearch && rawLocationSearch.trim()) filters.push(`“${rawLocationSearch.trim()}”`);
+    return filters.length ? ` in ${filters.join(', ')}` : '';
+  })();
 
   // Determine mobile input sizing: slightly taller on iOS because native inputs are compact there;
   // otherwise keep them a bit less tall on other small screens.
@@ -1504,6 +1515,11 @@ if (newMarkers.length && !selectedClubId) {
                   <button aria-label="Filters" onClick={()=> setMobileFiltersOpen(o=>!o)} className={`md:hidden relative h-10 px-3 py-2 rounded-md bg-white border border-slate-300 text-slate-700 shadow-sm flex items-center justify-center min-w-[44px] ml-2 ${isMobileFiltersOpen ? 'ring-2 ring-teal-500/40' : ''}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-[18px] h-[18px]"><path fill="currentColor" fillRule="evenodd" d="M3.25 6A.75.75 0 0 1 4 5.25h16a.75.75 0 0 1 0 1.5H4A.75.75 0 0 1 3.25 6Zm3 6a.75.75 0 0 1 .75-.75h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 6.25 12Zm3 5.25a.75.75 0 0 0 0 1.5h5a.75.75 0 0 0 0-1.5h-5Z" clipRule="evenodd"/></svg>
                     <span className="ml-2 text-sm font-medium">Filters</span>
+                    {mobileActiveFiltersCount > 0 && (
+                      <span className="ml-2 inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-teal-600 px-1.5 text-[11px] font-semibold text-white">
+                        {mobileActiveFiltersCount}
+                      </span>
+                    )}
                   </button>
                   <div className="hidden md:flex items-center gap-2 lg:gap-3 md:ml-2">
                     <select aria-label="County" value={countyFilter} onChange={e=> setCountyFilter(e.target.value)} className="w-full md:w-[150px] lg:w-[230px] xl:w-[230px] px-4 md:px-3 lg:px-4 xl:px-3 py-2.5 md:py-2 border border-slate-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500/60 focus:border-teal-500 text-sm font-medium">
@@ -1589,7 +1605,7 @@ if (newMarkers.length && !selectedClubId) {
         <main className="flex-grow flex relative overflow-hidden">
           <div className={`absolute md:relative top-0 bottom-0 left-0 right-0 z-40 transition-transform duration-300 ease-in-out ${isMobileListVisible ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 w-full md:w-[48%] lg:w-[40%] xl:w-[680px] 2xl:w-[710px] flex-shrink-0 flex flex-col bg-white border-r border-slate-200`}>
             <div className="px-4 sm:px-6 lg:px-8 py-3 md:py-4 flex-shrink-0 border-b border-slate-200 flex items-center justify-between gap-3 sticky top-0 z-20 bg-white shadow-md md:shadow-none">
-              <p role="status" aria-live="polite" aria-atomic="true" className="text-sm md:text-base font-semibold text-slate-700">{filteredClubs.length} {activeSport.toLowerCase()} clubs</p>
+              <p role="status" aria-live="polite" aria-atomic="true" className="text-sm md:text-base font-semibold text-slate-700">{filteredClubs.length} {activeSport.toLowerCase()} {filteredClubs.length === 1 ? 'club' : 'clubs'}{activeFilterSummary}</p>
               <div className="flex items-center gap-6 ml-auto">
                 <button
                   type="button"
