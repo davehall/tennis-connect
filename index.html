@@ -176,6 +176,26 @@
                 { text: "The perfect app for finding a last-minute game when I'm travelling for work. The map is so easy to use.", author: "Mark D." },
                 { text: "As a new Padel player, this was the best way to find all the new courts popping up. Highly recommended!", author: "Sarah L." }
             ];
+            const featuredClubs = [
+                { name: 'Carrickmines Croquet & Lawn Tennis Club', county: 'Dublin', courts: '18', logo: 'carrickmines.png', query: 'Carrickmines Croquet & Lawn Tennis Club' },
+                { name: 'Castleknock Lawn Tennis Club', county: 'Dublin', courts: '15', logo: 'castleknock-lawn-tennis-club.png', query: 'Castleknock Lawn Tennis Club' },
+                { name: 'Elm Park Golf & Sports Club', county: 'Dublin', courts: '14', logo: 'elmpark.png', query: 'Elm Park Golf & Sports Club' },
+                { name: 'Clontarf Lawn Tennis Club', county: 'Dublin', courts: '13', logo: 'clontarf-lawn.png', query: 'Clontarf Lawn Tennis Club' },
+                { name: 'David Lloyd Dublin Riverview', county: 'Dublin', courts: '12', logo: 'davidlloyd.png', query: 'David Lloyd Dublin Riverview' },
+                { name: 'Greystones Lawn Tennis Club', county: 'Wicklow', courts: '12', logo: 'greystones-lawn-tennis-club-81.png', query: 'Greystones Lawn Tennis Club' },
+                { name: 'Limerick Lawn Tennis Club', county: 'Limerick', courts: '12', logo: 'limerick-lawn-tennis-club.png', query: 'Limerick Lawn Tennis Club' },
+                { name: 'Templeogue Tennis Club', county: 'Dublin', courts: '12', logo: 'templeogue.png', query: 'Templeogue Tennis Club' },
+                { name: 'Ballycastle Tennis Club', county: 'Antrim', courts: '11', logo: 'ballycastle-tennis-club.png', query: 'Ballycastle Tennis Club' },
+                { name: 'Belfast Boat Club', county: 'Antrim', courts: '11', logo: 'belfast-boat-club-22.ico', query: 'Belfast Boat Club' },
+                { name: 'Lansdowne Tennis Club', county: 'Dublin', courts: '11', logo: 'lansdowne-tennis-club.png', query: 'Lansdowne Tennis Club' },
+                { name: 'Mount Pleasant L.T.C.', county: 'Dublin', courts: '11', logo: 'mount-pleasant.png', query: 'Mount Pleasant L.T.C.' },
+                { name: 'Naas Lawn Tennis Club', county: 'Kildare', courts: '11', logo: 'naas-lawn-tennis-club.png', query: 'Naas Lawn Tennis Club' },
+                { name: 'Rushbrooke Lawn Tennis & Croquet Club', county: 'Cork', courts: '11', logo: 'rushbrook.png', query: 'Rushbrooke Lawn Tennis & Croquet Club' },
+                { name: 'Sutton Lawn Tennis Club', county: 'Dublin', courts: '11', logo: 'sutton.png', query: 'Sutton Lawn Tennis Club' },
+                { name: 'Claremont Railway Lawn Tennis Club', county: 'Dublin', courts: '10', logo: 'claremont-railway-lawn-tennis-club-46.svg', query: 'Claremont Railway Lawn Tennis Club' },
+                { name: 'Fitzwilliam Lawn Tennis Club', county: 'Dublin', courts: '10', logo: 'fitzwilliam-lawn-tennis-club.png', query: 'Fitzwilliam Lawn Tennis Club' },
+                { name: 'Donnybrook Lawn Tennis Club', county: 'Dublin', courts: '10', logo: 'donnybrook-lawn-tennis-club.png', query: 'Donnybrook Lawn Tennis Club' }
+            ];
 
             const nextTestimonial = () => setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
             const prevTestimonial = () => setTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
@@ -267,169 +287,18 @@
     <div id="top-20-clubs" class="py-20 bg-white border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-14 font-heading text-center">Largest tennis clubs in Ireland</h2>
-        <ol class="grid gap-6 sm:gap-10 sm:grid-cols-2 lg:grid-cols-3">
-                        <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Carrickmines%20Croquet%20%26%20Lawn%20Tennis%20Club" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/carrickmines.png" alt="Carrickmines logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Carrickmines Croquet &amp; Lawn Tennis Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Dublin • 18 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Castleknock%20Lawn%20Tennis%20Club" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/castleknock-lawn-tennis-club.png" alt="Castleknock logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Castleknock Lawn Tennis Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Dublin • 15 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Elm%20Park%20Golf%20%26%20Sports%20Club" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/elmpark.png" alt="Elm Park logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Elm Park Golf &amp; Sports Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Dublin • 14 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Clontarf%20Lawn%20Tennis%20Club" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/clontarf-lawn.png" alt="Clontarf logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Clontarf Lawn Tennis Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Dublin • 13 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=David%20Lloyd%20Dublin%20Riverview" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/davidlloyd.png" alt="David Lloyd Riverview logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">David Lloyd Dublin Riverview</div>
-                        <div class="text-sm text-slate-600 mt-1">Dublin • 12 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Greystones%20Lawn%20Tennis%20Club" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/greystones-lawn-tennis-club-81.png" alt="Greystones logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Greystones Lawn Tennis Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Wicklow • 12 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Limerick%20Lawn%20Tennis%20Club" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/limerick-lawn-tennis-club.png" alt="Limerick logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Limerick Lawn Tennis Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Limerick • 12 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Templeogue%20Tennis%20Club" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/templeogue.png" alt="Templeogue logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Templeogue Tennis Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Dublin • 12 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Ballycastle%20Tennis%20Club" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/ballycastle-tennis-club.png" alt="Ballycastle logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Ballycastle Tennis Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Antrim • 11 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Belfast%20Boat%20Club" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/belfast-boat-club-22.ico" alt="Belfast Boat Club logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Belfast Boat Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Antrim • 11 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Lansdowne%20Tennis%20Club" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/lansdowne-tennis-club.png" alt="Lansdowne logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Lansdowne Tennis Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Dublin • 11 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Mount%20Pleasant%20L.T.C." class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/mount-pleasant.png" alt="Mount Pleasant logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Mount Pleasant L.T.C.</div>
-                        <div class="text-sm text-slate-600 mt-1">Dublin • 11 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Naas%20Lawn%20Tennis%20Club" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/naas-lawn-tennis-club.png" alt="Naas logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Naas Lawn Tennis Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Kildare • 11 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Rushbrooke%20Lawn%20Tennis%20%26%20Croquet%20Club" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/rushbrook.png" alt="Rushbrooke logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Rushbrooke Lawn Tennis &amp; Croquet Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Cork • 11 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Sutton%20Lawn%20Tennis%20Club" class="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/sutton.png" alt="Sutton logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Sutton Lawn Tennis Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Dublin • 11 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Claremont%20Railway%20Lawn%20Tennis%20Club" class="flex items-center gap-4 p-6 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/claremont-railway-lawn-tennis-club-46.svg" alt="Claremont Railway logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Claremont Railway Lawn Tennis Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Dublin • 10 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Fitzwilliam%20Lawn%20Tennis%20Club" class="flex items-center gap-4 p-6 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/fitzwilliam-lawn-tennis-club.png" alt="Fitzwilliam logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Fitzwilliam Lawn Tennis Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Dublin • 10 courts</div>
-                    </div>
-                </a>
-            </li>
-            <li class="p-0 bg-slate-50 rounded-lg border overflow-hidden">
-                <a href="/search/?query=Donnybrook%20Lawn%20Tennis%20Club" class="flex items-center gap-4 p-6 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
-                    <img src="/images/logos/donnybrook-lawn-tennis-club.png" alt="Donnybrook logo" class="w-16 h-16 object-contain rounded-md"/>
-                    <div>
-                        <div class="text-lg md:text-xl font-semibold text-slate-900">Donnybrook Lawn Tennis Club</div>
-                        <div class="text-sm text-slate-600 mt-1">Dublin • 10 courts</div>
-                    </div>
-                </a>
-            </li>
+        <ol className="grid gap-6 sm:gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredClubs.map((club) => (
+                <li key={club.name} className="p-0 bg-slate-50 rounded-lg border overflow-hidden">
+                    <a href={`/search/?query=${encodeURIComponent(club.query)}`} className="flex items-center gap-4 p-8 h-full transition hover:bg-slate-100 hover:-translate-y-0.5">
+                        <img src={`/images/logos/${club.logo}`} alt={`${club.name} logo`} loading="lazy" className="w-16 h-16 object-contain rounded-md" />
+                        <div>
+                            <div className="text-lg md:text-xl font-semibold text-slate-900">{club.name}</div>
+                            <div className="text-sm text-slate-600 mt-1">{club.county} • {club.courts} courts</div>
+                        </div>
+                    </a>
+                </li>
+            ))}
         </ol>
         <div class="mt-16 text-center">
             <a href="/search/" class="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-teal-600 text-white font-semibold">Browse all clubs</a>
