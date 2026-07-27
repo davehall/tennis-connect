@@ -1223,8 +1223,13 @@ if (newMarkers.length && !selectedClubId) {
     // try posting form-encoded there first. This lets you receive suggestions without running
     // any server. Set `window.SIMPLE_SUGGEST_ENDPOINT = 'https://formsubmit.co/you@domain.tld'`
     // or `window.SIMPLE_SUGGEST_ENDPOINT = 'https://formspree.io/f/xxxxx'` in your page.
+    const hostname = (typeof window !== 'undefined' && window.location && window.location.hostname) ? window.location.hostname : '';
+    const isLocalHost = hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1' || hostname === '0.0.0.0';
+    const isStaticHost = hostname.endsWith('.github.io') || hostname.endsWith('.pages.dev') || hostname === 'tennisclubconnect.com' || hostname === 'www.tennisclubconnect.com';
     try {
-      const simpleUrl = (typeof window !== 'undefined' && window.SIMPLE_SUGGEST_ENDPOINT) ? window.SIMPLE_SUGGEST_ENDPOINT : null;
+      const simpleUrl = (typeof window !== 'undefined' && window.SIMPLE_SUGGEST_ENDPOINT)
+        ? window.SIMPLE_SUGGEST_ENDPOINT
+        : (isStaticHost ? 'https://formsubmit.co/hello@davidhall.io' : null);
       if (simpleUrl) {
         try {
           console.log('[suggest] attempting simple external submit (form POST) to', simpleUrl);
@@ -1260,6 +1265,10 @@ if (newMarkers.length && !selectedClubId) {
         } catch (errSimple) {
           console.warn('Simple external submit (form) failed, falling back to server POST', errSimple && errSimple.message);
         }
+      }
+
+      if (isStaticHost) {
+        throw new Error('Static hosting does not support server-side form handling.');
       }
 
     // POST to backend endpoint. Expect JSON { ok: true }
