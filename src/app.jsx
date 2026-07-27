@@ -285,7 +285,14 @@ function ClubFinder(){
     }
   });
   const [locationSearch, setLocationSearch] = useState('');
-  const [countyFilter, setCountyFilter] = useState('');
+  const [countyFilter, setCountyFilter] = useState(() => {
+    try {
+      const params = (typeof window !== 'undefined') ? new URLSearchParams(window.location.search) : new URLSearchParams();
+      return params.get('county') || '';
+    } catch (e) {
+      return '';
+    }
+  });
   // Seed surface filter from URL param if present
   const urlParams = (typeof window !== 'undefined') ? new URLSearchParams(window.location.search) : new URLSearchParams();
   const surfaceParam = urlParams.get('surface') || '';
