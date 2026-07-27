@@ -40,11 +40,22 @@ npm start
 Then open http://localhost:3000/search.html
 
 ## Deployment
-Because everything is static you can deploy the root directory to:
-- GitHub Pages
-- Netlify / Vercel (static)
-- S3 + CloudFront
-- Any Nginx/Apache static host
+This project is currently deployed to GitHub Pages, not Netlify.
+
+### Current workflow
+- Source repository: GitHub
+- Deploy target: GitHub Pages
+- Trigger: push to the `main` branch
+- Workflow file: `.github/workflows/deploy.yml`
+
+### How to deploy
+1. Make your change locally.
+2. Run `npm run build`.
+3. Commit and push to `main`.
+4. GitHub Actions will publish the site through the Pages workflow automatically.
+
+### Important note
+If you previously expected Netlify, that was the wrong host for this repo. The live site is served from GitHub Pages.
 
 Minimum needed files: `index.html`, `search.html`, `app.js`, `assets/data/rk7a9nq3.js`, `components.js`, `sw.js`, and the `images/` directory. The raw `clubs.js` file is no longer referenced at runtime.
 
