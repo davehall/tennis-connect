@@ -318,7 +318,10 @@ function ClubFinder(){
     } catch (_) {}
   }, []);
 
-  const [isMobileListVisible, setMobileListVisible] = useState(false);
+  const [isMobileListVisible, setMobileListVisible] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768;
+  });
   const [sortOrder, setSortOrder] = useState('az'); // 'az' | 'za'
   const [isMobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const mobileFiltersPanelRef = useRef(null);
@@ -422,6 +425,16 @@ function ClubFinder(){
   }, []);
 
   useEffect(()=> { if(activeSport !== 'Tennis' && surfaceFilter) setSurfaceFilter(''); }, [activeSport]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const isSmall = window.innerWidth < 768;
+    if (isSmall) {
+      setMobileListVisible(true);
+      setTopHeaderHidden(true);
+      setMobileFiltersOpen(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -1538,8 +1551,8 @@ if (newMarkers.length && !selectedClubId) {
         <main className="flex-grow flex relative overflow-hidden">
           <div className={`absolute md:relative top-0 bottom-0 left-0 right-0 z-40 transition-transform duration-300 ease-in-out ${isMobileListVisible ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 w-full md:w-[48%] lg:w-[40%] xl:w-[680px] 2xl:w-[710px] flex-shrink-0 flex flex-col bg-white border-r border-slate-200`}>
             <div className="px-4 sm:px-6 lg:px-8 py-3 md:py-4 flex-shrink-0 border-b border-slate-200 flex items-center justify-between gap-3 sticky top-0 z-20 bg-white shadow-md md:shadow-none">
-              <p role="status" aria-live="polite" aria-atomic="true" className="text-sm md:text-base font-semibold text-slate-700">{filteredClubs.length} clubs</p>
-              <div className="flex items-center gap-2 ml-auto">
+              <p role="status" aria-live="polite" aria-atomic="true" className="text-sm md:text-base font-semibold text-slate-700">{filteredClubs.length} {activeSport.toLowerCase()} clubs</p>
+              <div className="flex items-center gap-4 ml-auto">
                 <button
                   type="button"
                   onClick={()=> setSortOrder(prev => prev === 'az' ? 'za' : 'az')}
@@ -1550,7 +1563,15 @@ if (newMarkers.length && !selectedClubId) {
                   <span className="font-semibold">{sortOrder === 'za' ? 'Z → A' : 'A → Z'}</span>
                 </button>
               </div>
-              <button onClick={()=> setMobileListVisible(false)} aria-label="Show map" className="md:hidden inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:text-slate-900">Show map</button>
+              <button onClick={()=> setMobileListVisible(false)} aria-label="Show map" className="md:hidden inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:text-slate-900">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M3 6.75A2.75 2.75 0 0 1 5.75 4h12.5A2.75 2.75 0 0 1 21 6.75v10.5A2.75 2.75 0 0 1 18.25 20H5.75A2.75 2.75 0 0 1 3 17.25z" />
+                  <path d="M3 7h18" />
+                  <path d="M7 4v16" />
+                  <path d="M17 4v16" />
+                </svg>
+                <span>Show map</span>
+              </button>
             </div>
             <div ref={listScrollRef} className="relative flex-grow px-4 sm:px-6 lg:px-8 py-4 overflow-y-auto custom-scrollbar" style={{ WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}>
               {/* Absolute sentinel: does not affect layout; hides header after a few cards */}
