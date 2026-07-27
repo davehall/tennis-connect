@@ -1590,7 +1590,7 @@ if (newMarkers.length && !selectedClubId) {
           <div className={`absolute md:relative top-0 bottom-0 left-0 right-0 z-40 transition-transform duration-300 ease-in-out ${isMobileListVisible ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 w-full md:w-[48%] lg:w-[40%] xl:w-[680px] 2xl:w-[710px] flex-shrink-0 flex flex-col bg-white border-r border-slate-200`}>
             <div className="px-4 sm:px-6 lg:px-8 py-3 md:py-4 flex-shrink-0 border-b border-slate-200 flex items-center justify-between gap-3 sticky top-0 z-20 bg-white shadow-md md:shadow-none">
               <p role="status" aria-live="polite" aria-atomic="true" className="text-sm md:text-base font-semibold text-slate-700">{filteredClubs.length} {activeSport.toLowerCase()} clubs</p>
-              <div className="flex items-center gap-4 ml-auto">
+              <div className="flex items-center gap-6 ml-auto">
                 <button
                   type="button"
                   onClick={()=> setSortOrder(prev => prev === 'az' ? 'za' : 'az')}
