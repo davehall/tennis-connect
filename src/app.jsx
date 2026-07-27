@@ -999,22 +999,37 @@ function ClubFinder(){
         let url = '';
         let opts = {};
         let p = preset || '';
+        const fallbackToOsm = ()=> {
+          if (tileLayerRef.current && tileLayerRef.current._fallbackApplied) return;
+          try { map.removeLayer(tileLayerRef.current); } catch(_){} 
+          tileLayerRef.current = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            subdomains: ['a','b','c'],
+            maxZoom: 19,
+            updateWhenIdle: true,
+            keepBuffer: 2
+          }).addTo(map);
+          tileLayerRef.current._fallbackApplied = true;
+          requestAnimationFrame(()=> { try { map.invalidateSize({ pan:false }); tileLayerRef.current && tileLayerRef.current.redraw(); } catch(_){} });
+        };
         if(!p){ p = 'carto:voyager'; }
         if(p.startsWith('mt:') && mtKey){
           const style = p.split(':')[1] || (window.MAPTILER_STYLE || 'streets-v2');
           url = `https://api.maptiler.com/maps/${style}/256/{z}/{x}/{y}.png?key=${mtKey}`;
-          opts = { attribution: '<a href="https://www.maptiler.com/copyright/">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>', crossOrigin: true };
+          opts = { attribution: '<a href="https://www.maptiler.com/copyright/">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>', crossOrigin: true, maxZoom: 19, updateWhenIdle: true, keepBuffer: 2 };
         } else {
           const name = (p.split(':')[1] || (window.CARTO_STYLE || 'voyager'));
           const cartoPath = name === 'light_all' ? 'light_all' : (name === 'dark_all' ? 'dark_all' : 'rastertiles/voyager');
           url = `https://{s}.basemaps.cartocdn.com/${cartoPath}/{z}/{x}/{y}{r}.png`;
-          opts = { attribution: '© OpenStreetMap contributors © CARTO', subdomains: 'abcd', detectRetina: true, crossOrigin: true };
+          opts = { attribution: '© OpenStreetMap contributors © CARTO', subdomains: 'abcd', detectRetina: true, crossOrigin: true, maxZoom: 19, updateWhenIdle: true, keepBuffer: 2 };
         }
         tileLayerRef.current = L.tileLayer(url, opts).addTo(map);
+        tileLayerRef.current.on('tileerror', ()=> { try { fallbackToOsm(); } catch(_){} });
         try {
-          // When tiles first load, ensure map has correct size
-          tileLayerRef.current.once('load', ()=> { try { map.invalidateSize(false); } catch(_){} });
+          // When tiles first load, ensure map has correct size and redraw it
+          tileLayerRef.current.once('load', ()=> { try { map.invalidateSize({ pan:false }); tileLayerRef.current && tileLayerRef.current.redraw(); } catch(_){} });
         } catch(_){ }
+        requestAnimationFrame(()=> { try { map.invalidateSize({ pan:false }); tileLayerRef.current && tileLayerRef.current.redraw(); } catch(_){} });
       };
 
       // Initial basemap
@@ -1030,9 +1045,20 @@ function ClubFinder(){
       // expose helper for later swaps
       mapRef.current._applyBasemap = applyBasemap;
       // A few sizing passes to be extra safe on first paint
-      setTimeout(()=> { try { map.invalidateSize(false); } catch(_){} }, 120);
-      setTimeout(()=> { try { map.invalidateSize(false); } catch(_){} }, 360);
-      try { window.addEventListener('load', ()=> { try { map.invalidateSize(false); } catch(_){} }); } catch(_){ }
+      setTimeout(()=> { try { map.invalidateSize({ pan:false }); tileLayerRef.current && tileLayerRef.current.redraw(); } catch(_){} }, 120);
+      setTimeout(()=> { try { map.invalidateSize({ pan:false }); tileLayerRef.current && tileLayerRef.current.redraw(); } catch(_){} }, 360);
+      try { window.addEventListener('load', ()=> { try { map.invalidateSize({ pan:false }); tileLayerRef.current && tileLayerRef.current.redraw(); } catch(_){} }); } catch(_){ }
+      try {
+        const handleResize = ()=> {
+          try { map.invalidateSize({ pan:false }); tileLayerRef.current && tileLayerRef.current.redraw(); } catch(_){};
+        };
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', handleResize);
+        map.once('remove', ()=> {
+          try { window.removeEventListener('resize', handleResize); } catch(_){};
+          try { window.removeEventListener('orientationchange', handleResize); } catch(_){};
+        });
+      } catch(_){ }
     };
     const tick = () => {
       if (waitUntilSized()) { init(); return; }
@@ -1053,7 +1079,7 @@ function ClubFinder(){
     }
   }, [basemapPreset]);
 
-  useEffect(()=>{ const map=mapRef.current; if(!map || !mapReady) return; try { map.invalidateSize(false); } catch(_){} Object.values(markersRef.current).forEach(m=> { try { map.removeLayer(m); } catch(_){} }); markersRef.current={}; const classification=(window.tennisSurfaceClassification||{}); const mapCategoryToColor=cat=>{ if(!cat) return 'unknown'; const c=(cat||'').toString(); if(c==='Red Plus Clay') return 'rp'; if(c==='Real Clay' || c==='Natural Clay') return 'rc'; if(c==='Artificial Clay') return 'sc'; if(c==='Real Grass' || c==='Natural Grass') return 'ng'; if(c.startsWith('Artificial Grass')) return 'sg'; if(c==='Hard Court' || c==='Hardcourt') return 'hc'; return 'unknown'; }; const UI_TO_INTERNAL={ 'Hardcourt':'Hard Court' }; const requestedSurface=surfaceFilter ? (UI_TO_INTERNAL[surfaceFilter]||surfaceFilter):null; const surfaceColorClass=club=>{ const clubId=club.id; const cats=(classification[clubId]||[]).map(x=> (x||'').toString()); if(requestedSurface){ return mapCategoryToColor(requestedSurface); } if(!cats.length) return 'unknown'; if(cats.includes('Red Plus Clay')) return 'rp'; if(cats.includes('Real Clay')||cats.includes('Natural Clay')) return 'rc'; if(cats.includes('Artificial Clay')) return 'sc'; if(cats.includes('Real Grass')||cats.includes('Natural Grass')) return 'ng'; if(cats.includes('Artificial Grass (Savannah)')||cats.includes('Artificial Grass (TigerTurf)')||cats.includes('Artificial Grass')) return 'sg'; if(cats.includes('Hard Court')||cats.includes('Hardcourt')) return 'hc'; return 'unknown'; };
+  useEffect(()=>{ const map=mapRef.current; if(!map || !mapReady) return; try { map.invalidateSize({ pan:false }); } catch(_){} Object.values(markersRef.current).forEach(m=> { try { map.removeLayer(m); } catch(_){} }); markersRef.current={}; const classification=(window.tennisSurfaceClassification||{}); const mapCategoryToColor=cat=>{ if(!cat) return 'unknown'; const c=(cat||'').toString(); if(c==='Red Plus Clay') return 'rp'; if(c==='Real Clay' || c==='Natural Clay') return 'rc'; if(c==='Artificial Clay') return 'sc'; if(c==='Real Grass' || c==='Natural Grass') return 'ng'; if(c.startsWith('Artificial Grass')) return 'sg'; if(c==='Hard Court' || c==='Hardcourt') return 'hc'; return 'unknown'; }; const UI_TO_INTERNAL={ 'Hardcourt':'Hard Court' }; const requestedSurface=surfaceFilter ? (UI_TO_INTERNAL[surfaceFilter]||surfaceFilter):null; const surfaceColorClass=club=>{ const clubId=club.id; const cats=(classification[clubId]||[]).map(x=> (x||'').toString()); if(requestedSurface){ return mapCategoryToColor(requestedSurface); } if(!cats.length) return 'unknown'; if(cats.includes('Red Plus Clay')) return 'rp'; if(cats.includes('Real Clay')||cats.includes('Natural Clay')) return 'rc'; if(cats.includes('Artificial Clay')) return 'sc'; if(cats.includes('Real Grass')||cats.includes('Natural Grass')) return 'ng'; if(cats.includes('Artificial Grass (Savannah)')||cats.includes('Artificial Grass (TigerTurf)')||cats.includes('Artificial Grass')) return 'sg'; if(cats.includes('Hard Court')||cats.includes('Hardcourt')) return 'hc'; return 'unknown'; };
   // Build markers for current filteredClubs
   const newMarkers = [];
   const normAsset = (u) => { try { const s=(u||'').toString().trim(); if(!s) return ''; if (s.startsWith('data:') || /^([a-z]+:)?\/\//i.test(s) || s.startsWith('/')) return s; if (s.startsWith('images/') || s.startsWith('logos/') || s.startsWith('assets/') || s.startsWith('img/')) return '/'+s.replace(/^\/+/,''); return s; } catch{ return u||'' } };
@@ -1063,6 +1089,7 @@ function ClubFinder(){
     const iconHtml = `<div class="surface-marker${selectedClubId===club.id?' selected':''}"><div class="marker-shell ${color}"></div></div>`;
     const icon = L.divIcon({ html: iconHtml, className: '', iconSize: [26,26], iconAnchor: [13,13] });
     const marker = L.marker([club.lat, club.lng], { icon });
+    try { requestAnimationFrame(() => { try { map.invalidateSize({ pan:false }); tileLayerRef.current && tileLayerRef.current.redraw(); } catch(_){} }); } catch(_){ }
   // Popup content styled like cards (bigger logo + details)
     let hostName = '';
     if (club.website) {
