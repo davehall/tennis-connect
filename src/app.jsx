@@ -1440,7 +1440,7 @@ if (newMarkers.length && !selectedClubId) {
               <div className="px-4 sm:px-6 lg:px-8">
             <div
               ref={logoRowRef}
-        className={`flex items-center justify-between h-14 md:h-18 lg:h-20 ${ (isMobileListVisible && isTopHeaderHidden) ? 'md:opacity-100  md:pointer-events-auto overflow-hidden opacity-0 pointer-events-none' : 'overflow-hidden md:overflow-visible'}`}
+        className={`flex items-center justify-between h-16 md:h-18 lg:h-20 ${ (isMobileListVisible && isTopHeaderHidden) ? 'md:opacity-100  md:pointer-events-auto overflow-hidden opacity-0 pointer-events-none' : 'overflow-hidden md:overflow-visible'}`}
               style={{
                 maxHeight: (typeof window !== 'undefined' && window.innerWidth < 768)
                   ? ((isMobileListVisible && isTopHeaderHidden) ? 0 : logoRowHeight)
@@ -1454,7 +1454,7 @@ if (newMarkers.length && !selectedClubId) {
                 willChange: (typeof window !== 'undefined' && window.innerWidth < 768) ? 'opacity' : undefined
               }}
             >
-              <a href="/" className="flex items-center py-1"><Logo variant="dark" className="mt-1 md:mt-0" /></a>
+              <a href="/" className="flex items-center py-2 md:py-1"><Logo variant="dark" className="mt-1 md:mt-0" /></a>
               <div className="hidden md:flex items-center">
                 <div className="flex items-center gap-3">
                   <button onClick={()=> setSuggestModalOpen(true)} className="text-sm bg-teal-500 text-white font-medium py-2.5 px-5 rounded-md hover:bg-teal-600 transition">Say hello</button>
