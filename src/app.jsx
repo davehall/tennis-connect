@@ -1618,7 +1618,7 @@ if (newMarkers.length && !selectedClubId) {
                   <path d="M10 4v13" />
                   <path d="M14 6.5v13" />
                 </svg>
-                <span>Show map</span>
+                <span className="whitespace-nowrap">Map</span>
               </button>
             </div>
             <div ref={listScrollRef} className="relative flex-grow px-4 sm:px-6 lg:px-8 py-4 overflow-y-auto custom-scrollbar" style={{ WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}>
