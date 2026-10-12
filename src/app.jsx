@@ -1019,7 +1019,11 @@ function ClubFinder(){
           requestAnimationFrame(()=> { try { map.invalidateSize({ pan:false }); tileLayerRef.current && tileLayerRef.current.redraw(); } catch(_){} });
         };
         if(!p){ p = 'carto:voyager'; }
-        if(p.startsWith('mt:') && mtKey){
+        if(p.startsWith('mt:')){
+          if (!mtKey) {
+            fallbackToOsm();
+            return;
+          }
           const style = p.split(':')[1] || (window.MAPTILER_STYLE || 'streets-v2');
           url = `https://api.maptiler.com/maps/${style}/256/{z}/{x}/{y}.png?key=${mtKey}`;
           opts = { attribution: '<a href="https://www.maptiler.com/copyright/">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>', crossOrigin: true, maxZoom: 19, updateWhenIdle: true, keepBuffer: 2 };
