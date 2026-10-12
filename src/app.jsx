@@ -373,9 +373,11 @@ function ClubFinder(){
   // Basemap selection (persisted)
   const hasMTKey = (typeof window !== 'undefined' && !!window.MAPTILER_KEY);
   const [basemapPreset, setBasemapPreset] = useState(()=>{
-    try { const s = localStorage.getItem('basemapPreset'); if(s) return s; } catch(_){ }
-    // Always default to CARTO Voyager view
-    return 'carto:voyager';
+    try {
+      const s = localStorage.getItem('basemapPreset');
+      if (s && s.startsWith('mt:') && hasMTKey) return s;
+    } catch(_){ }
+    return 'osm';
   });
   const tileLayerRef = useRef(null);
 
@@ -1018,7 +1020,7 @@ function ClubFinder(){
           tileLayerRef.current._fallbackApplied = true;
           requestAnimationFrame(()=> { try { map.invalidateSize({ pan:false }); tileLayerRef.current && tileLayerRef.current.redraw(); } catch(_){} });
         };
-        if(!p){ p = 'carto:voyager'; }
+        if(!p){ p = 'osm'; }
         if(p.startsWith('mt:')){
           if (!mtKey) {
             fallbackToOsm();
@@ -1028,10 +1030,8 @@ function ClubFinder(){
           url = `https://api.maptiler.com/maps/${style}/256/{z}/{x}/{y}.png?key=${mtKey}`;
           opts = { attribution: '<a href="https://www.maptiler.com/copyright/">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>', crossOrigin: true, maxZoom: 19, updateWhenIdle: true, keepBuffer: 2 };
         } else {
-          const name = (p.split(':')[1] || (window.CARTO_STYLE || 'voyager'));
-          const cartoPath = name === 'light_all' ? 'light_all' : (name === 'dark_all' ? 'dark_all' : 'rastertiles/voyager');
-          url = `https://{s}.basemaps.cartocdn.com/${cartoPath}/{z}/{x}/{y}{r}.png`;
-          opts = { attribution: '© OpenStreetMap contributors © CARTO', subdomains: 'abcd', detectRetina: true, crossOrigin: true, maxZoom: 19, updateWhenIdle: true, keepBuffer: 2 };
+          fallbackToOsm();
+          return;
         }
         tileLayerRef.current = L.tileLayer(url, opts).addTo(map);
         tileLayerRef.current.on('tileerror', ()=> { try { fallbackToOsm(); } catch(_){} });
